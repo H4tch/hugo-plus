@@ -1,0 +1,40 @@
+//
+// Grid system
+
+// Container widths
+.container {
+	.container-fixed();
+	@media (max-width: @screen-xs-min) { max-width: @container-xs; }
+	@media (max-width: @screen-sm-min) { max-width: @container-sm; }
+	@media (min-width: @screen-md-min) { width: @container-md; }
+	@media (min-width: @screen-lg-min) { width: @container-lg; }
+}
+
+// Fluid container
+.container-fluid { .container-fixed(); }
+
+.row { .make-row(); }
+
+.make-grid-columns();
+
+// 480 768 940 1200
+
+// When to rebuild the grid on media query change:
+// Extra small grid - Phones
+.make-grid(xs);
+// Small grid - Phones to Tablets
+@media (min-width: @screen-sm-min) { .make-grid(sm); }
+// Medium grid - Desktop
+@media (min-width: @screen-md-min) { .make-grid(md); }
+// Large grid - Large Desktop
+@media (min-width: @screen-lg-min) { .make-grid(lg); }
+
+
+.row.no-gutters { margin-right: 0; margin-left: 0; }
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+

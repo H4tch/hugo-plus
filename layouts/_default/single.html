@@ -1,0 +1,42 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="section panel panel-default">
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			<a href="{{ .Permalink }}"><h1 id="og:title" class="title">{{ .Title }}</h1></a>
+			<div class="voffset-10"></div>
+			<aside class="article-meta vcenter">
+				<!-- <i class="fa fa-calendar-o"></i> -->
+				<date>{{ .Date.Format "Jan 2, 2006" }}</date>
+				{{ with .Params.Author }}
+					- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
+				{{ else }}{{ with $.Site.Author.name }} 
+						- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
+				{{ end }}{{ end }}
+			</aside>
+			<div class="voffset10"></div>
+			{{ .Content }}
+			<hr/>
+			{{ partial "series.html" . }}			
+			<div class="voffset20"></div>
+			{{ partial "categories+tag_buttons.html" . }}
+			<div class="voffset10"></div>
+			{{ partial "pager.html" . }}
+		</div>
+		
+		<div class="panel-footer">
+			{{ partial "share_buttons.html" . }}
+			{{ partial "comments_ondemand.html" . }}
+		</div>
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">
+	{{ partial "sidebar.html" . }}
+</div>
+
+{{ partial "footer.html" . }}
+
+
+

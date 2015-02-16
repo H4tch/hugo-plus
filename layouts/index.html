@@ -1,0 +1,14 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+{{ range .Data.Pages }}
+	<div class="section panel panel-default">
+		{{ .Render "summary" }}
+	</div>
+{{ end }}
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+
+

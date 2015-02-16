@@ -1,0 +1,80 @@
+<!--
+	See "follow_buttons.html" for social buttons used to follow your profile
+	Some buttons need CSS styling fixes to maintain uniform alignment
+	Most of these buttons are configurable
+		For example, "share" typed buttons usually have a "count" bubble
+			The buttons don't have a common interface however
+		Google+'s Share button with count bubble leaves a large gap on the right side
+	TODO
+		Switch to using custom images and manually create href?
+			This would be good for customizability and page load speed
+		Implement on demand button loading? How?
+-->
+
+
+<!-- Flattr -->
+{{ with .Site.Params.flattr }}
+<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" target="_blank">
+	<img style="vertical-align:top;zoom:1;*display:inline" height="20px" src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+{{ end }}
+
+
+<!-- Tumblr -->
+<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('https://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;">Share on Tumblr</a>
+<script src="http://platform.tumblr.com/v1/share.js"></script>
+
+
+<!-- Reddit -->
+<a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false">
+<img style="vertical-align:top;zoom:1;*display:inline" height="20px" src="//www.redditstatic.com/spreddit8.gif" alt="Submit to Reddit" title="Submit to Reddit" border="0"></a>
+
+
+<!-- LinkedIn ->
+<script type="IN/Share" data-url="{{ .Permalink }}" data-counter="right"></script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+-->
+
+
+<!-- Pin it -->
+<a href="{{ .Permalink }}" data-pin-do="buttonBookmark" data-pin-color="white">
+<img style="vertical-align:top;zoom:1;*display:inline" src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" alt="Pin it" title="Pin it" /></a>
+
+
+<!-- Facebook -->
+<div style="vertical-align:top;zoom:1;*display:inline" class="fb-share-button" data-href="{{ .Permalink }}" data-layout="button"></div>
+<div style="vertical-align:top;zoom:1;*display:inline" class="fb-like" data-href="{{ .Permalink }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="flase"></div>
+
+
+{{ with .Site.Params.twitter }}
+	<a href="https://twitter.com/share" data-via="{{ . }}" class="twitter-share-button" data-count="none" data-url="{{ $.Permalink }}" data-text="{{ $.Title }}">Tweet</a>
+	<script>
+		!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){js=d.createElement(s);js.id=id;
+			js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);
+		}}(document, 'script', 'twitter-wjs');
+	</script>
+{{ end }}
+
+
+<!-- Google+ -->
+<div class="g-plus" data-action="share" data-annotation="none" data-href="{{ .Permalink }}"></div>
+<div class="g-plusone" data-size="medium" data-count="none" data-href="{{ .Permalink }}"></div>
+
+
+<!-- Google+ Explicit loading
+	<script> {"parsetags": "explicit"}</script>
+	<div id="content"><div class="g-plusone"></div></div>
+	<a href="#" onClick="gapi.plusone.go("content");">Share</a>
+-->
+
+<!--
+https://www.facebook.com/dialog/share?
+  app_id=145634995501895
+  &display=popup
+  &href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F
+  &redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer
+-->
+
+
+

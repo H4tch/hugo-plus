@@ -1,0 +1,38 @@
+
+<!--
+	<div class="voffset-10"></div>
+-->
+
+{{ with index .Params.series 0 }}
+	{{ $name := (. | lower | urlize) }}
+	{{ $series := index $.Site.Taxonomies.series $name }}
+	{{ if $series.Pages }}
+	
+	<div class="row clearfix">
+	<div class="col-sm-6 column">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="voffset-10"></div>
+			<h4>
+				<a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}"> {{ . }}</a>
+				<a href="{{ $.Site.BaseUrl }}/series" class="label label-xs label-primary pull-right">All series</a>
+			</h4>
+			<div class="voffset-10"></div>
+		</div>
+		<ul class="list-group">
+		{{ range $series.Pages.ByDate }}<!--Most Recent on bottom-->
+			<a href="{{ .Permalink }}" class="list-group-item">
+				{{ .Title }}
+				<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
+			</a>
+		{{ end }}
+		</ul>
+	</div>
+	</div>
+	</div>
+	{{ end }}
+{{ end }}
+<!-- { { .Date.Format "Jan 02, 2006" }} - -->
+
+
+

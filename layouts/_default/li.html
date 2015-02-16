@@ -1,0 +1,16 @@
+
+<li>
+	<a href="{{ .Permalink }}">
+	<h4 class="title">{{ .Title }}</a>
+	<small>
+	{{ if .Params.author }}{{ .Params.author }}
+	{{ else if $.Site.Author.name }}
+	{{ end }}
+	</small>
+	<span class="text-muted pull-right">
+		<date>{{ .Date.Format "Jan 2" }}</date>
+	</span>
+	</h4>
+</li>
+
+

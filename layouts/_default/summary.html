@@ -1,0 +1,27 @@
+
+<div class="article panel-body">
+	<div class="voffset-20"></div>
+	<a href="{{ .Permalink }}"><h1 class="title">{{ .Title }}</h1></a>
+	<div class="voffset-10"></div>
+	<aside class="article-meta vcenter">
+		<date>{{ .Date.Format "Jan 2, 2006" }}</date>
+		{{ with .Params.Author }}
+			- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
+		{{ else }}{{ with $.Site.Author.name }} 
+				- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
+		{{ end }}{{ end }}
+	</aside>
+	<div class="voffset10"></div>
+	<div class="article-content">{{ .Summary }}</div>
+	<!--Odd spacing differences depending on how the summary/content ends.
+		This helps reduce the minimum spacing, but increases the spacing when
+		the content is not truncated and doesn't end with a p tag 
+	-->
+	{{ if (not .Truncated) }}<div class="voffset3"></div>{{ end }}
+</div>
+
+<div class="panel-footer">
+	{{ partial "continue_reading+comment_count.html" . }}
+</div>
+
+

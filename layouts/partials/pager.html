@@ -1,0 +1,35 @@
+
+<!-- This is very rough psuedo code. It is a little bit tricky to retrieve the posts within a series
+{ if .Params.series }
+	{ if (gt .Params.seriesIndex 0) }
+		Prev
+	{ end }
+	{ if (lt .Params.seriesIndex (len .Site.Taxonomies.series) ) }
+		Next
+	{ end }
+{ else if .Params.categories }
+	How in the world is this gonna work????
+{ else }
+	This relies on PrevInSection and NextInSection (need to compiler latest sources?)
+{ end }
+-->
+<div class="row clearfix">
+	{{ with .Prev }}
+	<div class="col-md-6 column">
+		<!--
+		<a class="btn btn-primary" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> Prev</a>
+		-->
+		<a class="" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> {{ .Title | title }}</a>
+	</div>
+	{{ end }}
+	{{ with .Next }}
+	<div class="col-md-6 column">
+		<!--
+		<a class="btn btn-primary pull-right" href="{{ .Permalink }}">Next <i class="fa fa-caret-left"></i></a>
+		-->
+		<a class="pull-right" href="{{ .Permalink }}">{{ .Title | title }} <i class="fa fa-caret-right"></i></a>
+	</div>
+	{{ end }}
+</div>
+
+

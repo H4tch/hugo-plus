@@ -1,0 +1,70 @@
+{{ partial "header.html" . }}
+
+<!-- Use "text-muted" and "text-primary" to invert the breadcrumb text colors -->
+
+<div class="col-md-9 column">
+	<div class="voffset-20"></div>
+	<!-- page-header -->
+	<div class="container"><h1>{{ .Title | title }}</h1></div>
+	<div class="section panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="voffset-10"></div>
+				<ul class="breadcrumb list-unstyled">
+					<li><a href="{{ $.Site.BaseUrl }}">Home </a>
+					 <span class="divider"></span></li>
+					<!--There's gotta be a better way to get the Taxonomy?
+						NOTE, "Plural" doesn't (currently?) work
+						.Site.Taxonomies
+						(index $value.Pages 0).Taxonomies (.Data.Taxonomies?)
+						IMPORTANT: If you have custom taxonomies, make the
+							plural equal to singular. Then store the plural version
+							in .Site.Params.taxonomy or something.
+						NOTE: The newest version of hugo may have plural/singular support,
+							which is why it is in the docs.
+					-->
+					{{ .Params.plural }}
+					{{ range $key, $value := .Data }}
+						{{ if (ne $key "Pages") }}
+							{{ if (eq $key "category") }}
+								<li><a href="{{ $.Site.BaseUrl }}/categories">Categories </a>
+							{{ else if (eq $key "tag") }}
+								<li><a href="{{ $.Site.BaseUrl }}/tags">Tags </a>
+							{{ else }}
+								<li><a href="{{ $.Site.BaseUrl }}/{{ $key | urlize }}">
+									{{ $key | title }} </a>
+							{{ end }}
+							 <span class="divider"></span></li>
+						{{ end }}
+					{{ end }}
+					<li class="active">{{ .Title }}</li>
+				</ul>
+				<div class="voffset-30"></div>
+			</div>
+		</div>
+		{{ if (not .Data.Pages ) }}
+			<div class="panel-body">
+				<h4 class="text-muted">No content found matching this criteria</h4>
+			</div>
+		{{ else }}
+			<ul class="list-group list-unstyled">
+			<!-- Group by Year, only if there is more than one year?
+			{ { range .Data.Pages.GroupByDate "2006-01" }}
+			{ { .Key }}
+			{ { range .Pages }}
+			-->
+			{{ range .Data.Pages }}
+				<a class="list-group-item" href="{{ .Permalink }}">
+					<span class="text-primary">{{ .Title | title }}</span>
+					<span class="pull-right">{{ .Date.Format "Jan 2" }}</span>
+				</a>
+			{{ end }}
+			</ul>
+		{{ end }}
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+
+

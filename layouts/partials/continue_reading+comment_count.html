@@ -1,0 +1,24 @@
+
+<!--Theme colors may not match rest of Bootstrap theme here
+	"info" instead of "primary" color scheme is used for "continue reading"
+	The number comments link isn't underlined on hover.
+-->
+
+{{ if (isset .Params "continue_message") }}
+	<a class="text-info" href="{{ .Permalink }}">{{ .Params.continue_message }} »</a>
+{{ else }}
+	{{ if .Truncated }}
+		<a class="text-info" href="{{ .Permalink }}">Continue Reading »</a>
+	{{ else }}
+		<a class="text-info" href="{{ .Permalink }}">Comment and Share »</a>
+	{{ end }}
+{{ end }}
+<div class="pull-right">
+	<a style="text-decoration:none;" class="text-info" href="{{ .Permalink }}#comments">
+		<span class="disqus-comment-count" data-disqus-identifier="{{ .Title | lower | urlize }}"></span>
+		<!-- style="font-size:150%;margin-top:1px;" -->
+		<i class="fa fa-comment-o pull-right">&nbsp;</i>
+	</a>
+</div>
+
+
