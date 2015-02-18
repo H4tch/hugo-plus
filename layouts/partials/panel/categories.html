@@ -1,0 +1,35 @@
+<div class="list-group">
+	<a href="{{ $.Site.BaseUrl }}/categories/" class="list-group-item active">Categories</a>
+	<!-- TODO How to sort categories by count here?!?!?
+				apply and sort aren't working, (in this version?)
+			$categories := index $.Site.Taxonomies $name
+			range $categories.ByCount
+	-->
+	{{ range $name, $category := $.Site.Taxonomies.categories }}
+		<a class="list-group-item" href="{{ $.Site.BaseUrl }}/categories/{{ $name }}">
+			{{ $name | title }}<span class="badge">{{ $category.Count }}</span></a>
+	{{ end }}
+	
+	<a class="list-group-item" href="{{ $.Site.BaseUrl }}/tags/">
+		Tags<i style="font-size:133%;" class="text-primary fa fa-tags pull-right"></i></a>
+	
+	<!-- Alternate Tag _menu_. Maybe add to the "Category" panel-header with a "pull-right"
+	<button id="tags-menu" class="btn btn-info btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+			tags <strong class="caret"></strong></button>
+	<ul class="dropdown-menu" aria-labelledby="tags-menu">
+		<li><a href="{{ $.Site.BaseUrl }}/tags/compiler">compiler</a></li>
+		<li><a href="{{ $.Site.BaseUrl }}/tags/language">language</a></li>
+		<li class="divider"></li>
+		<li><a href="{{ $.Site.BaseUrl }}/tags">all</a></li>
+	</ul>
+	-->
+	
+</div>
+<!-- Collapsable List for Categories/Tags/etc
+<div class="list-group">
+	 <a href="#tags-menu" data-toggle="collapse" class="list-group-item active collapsed">Tags</a>
+	<div id="tags-menu" class="panel-collapse collapse">
+		<a href="#" class="list-group-item">lua c++ game</a>
+</div>
+-->
+

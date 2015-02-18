@@ -1,18 +1,17 @@
 # Hugo-plus
---------------
-A featured-pack Hugo theme that's built using Bootstrap components.
+A featured-packed Hugo theme that's built using Bootstrap components.
 The idea is to provide a large foundation of modules that can be used to piece
-	together a website/blog, while allowing the theme to be interchangeable .
+	together a website/blog, while allowing the theme to be interchangeable.
 
 # Why?
-Hugo has a lot of potential, but is a pain to use do to template limitiations,
-	documentation. This "theme" is meant to realize these potentials.
+Hugo has potential, but it's a pain to use due to its poor documentation.
+This project is meant to provide a powerful in spite of these limitations.
 
 # Who?
 Targeted at lazy developers that don't want to reverse engineer Hugo's data
-	structures and constantly work around it's poor documentation.
-You'll still gain the benefits of (nearly) complete customization.
-However, Hugo makes it difficult to 
+	structures and punch a hole in their screen.
+You'll be given a foundation chock-full of features to use, learn from, and
+	extend. Nothing will be left to magic.
 
 -----
 
@@ -40,26 +39,22 @@ However, Hugo makes it difficult to
 ### Classifying and structuring content types
 ### Customizing page layouts
 ### Customizing the Bootstrap theme
-Install the Less compiler though NPM
-Modify "variables.less" and compile "hugo-plus.less"
+	Install the Less compiler though NPM
+	Modify "variables.less" and compile "hugo-plus.less"
 
 
 -----
 # Todo
 #### In-progress
 * Decouple, modularize components.
-* Allow 'pager' to be parameterized by any Taxonomy, or section
-	* example: get the next/prev in the "Series" taxonomy
+* More template layouts for things like Projects, "Streams", or Portfolios 
 #### Future
+* Nav-menu should use Hugo's Menu system(right now its somewhat hardcoded, yet still customizable!)
 * Documentation, usage examples, and tutorials
 	* Document custom parameters
-* More template layouts for things like Projects, "Streams", or Portfolios 
 * Can idividual Taxonomy Term pages be customized?
 	* Sections could be used to better address this? yes
-* Detect current page to be reflected within the navigation bar
-* Nav-menu should use Hugo's Menu system(right now its somewhat hardcoded, yet still customizable!)
-* Invert the social_links and share_links (reduce manditory user modification)
-	* Make them a shortcode, where you pass in the necessary info
+* Reflect current page/section within the navigation bar
 * 'Hide comments' button
 	* When unhiding, the comments shouldn't have to reload
 * Series subtitle
