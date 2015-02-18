@@ -1,0 +1,35 @@
+
+{{ with index .Params.series 0 }}
+	{{ $name := (. | lower | urlize) }}
+	{{ $series := index $.Site.Taxonomies.series $name }}
+	{{ if $series.Pages }}
+	
+		<div class="series panel panel-default">
+			<div class="panel-heading">
+				<div class="row clearfix">
+					<div class="col-xs-12 column">
+						<h4 class="active"><a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">
+						{{ . }}</a>
+						<span href="{{ $.Site.BaseUrl }}/series" class="label label-primary pull-right">All series</span></h4>
+					</div>
+				</div>
+			</div>
+			<ul class="list-group">
+			{{ range $series.Pages.ByDate }}<!--Most Recent on bottom-->
+				{{ if (eq .Permalink $.Permalink )}}
+					<a href="{{ .Permalink }}" class="list-group-item list-group-item-info">
+				{{ else }}
+					<a href="{{ .Permalink }}" class="list-group-item">
+				{{ end }}
+					{{ .Title }}
+					<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
+				</a>
+				<a href="{{ .Permalink }}" class="list-group-item">Second post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
+				<a href="{{ .Permalink }}" class="list-group-item">third post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
+			{{ end }}
+			</ul>
+		</div>
+	{{ end }}
+{{ end }}
+
+
