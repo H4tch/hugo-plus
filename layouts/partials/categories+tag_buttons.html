@@ -1,32 +1,32 @@
 
 <div class="row">
-	{{ with .Params.categories }}
+{{ with .Params.categories }}
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
-		{{ range . }}
-			<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
-			 class="btn btn-primary btn-xs">{{ . }}</a>
-		{{ end }}
-	</div>
+	{{ range . }}
+		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
+		 class="btn btn-primary btn-xs">{{ . }}</a>
 	{{ end }}
+	</div>
+{{ end }}
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
-		{{ with .Params.tags }}
+	{{ with .Params.tags }}
 		<div class="btn-group pull-right">
-				<button class="btn btn-default btn-xs dropdown-toggle"
-				 id="tag-menu" type="button" data-toggle="dropdown"
-				 aria-expanded="false">
-					tags <strong class="caret"></strong>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu dropdown-menu-right"
-				 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
-					{{ range . }}
-						<li role="presentation">
-						<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
-						 role="menuitem">{{ . }}</a></li>
-					{{ end }}
-				</ul>
+			<button class="btn btn-default btn-xs dropdown-toggle"
+			 id="tag-menu" type="button" data-toggle="dropdown"
+			 aria-expanded="false">
+				tags <strong class="caret"></strong>
+				<span class="sr-only">Toggle Dropdown</span>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-right"
+			 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
+			{{ range . }}
+					<li role="presentation">
+					<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
+					 role="menuitem">{{ . }}</a></li>
+			{{ end }}
+			</ul>
 		</div>
-		{{ end }}
+	{{ end }}
 	</div>
 </div>
 
