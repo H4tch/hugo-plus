@@ -12,6 +12,10 @@
 -->
 
 
+<!-- Gratipay -->
+<script data-gratipay-username="danielh4tch" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+
+
 <!-- Flattr -->
 {{ with .Site.Params.flattr }}
 <a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" target="_blank">
@@ -35,10 +39,10 @@
 -->
 
 
-<!-- Pin it -->
+<!-- Pin it ->
 <a href="{{ .Permalink }}" data-pin-do="buttonBookmark" data-pin-color="white">
 <img style="vertical-align:top;zoom:1;*display:inline" src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" alt="Pin it" title="Pin it" /></a>
-
+-->
 
 <!-- Facebook -->
 <div style="vertical-align:top;zoom:1;*display:inline" class="fb-share-button" data-href="{{ .Permalink }}" data-layout="button"></div>

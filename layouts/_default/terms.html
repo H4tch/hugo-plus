@@ -22,6 +22,11 @@
 				<h4 class="text-muted">No content found matching this criteria</h4>
 			</div>
 		{{ else }}
+			<!-- Inconsistency here on **Hugo's** part...
+				Any spaces within the term are autmagically converted
+				to hyphens for your convenience
+				Workaround: get the first page of the term, then access the
+					taxonomy within its ".Params" -->
 			<ul class="list-group list-unstyled">
 			{{ range .Data.Terms.ByCount }}
 				<a class="list-group-item" href="{{ $.Site.BaseUrl }}{{ $.Url }}{{ .Term }}">

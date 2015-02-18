@@ -20,7 +20,11 @@
 			</div>
 			<ul class="list-group">
 			{{ range $series.Pages.ByDate }}<!--Most Recent on bottom-->
-				<a href="{{ .Permalink }}" class="list-group-item">
+				{{ if (eq .Permalink $.Permalink )}}
+					<a href="{{ .Permalink }}" class="list-group-item active">
+				{{ else }}
+					<a href="{{ .Permalink }}" class="list-group-item">
+				{{ end }}
 					{{ .Title }}
 					<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
 				</a>
