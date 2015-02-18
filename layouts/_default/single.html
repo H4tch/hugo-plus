@@ -30,8 +30,10 @@
 			{{ end }}
 			<div class="voffset20"></div>
 			{{ partial "categories+tag_buttons.html" . }}
-			<div class="voffset10"></div>
-			{{ partial "pager.html" . }}
+			{{ if (not .Params.series) }}
+				<div class="voffset10"></div>
+				{{ partial "pager.html" . }}
+			{{ end }}
 		</div>
 		
 		<div class="panel-footer">
