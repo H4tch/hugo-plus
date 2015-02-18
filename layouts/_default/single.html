@@ -7,6 +7,7 @@
 	<div class="section panel panel-default">
 		<div class="article panel-body">
 			<div class="voffset-20"></div>
+			
 			<a href="{{ .Permalink }}"><h1 id="og:title" class="title">{{ .Title }}</h1></a>
 			<div class="voffset-10"></div>
 			<aside class="article-meta vcenter">
@@ -20,8 +21,13 @@
 			</aside>
 			<div class="voffset10"></div>
 			{{ .Content }}
-			<hr/>
-			{{ partial "series.html" . }}			
+			
+			{{ if .Params.series }}
+				<div class="voffset30"></div>
+				{{ partial "panel/series.html" . }}
+			{{ else }}
+				<hr/>
+			{{ end }}
 			<div class="voffset20"></div>
 			{{ partial "categories+tag_buttons.html" . }}
 			<div class="voffset10"></div>
