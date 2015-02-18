@@ -1,0 +1,39 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="voffset-20"></div>
+	<div class="container"><h1>{{ .Title | title }}</h1></div>
+	<div class="section panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="voffset-10"></div>
+				<ul class="breadcrumb list-unstyled">
+					<li><a href="{{ $.Site.BaseUrl }}">Home </a>
+						<span class="divider"></span></li>
+					<li class="active">{{ .Title }}</li>
+				</ul>
+				<div class="voffset-30"></div>
+			</div>
+		</div>
+		{{ if (not .Data.Terms ) }}
+			<div class="panel-body">
+				<h4 class="text-muted">No content found matching this criteria</h4>
+			</div>
+		{{ else }}
+			<ul class="list-group list-unstyled">
+			{{ range .Data.Terms.ByCount }}
+				<a class="list-group-item" href="{{ $.Site.BaseUrl }}{{ $.Url }}{{ .Term }}">
+				<h4>{{ .Term | title }}
+					<span class="pull-right">{{ (index .Pages 0).Date.Format "Jan 2" }}</span>
+				</h4>
+				</a>
+			{{ end }}
+			</ul>
+		{{ end }}
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+
+

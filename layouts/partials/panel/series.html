@@ -1,4 +1,8 @@
 
+<!-- Must be instantiated on a content page?
+	TODO: Pass in the 'series' name?
+-->
+
 {{ with index .Params.series 0 }}
 	{{ $name := (. | lower | urlize) }}
 	{{ $series := index $.Site.Taxonomies.series $name }}
