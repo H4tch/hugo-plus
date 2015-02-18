@@ -1,0 +1,31 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="voffset-20"></div>
+	<div class="container"><h1>{{ .Title | title }}</h1></div>
+	<div class="section panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="voffset-10"></div>
+				<ul class="breadcrumb list-unstyled">
+					<li><a href="{{ $.Site.BaseUrl }}">Home </a><span class="divider"></span></li>
+					<li class="active">{{ .Title }}</li>
+				</ul>
+				<div class="voffset-30"></div>
+			</div>
+		</div>
+		<ul class="list-group list-unstyled">
+		{{ range $.Site.Recent }}
+			<a class="list-group-item" href="{{ .Permalink }}">
+				<span class="text-primary">{{ .Title | title }}</span>
+				<span class="pull-right">{{ .Date.Format "Jan 2" }}</span>
+			</a>
+		{{ end }}
+		</ul>
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+
+
