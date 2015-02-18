@@ -13,7 +13,9 @@
 
 
 <!-- Gratipay -->
-<script data-gratipay-username="danielh4tch" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+{{ with .Site.Params.gratipay }}
+<script data-gratipay-username="{{ .Site.Params.gratipay }}" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+{{ end }}
 
 
 <!-- Flattr -->
