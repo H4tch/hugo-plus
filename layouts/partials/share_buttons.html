@@ -14,7 +14,7 @@
 
 <!-- Gratipay -->
 {{ with .Site.Params.gratipay }}
-<script data-gratipay-username="{{ .Site.Params.gratipay }}" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+<script data-gratipay-username="{{ . }}" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
 {{ end }}
 
 
