@@ -27,10 +27,11 @@
 				{{ .Title }}
 				<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
 			</a>
-			<a href="{{ .Permalink }}" class="list-group-item">Second post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
-			<a href="{{ .Permalink }}" class="list-group-item">third post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
 		{{ end }}
 		</ul>
+		<div class="panel-footer">
+			{{ partial "share_buttons.html" . }}
+			{{ partial "comments_ondemand.html" . }}
 		</div>
 	</div>
 </div>

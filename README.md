@@ -3,11 +3,11 @@ A featured-packed Hugo theme that's built using Bootstrap components.
 The idea is to provide a large foundation of modules that can be used to piece
 	together a website/blog, while allowing the theme to be interchangeable.
 
-# Why?
+### Why?
 Hugo has potential, but it's a pain to use due to its poor documentation.
 This project is meant to provide a powerful in spite of these limitations.
 
-# Who?
+### Who?
 Targeted at lazy developers that don't want to reverse engineer Hugo's data
 	structures and punch a hole in their screen.
 You'll be given a foundation chock-full of features to use, learn from, and
@@ -46,12 +46,12 @@ You'll be given a foundation chock-full of features to use, learn from, and
 -----
 # Todo
 #### In-progress
-* Decouple, modularize components.
 * More template layouts for things like Projects, "Streams", or Portfolios 
 #### Future
 * Nav-menu should use Hugo's Menu system(right now its somewhat hardcoded, yet still customizable!)
 * Documentation, usage examples, and tutorials
 	* Document custom parameters
+* Microfunding for Series
 * Can idividual Taxonomy Term pages be customized?
 	* Sections could be used to better address this? yes
 * Reflect current page/section within the navigation bar
@@ -61,6 +61,7 @@ You'll be given a foundation chock-full of features to use, learn from, and
 	* Clever way to provide metadata for taxonomy terms??
 	* One hack would be to use the urlized term to index into .Site.Params
 		* This assumes dashes are allowed, plus it's fairly ugly...
+	* I could create dummy content with predetermined data parameters. this would then never be displayed by setting the "dummy = 'true'"
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
 * Email button

@@ -1,15 +1,15 @@
 {{ partial "header.html" . }}
 
-<!-- TODO
-	Move About + Recent Posts under the main content area when there isn't much content
-		This can be done with the grid system
-		Compilation would then determine which grid settings to use
--->
-
 <div class="col-md-9 column">
 {{ range .Data.Pages }}
 	<div class="section panel panel-default">
-		{{ .Render "summary" }}
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			{{ .Render "summary" }}
+		</div>
+		<div class="panel-footer">
+			{{ partial "summary_footer.html" . }}
+		</div>
 	</div>
 {{ end }}
 </div>

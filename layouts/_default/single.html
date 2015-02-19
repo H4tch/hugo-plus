@@ -7,21 +7,10 @@
 	<div class="section panel panel-default">
 		<div class="article panel-body">
 			<div class="voffset-20"></div>
-			
-			<a href="{{ .Permalink }}"><h1 id="og:title" class="title">{{ .Title }}</h1></a>
-			<div class="voffset-10"></div>
-			<aside class="article-meta vcenter">
-				<!-- <i class="fa fa-calendar-o"></i> -->
-				<date>{{ .Date.Format "Jan 2, 2006" }}</date>
-				{{ with .Params.Author }}
-					- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
-				{{ else }}{{ with $.Site.Author.name }} 
-						- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
-				{{ end }}{{ end }}
-			</aside>
+			{{ partial "content_header.html" . }}
 			<div class="voffset10"></div>
 			{{ .Content }}
-			
+		
 			{{ if .Params.series }}
 				<div class="voffset30"></div>
 				{{ partial "panel/series.html" . }}
@@ -29,13 +18,12 @@
 				<hr/>
 			{{ end }}
 			<div class="voffset20"></div>
-			{{ partial "categories+tag_buttons.html" . }}
+			{{ partial "content_footer.html" . }}
 			{{ if (not .Params.series) }}
 				<div class="voffset10"></div>
 				{{ partial "pager.html" . }}
 			{{ end }}
 		</div>
-		
 		<div class="panel-footer">
 			{{ partial "share_buttons.html" . }}
 			{{ partial "comments_ondemand.html" . }}

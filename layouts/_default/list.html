@@ -1,13 +1,15 @@
 {{ partial "header.html" . }}
 
-<!-- Not sure if this template will ever be used. Hence, not supproted an may contain errors -->
+<!-- This template hasn't been tested.
+	Other defaults are provided so this is never instantiated.
+-->
 
 <div class="col-md-9 column">
 {{ range .Data.Pages.ByDate.Reverse }}
 	<div class="section panel panel-default">
 		{{ .Render "li" }}
 		<div class="panel-footer">
-			{{ partial "continue_reading+comment_count.html" . }}
+			{{ partial "summary_footer.html" . }}
 		</div>
 	</div>
 {{ end }}
