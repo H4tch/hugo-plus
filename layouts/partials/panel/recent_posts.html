@@ -13,7 +13,7 @@
 			<a class="list-group-item active">Recent</a>
 			{{ range first 4 $.Site.Recent }}
 			{{ if (ne .Type "meta") }}
-				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title }}</a>
+				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
 			{{ end }}
 			{{ end }}
 		{{ end }}
@@ -22,7 +22,7 @@
 		{{ if $section.Pages }}
 			<a class="list-group-item active">Recent</a>
 			{{ range first 4 $section.Pages.ByDate.Reverse }}
-				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title }}</a>
+				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
 			{{ end }}
 		<!--
 			else range $name, $category := $.Site.Taxonomies.categories
