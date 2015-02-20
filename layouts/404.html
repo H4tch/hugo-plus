@@ -1,14 +1,19 @@
 {{ partial "header.html" . }}
-{{ partial "sidebar.html" . }}
 
-<div name="container">
-<section id="main">
-  <div>
-   <h1 id="title">{{ .Title }}</h1>
-  <!--TODO, List categories+tags, special jumbotron page, or special blog page -->
-  </div>
-</section>
-<div><!--container-->
+<div class="col-md-9 column">
+	<div class="voffset-20"></div>
+	<div class="container"><h1>404 - Page Not Found</h1></div>
+	<div class="section panel panel-default">
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			<div class="voffset10"></div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+</div>
 
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
+
 
