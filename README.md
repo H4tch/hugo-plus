@@ -14,8 +14,6 @@ Targeted at lazy developers that don't want to reverse engineer Hugo's data
 You'll be given a foundation chock-full of features to use, learn from, and
 	extend. Nothing will be left to magic.
 
------
-
 # Features
 * Fully Bootstrapped responsive default layouts
 * Disqus comment integration
@@ -36,18 +34,73 @@ You'll be given a foundation chock-full of features to use, learn from, and
 		abused to make a larger content publishing site
 
 
+
 # Getting Started
+First, [download and install Hugo.](http://gohugo.io/)
 
-### Writing content
-### Classifying and structuring content types
-### Customizing page layouts
-### Customizing the Bootstrap theme
-	Install the Less compiler though NPM
-	Modify "variables.less" and compile "hugo-plus.less"
+Next, [dowload hugo-plus directly](https://github.com/H4tch/hugo-plus/archive/master.zip),
+	or clone it by typing:
+> git clone https://github.com/H4tch/hugo-plus/
 
------
+This project is meant to be a starting base from which you can build off of,
+	customize, and fill in with content.
+
+
+### Writing Content
+Creating new content is done using Hugo's `new` command from the site folder.
+> hugo new blog/first-post.md
+
+This creates new content of type `post` within the `blog` *section* found
+	in `content/blog`.
+This content will be written and formatted using MarkDown as denoted by the
+	`md` extension.
+Content can be organized by Section, Type, and Taxonomy.
+In the next sections we'll see the abilities and trade-offs involved with each.
+
+## Organizing Content Using Taxonomies
+### Creating Your Own Taxonomy
+## Organizing Content Using Sections
+### When to Override `Types`?
+## Overview of Templates
+### How is the Site Built?
+### What Pre-Made Templates Exist?
+## Customizing the Bootstrap Theme's Look and Feel
+Bootstrap is used as the foundation due to its ubiquity and popularity in this
+industry. Applying a Bootstrap theme is done by replacing
+`static/css/hugo-plus.min.css` with the one you want.
+
+There are many themes available for free, but you may want to create
+your own or customize an existing one.
+
+If you google `bootstrap theme editor` you can find an editor that allows you
+create your own theme. Some also allow you to download the `variables.less`
+file which is used to compile into the final css file. This can be useful if
+you want to modify the theme in the future.
+
+### Customizing and Compiling From Source
+Bootstrap is written using Less, which is then compiled into CSS.
+Before we continue, you'll need to setup the toolchain.
+
+First you'll need to [install nodejs](http://nodejs.org/download/).
+
+Once, nodejs is setup, The Less compiler can now be installed though `npm`. (This may require admin privileges.)
+> npm install -g less
+
+The source files for Bootstrap and the hugo-plus theme is stored within the 
+`style-src/` directory.
+Most changes to the theme can done within `bootstrap/variables.less`.
+
+To compile the less into css and apply it to the website, run:
+> lessc --compress hugo-plus.less > ../static/css/hugo-plus.min.css
+
+If you are on Linux, the `listen.sh` script will recompile the theme
+whenever the `bootstrap` folder is updated.
+
+
+
 # Todo
 #### In-progress
+* Support OpenGraph and other metadata APIs
 * Series intro page, summary, graphic, etc.
 * Summary area should be used for Streams, Series, Projects, etc.
 * Nav-menu should use Hugo's Menu system
@@ -65,7 +118,6 @@ You'll be given a foundation chock-full of features to use, learn from, and
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
 * Email button
-* Support OpenGraph and other metadata APIs
 * Host documentation for projects. (via Doxygen)
 * Custom message per content to "Read more", or "Continue reading"
 * Shortcodes - Plugins for adding to content (NOTE, currently working...)
