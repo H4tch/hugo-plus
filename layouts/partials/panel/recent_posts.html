@@ -1,9 +1,20 @@
+<!-- This current displays different results depending on the page type.
+	If the page is a content piece it will display other content from the same Section.
+	If it is a 'node' page, it will display results site-wide.
+	
+	Further logic could be done to filter based on Taxonomy.
+		Something like this:
+			if isNode, with .Site.Taxonomies .Term, .Pages
+-->
+
 <div class="list-group">
 	{{ if .IsNode }}
 		{{ if $.Site.Recent }} <!-- (not $.Section)) -->
 			<a class="list-group-item active">Recent</a>
 			{{ range first 4 $.Site.Recent }}
+			{{ if (ne .Type "meta") }}
 				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title }}</a>
+			{{ end }}
 			{{ end }}
 		{{ end }}
 	{{ else }}

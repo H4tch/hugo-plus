@@ -2,6 +2,7 @@
 
 <div class="col-md-9 column">
 {{ range .Data.Pages }}
+{{ if (ne .Type "meta") }}
 	<div class="section panel panel-default">
 		<div class="article panel-body">
 			<div class="voffset-20"></div>
@@ -13,6 +14,7 @@
 			{{ partial "summary_footer.html" . }}
 		</div>
 	</div>
+{{ end }}
 {{ end }}
 </div>
 
