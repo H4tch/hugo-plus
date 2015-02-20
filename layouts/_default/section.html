@@ -5,6 +5,8 @@
 	<div class="section panel panel-default">
 		<div class="article panel-body">
 			<div class="voffset-20"></div>
+			{{ partial "content_header.html" . }}
+			<div class="voffset10"></div>
 			{{ .Render "summary" }}
 		</div>
 		<div class="panel-footer">
