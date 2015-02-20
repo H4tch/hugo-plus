@@ -1,3 +1,4 @@
+
 # Hugo-plus
 A featured-packed Hugo theme that's built using Bootstrap components.
 The idea is to provide a large foundation of modules that can be used to piece
@@ -16,6 +17,7 @@ You'll be given a foundation chock-full of features to use, learn from, and
 -----
 
 # Features
+* Fully Bootstrapped responsive default layouts
 * Disqus comment integration
 	* Optional on-demand comment loading
 		* Auto loads if user jumps to comment section through "#comments" anchor
@@ -29,9 +31,9 @@ You'll be given a foundation chock-full of features to use, learn from, and
 * Categories panel
 * Recent Posts panel
 * Mutliple Author support
-	* Good if you ever want to do guest posts
+	* Good for doing guest posts
 	* If Hugo, had incremental builds, then this feature could really be
-		abused to make larger content publishing sites, but alas...
+		abused to make a larger content publishing site
 
 
 # Getting Started
@@ -46,7 +48,9 @@ You'll be given a foundation chock-full of features to use, learn from, and
 -----
 # Todo
 #### In-progress
+* Stream taxonomy and section
 * More template layouts for things like Projects, "Streams", or Portfolios 
+* Check TYPE of content before showing it. Maybe have "meta" type that is hidden.
 #### Future
 * Nav-menu should use Hugo's Menu system(right now its somewhat hardcoded, yet still customizable!)
 * Documentation, usage examples, and tutorials
@@ -60,7 +64,8 @@ You'll be given a foundation chock-full of features to use, learn from, and
 * Series subtitle
 	* Clever way to provide metadata for taxonomy terms??
 	* One hack would be to use the urlized term to index into .Site.Params
-		* This assumes dashes are allowed, plus it's fairly ugly...
+		* This assumes dashes are allowed, plus it's a fairly ugly hack...
+	* How about querying a "content/series/name.md" file? Would require string contcatenation?
 	* I could create dummy content with predetermined data parameters. this would then never be displayed by setting the "dummy = 'true'"
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
