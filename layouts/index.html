@@ -2,19 +2,9 @@
 
 <div class="col-md-9 column">
 {{ range .Data.Pages }}
-{{ if (ne .Type "meta") }}
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			{{ partial "content_header.html" . }}
-			<div class="voffset10"></div>
-			{{ .Render "summary" }}
-		</div>
-		<div class="panel-footer">
-			{{ partial "summary_footer.html" . }}
-		</div>
-	</div>
-{{ end }}
+	{{ if (ne .Type "meta") }}
+		{{ .Render "summary" }}
+	{{ end }}
 {{ end }}
 </div>
 

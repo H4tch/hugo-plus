@@ -2,17 +2,7 @@
 
 <div class="col-md-9 column">
 {{ range .Data.Pages }}
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			{{ partial "content_header.html" . }}
-			<div class="voffset10"></div>
-			{{ .Render "summary" }}
-		</div>
-		<div class="panel-footer">
-			{{ partial "summary_footer.html" . }}
-		</div>
-	</div>
+	{{ .Render "summary" }}
 {{ end }}
 </div>
 

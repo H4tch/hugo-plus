@@ -37,6 +37,7 @@ You'll be given a foundation chock-full of features to use, learn from, and
 
 
 # Getting Started
+
 ### Writing content
 ### Classifying and structuring content types
 ### Customizing page layouts
@@ -44,33 +45,29 @@ You'll be given a foundation chock-full of features to use, learn from, and
 	Install the Less compiler though NPM
 	Modify "variables.less" and compile "hugo-plus.less"
 
-
 -----
 # Todo
 #### In-progress
-* Stream taxonomy and section
-* More template layouts for things like Projects, "Streams", or Portfolios 
-* Check TYPE of content before showing it. Maybe have "meta" type that is hidden.
+* Series intro page, summary, graphic, etc.
+* Summary area should be used for Streams, Series, Projects, etc.
+* Nav-menu should use Hugo's Menu system
+* More template layouts for things like Projects or Portfolios
+	* Homepage groups and showcases content using overloaded Summary templates
 #### Future
-* Nav-menu should use Hugo's Menu system(right now its somewhat hardcoded, yet still customizable!)
+* Customized Summary pages for different Sections
+* Reflect current page/section within the navigation bar
 * Documentation, usage examples, and tutorials
 	* Document custom parameters
-* Microfunding for Series
+* Group content by year within 'list' pages
 * Can idividual Taxonomy Term pages be customized?
 	* Sections could be used to better address this? yes
-* Reflect current page/section within the navigation bar
-* 'Hide comments' button
-	* When unhiding, the comments shouldn't have to reload
-* Series subtitle
-	* Clever way to provide metadata for taxonomy terms??
-	* One hack would be to use the urlized term to index into .Site.Params
-		* This assumes dashes are allowed, plus it's a fairly ugly hack...
-	* How about querying a "content/series/name.md" file? Would require string contcatenation?
-	* I could create dummy content with predetermined data parameters. this would then never be displayed by setting the "dummy = 'true'"
+* 'Hide comments' button(When unhiding, the comments shouldn't have to reload)
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
 * Email button
 * Support OpenGraph and other metadata APIs
+* Host documentation for projects. (via Doxygen)
+* Custom message per content to "Read more", or "Continue reading"
 * Shortcodes - Plugins for adding to content (NOTE, currently working...)
 	* Carousal
 	* Thumbnail (caption, link, full res version) + thumbnail browser

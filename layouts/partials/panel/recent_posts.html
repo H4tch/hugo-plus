@@ -2,9 +2,10 @@
 	If the page is a content piece it will display other content from the same Section.
 	If it is a 'node' page, it will display results site-wide.
 	
-	Further logic could be done to filter based on Taxonomy.
-		Something like this:
-			if isNode, with .Site.Taxonomies .Term, .Pages
+	If Homepage, Archive, Taxonomy list page, find content site-wide
+	If Taxonomy term page, find content with Term
+		.isNode, with .Site.Taxonomies .Term, .Pages
+	If Content page, find content within Category
 -->
 
 <div class="list-group">

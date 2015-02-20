@@ -1,7 +1,5 @@
 {{ partial "header.html" . }}
 
-<!-- Use "text-muted" and "text-primary" to invert the breadcrumb text colors -->
-
 <div class="col-md-9 column">
 	<div class="voffset-20"></div>
 	<div class="container"><h1>{{ .Title | title }}</h1></div>
@@ -22,11 +20,12 @@
 				<h4 class="text-muted">No content found matching this criteria</h4>
 			</div>
 		{{ else }}
-			<!-- Inconsistency here on **Hugo's** part...
-				Any spaces within the term are autmagically converted
+			<!--Inconsistency here on **Hugo's** part...
+				Any spaces within the term are automagically converted
 				to hyphens for your convenience
 				Workaround: get the first page of the term, then access the
-					taxonomy within its ".Params" -->
+					taxonomy within its ".Params"
+			-->
 			<ul class="list-group list-unstyled">
 			{{ range .Data.Terms.ByCount }}
 				<a class="list-group-item" href="{{ $.Site.BaseUrl }}{{ $.Url }}{{ .Term }}">

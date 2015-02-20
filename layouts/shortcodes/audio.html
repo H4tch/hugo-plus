@@ -1,0 +1,38 @@
+
+<!-- src, type, title, etc -->
+
+<!--
+<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl=MP3link" width="400" height="27">
+-->
+
+<audio controls>
+	<source src="{{ src }}" type="audio/{{ type }}">
+	Your browser does not support the audio element
+</audio>
+
+<audio controls class="audio_controls">
+	<source src="{{ src }}"
+		type='audio/mp3'>
+	<!-- The next two lines are only executed if the browser doesn't support MP4 files -->
+	<source src="{{ backup }} "
+		type='audio/ogg; codecs=vorbis'>
+	<!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+	<p>Your user agent does not support the HTML5 Audio element.</p>
+</audio>
+
+<!--
+<audio controls
+	data-info-album-art=""
+	data-info-album-title=""
+	data-info-artist=""
+	data-info-title=""
+	data-info-label=""
+	data-info-year=""
+	data-info-att=""
+	data-info-att-link="">
+	<source src="" type="audio/" />
+	<a href="">text</a>
+</audio>
+-->
+
+

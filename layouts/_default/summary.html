@@ -1,10 +1,19 @@
 
+<div class="section panel panel-default">
+	<div class="article panel-body">
+		<div class="voffset-20"></div>
+		{{ partial "content_header.html" . }}
+		<div class="voffset10"></div>
 
-<div class="article-content">{{ .Summary }}</div>
-<!--Odd spacing differences depending on how the summary/content ends.
-	This helps reduce the minimum spacing, but increases the spacing when
-	the content is not truncated and doesn't end with a p tag 
--->
-{{ if (not .Truncated) }}<div class="voffset3"></div>{{ end }}
-
+		<div class="article-content">{{ .Summary }}</div>
+		<!--Odd spacing differences depending on how the summary/content ends.
+			This helps reduce the minimum spacing, but increases the spacing when
+			the content is not truncated and doesn't end with a p tag 
+		-->
+		{{ if (not .Truncated) }}<div class="voffset3"></div>{{ end }}
+	</div>
+	<div class="panel-footer">
+		{{ partial "summary_footer.html" . }}
+	</div>
+</div>
 

@@ -9,8 +9,12 @@
 			<div class="voffset-20"></div>
 			{{ partial "content_header.html" . }}
 			<div class="voffset10"></div>
+			<!--Use my own TableOfContents system by manually specifying them
+				using Params then linking them to anchor tags?
+				<div id="toc" class="well col-sm-12 column">{{ .TableOfContents }}</div>
+			-->
 			{{ .Content }}
-		
+			
 			{{ if .Params.series }}
 				<div class="voffset30"></div>
 				{{ partial "panel/series.html" . }}

@@ -55,8 +55,10 @@
 									</ul>
 								</li>
 							{{ else if $name }}
+								{{ if (ne ((index $section.Pages 0).Type) "meta") }}
 								<li><a href="{{ $.Site.BaseUrl }}/{{ $name }}" class="nav-link">
 									{{ $name | title }}</a></li>
+								{{ end }}
 							{{ end }}
 						{{ end }}
 					</ul>
