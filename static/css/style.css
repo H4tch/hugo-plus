@@ -9,6 +9,28 @@ h2,h3,h4,h5,h6 { color: #444; }
 
 .social { overflow:hidden !important; width:60px; float:left; }
 
+.social-icon { font-size:150% !important; margin-top: -1px; }
+
+.share-btn {
+	width:50px;
+	font-size:16px !important;
+	vertical-align:top; zoom:1; *display:inline; 
+	border:none;-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
+}
+.share-btn > img { width: 16px; height: 16px; margin: auto; display:block; }
+
+.bg-gratipay{ background-color: #339966; }
+.bg-flattr { background-color: #F67C1A; }
+.bg-twitter { background-color: #00ADE8; }
+.bg-facebook { background-color: #3D5B96; }
+.bg-google-plus { background-color: #DD3F34; }
+.bg-linkedin { background-color: #0E76A8; }
+.bg-pinterest { background-color: #CC1E2D; }
+.bg-reddit { background-color: #326795; }
+.bg-hacker-news { background-color: #FF6600; }
+.bg-tumblr { background-color: #34465D; }
+.bg-email { background-color: #7D3697; }
+
 /* Large desktop */
 @media (min-width: 1200px) {
 	.message:before { content: "" }
@@ -52,8 +74,6 @@ h2,h3,h4,h5,h6 { color: #444; }
 
 .footer, .push { height: 30px; }
 
-
-.social-icon { font-size:150% !important; margin-top: -1px; }
 
 .vcenter { display: inline-block; vertical-align: middle; float: none; }
 

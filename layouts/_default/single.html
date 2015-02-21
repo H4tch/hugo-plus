@@ -15,6 +15,9 @@
 			-->
 			{{ .Content }}
 			
+			<div class="voffset20"></div>
+			{{ partial "share_buttons.html" . }}
+			
 			{{ if .Params.series }}
 				<div class="voffset30"></div>
 				{{ partial "panel/series.html" . }}
@@ -29,7 +32,6 @@
 			{{ end }}
 		</div>
 		<div class="panel-footer">
-			{{ partial "share_buttons.html" . }}
 			{{ partial "comments_ondemand.html" . }}
 		</div>
 	</div>
