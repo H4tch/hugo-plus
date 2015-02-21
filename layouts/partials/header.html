@@ -16,10 +16,8 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!--
-					<a class="navbar-brand" href="{{ $.Site.BaseUrl }}">
-						<img class="img-responsive" src="img/logo.png" ></img>
-					</a>
+					<!-- <a class="navbar-brand" href="{{ $.Site.BaseUrl }}">
+						<img class="img-responsive" src="img/logo.png" ></img></a>
 					 -->
 					<a class="navbar-brand" href="{{ $.Site.BaseUrl }}">{{ $.Site.Title }}</a>
 				</div>
@@ -29,51 +27,42 @@
 				-->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav">
-						{{ range $name, $section := $.Site.Sections }}
-							{{ if (eq $name "page") }}
-								{{ range $section.Pages }}
-									<li><a href="{{ .Permalink }}" class="nav-link">
-										{{ .Title | title }}</a></li>
+					{{ range (index $.Site.Menus "nav") }}
+						{{ if (not (index $.Site.Menus (.Name | lower))) }}
+							<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+						{{ else }}
+							<li class="dropdown">
+								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">
+									{{ .Name }}
+								<a class="btn dropdown-toggle" data-toggle="dropdown" style="display:inline-block;">
+									<strong class="caret"></strong></a></a>
+								<ul class="dropdown-menu">
+								{{ range (index $.Site.Menus (.Name | lower)) }}
+									<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
 								{{ end }}
-							{{ else if (eq $name "project") }}
-								<li class="dropdown">
-									<a href="{{ $.Site.BaseUrl }}/{{ $name }}" class="nav-link"
-									 style="display:inline-block;padding-right:0px">
-										{{ $name | title }}s</a>
-									<a class="dropdown-toggle" data-toggle="dropdown" style="display:inline-block;padding-left:0px">
-										<strong class="caret"></strong></a>
-									<!-- Button dropdown menu, caret is too hard to click?
-									<button class="btn btn-default btn-xs dropdown-toggle"
-									  data-toggle="dropdown" style="display:inline-block;">
-										<strong class="caret"></strong></a></button>
-									-->
-									<ul class="dropdown-menu">
-									{{ range $section.Pages }}
-										<li><a href="{{ .Permalink }}" class="nav-link">
-											{{ .Title | title }}</a></li>
-									{{ end }}
-									</ul>
-								</li>
-							{{ else if $name }}
-								{{ if (ne ((index $section.Pages 0).Type) "meta") }}
-								<li><a href="{{ $.Site.BaseUrl }}/{{ $name }}" class="nav-link">
-									{{ $name | title }}</a></li>
-								{{ end }}
-							{{ end }}
+								</ul>
+							</li>
 						{{ end }}
+					{{ end }}
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="{{ $.Site.BaseUrl }}/archive" class="nav-link">
-							Archives</a></li>
-						<!--
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Social <strong class="caret"></strong>&nbsp;&nbsp;</a>
-							<ul class="dropdown-menu list-group list-unstyled">
-								{ { partial "social_links.html" . } }
-							</ul>
-						</li>
-						-->
+					{{ range (index .Site.Menus "nav-right") }}
+						{{ if (not (index $.Site.Menus (.Name | lower))) }}
+							<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+						{{ else }}
+							<li class="dropdown">
+								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">
+									{{ .Name }}
+								<a class="btn dropdown-toggle" data-toggle="dropdown" style="display:inline-block;">
+									<strong class="caret"></strong></a></a>
+								<ul class="dropdown-menu">
+								{{ range (index $.Site.Menus (.Name | lower)) }}
+									<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+								{{ end }}
+								</ul>
+							</li>
+						{{ end }}
+					{{ end }}
 					</ul>
 				</div>
 			</div><!--/column-->
