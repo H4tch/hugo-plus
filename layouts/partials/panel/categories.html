@@ -5,9 +5,13 @@
 			$categories := index $.Site.Taxonomies $name
 			range $categories.ByCount
 	-->
+	{{ if (gt (len $.Site.Taxonomies.categories) 0 ) }}
 	{{ range $name, $category := $.Site.Taxonomies.categories }}
 		<a class="list-group-item" href="{{ $.Site.BaseUrl }}/categories/{{ $name }}">
 			{{ $name | title }}<span class="badge">{{ $category.Count }}</span></a>
+	{{ end }}
+	{{ else }}
+		<p class="list-group-item text-muted">No Categories found</p>
 	{{ end }}
 	
 	<a class="list-group-item" href="{{ $.Site.BaseUrl }}/tags/">
