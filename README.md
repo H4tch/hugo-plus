@@ -9,10 +9,10 @@ Hugo has potential, but it's a pain to use due to its poor documentation.
 This project is meant to provide a powerful in spite of these limitations.
 
 ### Who?
-Targeted at lazy developers that don't want to reverse engineer Hugo's data
-	structures and punch a hole in their screen.
+Targeted at lazy developers that value their time and don't want to spend it
+	reverse engineering Hugo's implementation.
 You'll be given a foundation chock-full of features to use, learn from, and
-	extend. Nothing will be left to magic.
+	extend. Nothing should be left to magic.
 
 # Features
 * Fully Bootstrapped responsive default layouts
@@ -24,7 +24,7 @@ You'll be given a foundation chock-full of features to use, learn from, and
 * Breadcrumb support for Taxonomies
 * Social sharing buttons
 * Auto updating copyright year insertion
-	* exmple: "(c) 2015." will become "(c)2015-2016." when 2016 rolls around
+	* exmple: `(c) 2015` will become `(c)2015-2016` once 2016 rolls around
 * Categories label buttons and Tag menu per post
 * Categories panel
 * Recent Posts panel
@@ -32,7 +32,7 @@ You'll be given a foundation chock-full of features to use, learn from, and
 	* Good for doing guest posts
 	* If Hugo, had incremental builds, then this feature could really be
 		abused to make a larger content publishing site
-
+* Syntax highlighting for code with customizable theme per content.
 
 
 # Getting Started
@@ -100,10 +100,10 @@ whenever the `bootstrap` folder is updated.
 
 # Todo
 #### In-progress
-* Support OpenGraph and other metadata APIs
-* Series intro page, summary, graphic, etc.
-* Summary area should be used for Streams, Series, Projects, etc.
-* Nav-menu should use Hugo's Menu system
+* Series intro page, summary, graphic, etc
+* Summary area should be used for Streams, Series, Projects, etc
+	* More summary implementations
+* Use List view as a short Summary view, like a thumbnail
 * More template layouts for things like Projects or Portfolios
 	* Homepage groups and showcases content using overloaded Summary templates
 #### Future

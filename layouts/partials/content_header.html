@@ -12,5 +12,8 @@
 	{{ else }}{{ with $.Site.Author.name }} 
 			- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
 	{{ end }}{{ end }}
+	{{ with (index .Params.series 0) }}
+		- <a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">{{ . }}</a>
+	{{ end }}
 </aside>
 

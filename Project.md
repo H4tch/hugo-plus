@@ -1,10 +1,16 @@
 
+
 Section and Taxonomy will conflict. Which page will be chosen?
 	Section:	site/project
 	Taxonomy:	site/project
 	Category:	site/category/project
+!Section Overrides Taxonomy
 
 ## Project Section
+	A Project is a piece of content
+	Can have its own dedicated page
+	The content can be used to aggregate other blog posts containing the
+		project taxonomy term
 	Each piece on content contains relevant metadata, params, intro, and full post.
 	Custom single.html and summary.html page will be implemented to distinguish projects from normal posts.
 	Optionally, you can link to a specific page to display a Project using (.Param.page).

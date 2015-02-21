@@ -24,6 +24,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link type="application/rss+xml" href="{{ .RSSlink }}" rel="alternate" title="{{ .Site.Title }}">
 	
+	<!-- Open Graph Attributes: http://ogp.me/
+	-->
+	<meta property="og:site_name" content="{{ .Site.Title }}" />
+	<meta property="og:title" content="{{ .Title }}" />
+	<meta property="og:url" content="{{ .Permalink }}" />
+	{{ if .IsPage }}
+		{{ if (eq .Section "author") }}
+			<meta property="og:type" content="profile" />
+			{{ with .Params.first_name }}<meta property="og:profile:first_name" content="{{ . }}" />{{ end }}
+			{{ with .Params.last_name }}<meta property="og:profile:last_name" content="{{ . }}" />{{ end }}
+			{{ with .Params.username }}<meta property="og:profile:username" content="{{ . }}" />{{ end }}
+			{{ with .Params.gender }}<meta property="og:profile:gender" content="{{ . }}" />{{ end }}
+		{{ else}}
+			<meta property="og:type" content="article" />
+			{{ with .Params.date }}<meta property="og:article:published_time" content="{{ . }}" />{{ end }}
+			{{ with .Params.last_modified }}<meta property="og:article:modified_time" content="{{ . }}" />{{ end }}
+			{{ with .Params.author }}<meta property="og:article:author" content="{{ . }}" />{{ end }}
+			{{ with .Params.section }}<meta property="og:article:section" content="{{ . }}" />{{ end }}
+			{{ range .Params.categories }}<meta property="og:article:tag" content="{{ . }}" />{{ end }}
+		{{ end }}
+	{{ else }}
+		<meta property="og:type" content="website" />
+	{{ end }}
+
+	{{ if .IsPage }}
+		{{ with .Params.graphic }}<meta property="og:image" content="{{ . }}" /> {{ end }}
+	{{ else }}
+		{{ with .Site.Params.graphic }}<meta property="og:image" content="{{ . }}" />{{ end }}
+	{{ end }}
+	
+	{{ with .Params.video }}<meta property="og:video" content="{{ . }}" />{{ end }}
+	
 	<link href="{{ .Site.BaseUrl }}/css/hugo-plus.min.css" rel="stylesheet">
 	<link href="{{ .Site.BaseUrl }}/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
