@@ -4,16 +4,17 @@
 -->
 
 <a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
-<div class="voffset-10"></div>
-<aside class="article-meta vcenter">
-	<date>{{ .Date.Format "Jan 2, 2006" }}</date>
-	{{ with .Params.Author }}
-		- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
-	{{ else }}{{ with $.Site.Author.name }} 
-			- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
-	{{ end }}{{ end }}
-	{{ with (index .Params.series 0) }}
-		- <a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">{{ . }}</a>
-	{{ end }}
+	<div class="voffset-10"></div>
+	<aside class="article-meta vcenter">
+		<date>{{ .Date.Format "Jan 2, 2006" }}</date>
+		{{ with .Params.Author }}
+			- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
+		{{ else }}{{ with $.Site.Author.name }} 
+				- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
+		{{ end }}{{ end }}
+		
+		{{ with (index .Params.series 0) }}
+			- <a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">{{ . }}</a>
+		{{ end }}
 </aside>
 

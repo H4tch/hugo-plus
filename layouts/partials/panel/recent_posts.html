@@ -1,3 +1,4 @@
+
 <!-- This current displays different results depending on the page type.
 	If the page is a content piece it will display other content from the same Section.
 	If it is a 'node' page, it will display results site-wide.
@@ -13,7 +14,7 @@
 		{{ if $.Site.Recent }} <!-- (not $.Section)) -->
 			<a class="list-group-item active">Recent</a>
 			{{ range first 4 $.Site.Recent }}
-			{{ if (ne .Type "meta") }}
+			{{ if (not .Params.meta) }}
 				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
 			{{ end }}
 			{{ end }}
@@ -23,7 +24,9 @@
 		{{ if $section.Pages }}
 			<a class="list-group-item active">Recent</a>
 			{{ range first 4 $section.Pages.ByDate.Reverse }}
+			{{ if (not .Params.meta) }}
 				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
+			{{ end }}
 			{{ end }}
 		<!--
 			else range $name, $category := $.Site.Taxonomies.categories

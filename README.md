@@ -6,15 +6,18 @@ The idea is to provide a large foundation of modules that can be used to piece
 
 ### Why?
 Hugo has potential, but it's a pain to use due to its poor documentation.
-This project is meant to provide a powerful in spite of these limitations.
+This project is meant to provide a foundation to showoff Hugo's potential.
 
 ### Who?
-Targeted at lazy developers that value their time and don't want to spend it
-	reverse engineering Hugo's implementation.
-You'll be given a foundation chock-full of features to use, learn from, and
-	extend. Nothing should be left to magic.
+Targeted at lazy developers that value their time and want a solution to host
+	their thoughts, portfolio, and projects. 
+This project chock-full of features to use, learn from, and build off of.
+Nothing should be left to magic.
+
 
 # Features
+* Support for `meta` pages to hide from content feeds. (about, archive, etc)
+* Ability to render arbitrary custom pages for any content through the `page` parameter
 * Fully Bootstrapped responsive default layouts
 * Disqus comment integration
 	* Optional on-demand comment loading
@@ -77,7 +80,7 @@ create your own theme. Some also allow you to download the `variables.less`
 file which is used to compile into the final css file. This can be useful if
 you want to modify the theme in the future.
 
-### Customizing and Compiling From Source
+### Compiling and Customizing From Source
 Bootstrap is written using Less, which is then compiled into CSS.
 Before we continue, you'll need to setup the toolchain.
 
@@ -99,18 +102,35 @@ whenever the `bootstrap` folder is updated.
 
 
 # Todo
+#### Documentation
+* Sections
+* Taxonomies
+* Parameters
+	* Site Parameters
+	* Content Parameters
+* Blog
+* Authors
+* Series
+* Streams
+* Layout Structure
 #### In-progress
-* Series intro page, summary, graphic, etc
+* Project section page, summary, etc
 * Summary area should be used for Streams, Series, Projects, etc
 	* More summary implementations
 * Use List view as a short Summary view, like a thumbnail
 * More template layouts for things like Projects or Portfolios
 	* Homepage groups and showcases content using overloaded Summary templates
+* Use Hugo's menu system to render breadcrumbs
+	* I need a way to parameterize the template code though
+* Update `partials/panel/about_author.html` to reflect the author of the current content
 #### Future
+* Table of contents
+	* The system provided doesn't work well
+	* Maybe just have a paramter to enable TOC?
+* Don't use partial system for customized Sections
+	* Use `{{ template "file.html" }}`
 * Customized Summary pages for different Sections
 * Reflect current page/section within the navigation bar
-* Documentation, usage examples, and tutorials
-	* Document custom parameters
 * Group content by year within 'list' pages
 * Can idividual Taxonomy Term pages be customized?
 	* Sections could be used to better address this? yes
@@ -118,13 +138,13 @@ whenever the `bootstrap` folder is updated.
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
 * Email button
-* Host documentation for projects. (via Doxygen)
-* Custom message per content to "Read more", or "Continue reading"
+* Host documentation for projects (via Doxygen)
+* Forum support (via Discourse)
 * Shortcodes - Plugins for adding to content (NOTE, currently working...)
 	* Carousal
 	* Thumbnail (caption, link, full res version) + thumbnail browser
-	* Gallery, maybe tied in with photo view
-	* Youtube, with subscribe and other widgets
+	* Gallery, maybe tied in with Thumbails
+	* Youtube, with subscribe and other widgets?
 	* Gist
 	* Link to a Source File with syntax highlighting
 	* Amazon Affiliate Links
@@ -132,5 +152,5 @@ whenever the `bootstrap` folder is updated.
 	* Google-trends
 
 
-#### (c) 2015 By Daniel Hatch (h4tch)
+#### (c) 2015 Daniel Hatch (h4tch)
 

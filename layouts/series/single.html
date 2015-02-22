@@ -1,33 +1,35 @@
 {{ partial "header.html" . }}
 
 <div class="col-md-9 column">
-	<div class="voffset-20"></div>
-	<div class="container"><h1>{{ .Title | title }}</h1></div>
 	<div class="section panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="voffset-10"></div>
-				<ul class="breadcrumb list-unstyled">
-					<li><a href="{{ $.Site.BaseUrl }}">Home </a>
-						<span class="divider"></span></li>
-					<li><a href="{{ $.Site.BaseUrl }}/series" class="active"> Series</a>
-						<span class="divider"></span></li>
-					<li class="active">{{ .Title }}</li>
-				</ul>
-				<div class="voffset-30"></div>
-			</div>
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			<a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
+			<div class="voffset-10"></div>
+			<aside class="article-meta vcenter">
+				<date>{{ .Date.Format "Jan 2, 2006" }}</date>
+				{{ with .Params.Author }}
+					- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
+				{{ else }}{{ with $.Site.Author.name }} 
+						- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
+				{{ end }}{{ end }}
+			</aside>
+		
+			<div class="voffset10"></div>
+			{{ .Content }}
+		
+			<ul class="list-group list-unstyled">
+			<!-- Get a list of pages within the `Taxonomy`.
+				Uses the current `Section` as the Taxonomy's name
+			-->
+			{{ range (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
+				<a href="{{ .Permalink }}" class="list-group-item">
+					{{ .Title }}
+					<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
+				</a>
+			{{ end }}
+			</ul>
 		</div>
-		<ul class="list-group list-unstyled">
-		<!-- Get a list of pages within the `Taxonomy`.
-			Uses the current `Section` as the Taxonomy's name
-		-->
-		{{ range (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
-			<a href="{{ .Permalink }}" class="list-group-item">
-				{{ .Title }}
-				<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
-			</a>
-		{{ end }}
-		</ul>
 		<div class="panel-footer">
 			{{ partial "share_buttons.html" . }}
 			<div class="voffset20"></div>

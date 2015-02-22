@@ -16,7 +16,7 @@
 		</div>
 		<ul class="list-group list-unstyled">
 		{{ range $.Site.Recent }}
-		{{ if (ne .Type "meta") }}
+		{{ if (not .Params.meta) }}
 			<a class="list-group-item" href="{{ .Permalink }}">
 				<span class="text-primary">{{ .Title | title }}</span>
 				<span class="pull-right">{{ .Date.Format "Jan 2" }}</span>
