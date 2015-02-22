@@ -1,16 +1,38 @@
+
+<!-- Params.name should only be found within an 'author' content file. -->
+{{ if (not .Params.name) }}
 <div class="list-group">
 	<div class="list-group-item">
 	<div class="row clearfix">
+	{{ if (and .Params.author (ne .Params.author $.Site.Author.name)) }}
+		{{ range (index $.Site.Sections "author").Pages }}
+			{{ if (eq .Params.name $.Params.author) }}
+				{{ $author := .Params }}
+				<div class="col-xs-4 col-sm-4 col-md-12 column">
+					<div class="thumbnail">
+						<a href="/author/{{ $author.name | lower | urlize }}"><img src="{{ $author.avatar }}" title="{{ $author.name }}"
+						 class="img-responsive center-block"></a>
+					</div>
+				</div>
+				<div class="col-xs-8 col-sm-8 col-md-12 column">
+					<p class="text-justify">{{ .Summary }}</p>
+				</div>
+			{{ end }}
+		{{ end }}
+	{{ else }}
+		<!-- Should this lookup the default Author using Author.name?? -->
 		<div class="col-xs-4 col-sm-4 col-md-12 column">
 			<div class="thumbnail">
-				<img src="{{ $.Site.Author.avatar }}" title="{{ $.Site.Author.name }}"
-				 class="img-responsive center-block">
+				<a href="/about"><img src="{{ $.Site.Author.avatar }}" title="{{ $.Site.Author.name }}"
+				 class="img-responsive center-block"></a>
 			</div>
 		</div>
 		<div class="col-xs-8 col-sm-8 col-md-12 column">
-			<p class="text-justify"> {{ $.Site.Author.description }}</p>
+			<p class="text-justify">{{ $.Site.Author.description }}</p>
 		</div>
+	{{ end }}
 	</div>
 	</div>
 </div>
+{{ end }}
 
