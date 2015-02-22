@@ -29,7 +29,7 @@
 			<ul class="list-group list-unstyled">
 			{{ range .Data.Terms.ByCount }}
 				<a class="list-group-item" href="{{ $.Site.BaseUrl }}{{ $.Url }}{{ .Term }}">
-				<h4>{{ .Term | title }}<span class="pull-right badge">{{ .Count }}</span></h4>
+				<h4>{{ .Term | title }}<span class="pull-right badge progress-bar-info">{{ .Count }}</span></h4>
 				</a>
 			{{ end }}
 			</ul>

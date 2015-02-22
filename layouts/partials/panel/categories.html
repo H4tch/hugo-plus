@@ -9,11 +9,11 @@
 	-->
 	{{ range $name, $category := $.Site.Taxonomies.categories }}
 		<a class="list-group-item" href="{{ $.Site.BaseUrl }}/categories/{{ $name }}">
-			{{ $name | title }}<span class="badge">{{ $category.Count }}</span></a>
+			{{ $name | title }}<span class="badge progress-bar-info">{{ $category.Count }}</span></a>
 	{{ end }}
 {{ end }}
 	<a class="list-group-item" href="{{ $.Site.BaseUrl }}/tags/">
-		Tags<i style="font-size:133%;" class="text-primary fa fa-tags pull-right"></i></a>
+		Tags<i style="font-size:133%;" class="text-info fa fa-tags pull-right"></i></a>
 </div>
 <!-- Collapsable List for Categories/Tags/etc
 <div class="list-group">
