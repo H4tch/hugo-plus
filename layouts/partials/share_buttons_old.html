@@ -7,6 +7,13 @@
 -->
 
 
+<!-- Gratipay
+{{ with .Site.Params.gratipay }}
+<script data-gratipay-username="{{ . }}" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+<a href="https://gratipay.com/{{ . }}" class="btn btn-sm btn-default share-btn fa fa-gratipay"></a>
+{{ end }}
+-->
+
 <!-- Flattr ->
 {{ with .Site.Params.flattr }}
 <a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" target="_blank">
@@ -58,6 +65,10 @@
 <div class="g-plus" data-action="share" data-annotation="none" data-href="{{ .Permalink }}"></div>
 <div class="g-plusone" data-size="medium" data-count="bubble" data-href="{{ .Permalink }}"></div>
 
+
+<!-- Hacker news
+<a href="http://news.ycombinator.com/submit" class="hn-share-button" data-title="{{ .Title | title }}" data-url="{{ .Permalink }}">Vote on HN</a>
+-->
 
 
 

@@ -7,17 +7,22 @@ h2,h3,h4,h5,h6 { color: #444; }
 
 .container { max-width: 888px !important; }
 
+.row.no-pad { margin-right:0; margin-left:0; }
+.row.no-pad > [class*='col-'] { padding-right:0; padding-left:0; }
+
+
 .social { overflow:hidden !important; width:60px; float:left; }
 
 .social-icon { font-size:150% !important; margin-top: -1px; }
 
 .share-btn {
+	
 	width:50px;
-	font-size:16px !important;
+	font-size:20px !important;
 	vertical-align:top; zoom:1; *display:inline; 
 	border:none;-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
 }
-.share-btn > img { width: 16px; height: 16px; margin: auto; display:block; }
+.share-btn > img { width: 20px; margin: auto; display:block; }
 
 .bg-gratipay{ background-color: #339966; }
 .bg-flattr { background-color: #F67C1A; }

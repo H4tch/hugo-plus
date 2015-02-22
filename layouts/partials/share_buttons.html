@@ -1,20 +1,11 @@
 
-<!-- Gratipay -->
-<!--
-{{ with .Site.Params.gratipay }}
-<script data-gratipay-username="{{ . }}" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
-<a href="https://gratipay.com/{{ . }}" class="btn btn-sm btn-default share-btn fa fa-gratipay"></a>
-{{ end }}
--->
-
-<!--
-<span class="share-count share-count-twitter">-</span>
--->
+<div class="row no-pad">
+<div class="col-xs-12 col-sm-6 column">
+<div class="btn-group btn-group-justified">
 
 {{ with .Site.Params.gratipay }}
 <a href="https://gratipay.com/{{ . }}" title="Support me on Gratipay" class="btn btn-sm btn-default share-btn fa fa-gratipay bg-gratipay" target="_blank"></a>
 {{ end }}
-
 
 {{ with .Site.Params.flattr }}
 <a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
@@ -28,21 +19,26 @@
 
 <a href="https://plus.google.com/share?url={{ .Permalink }}" title="Share on Google+" class="btn btn-sm btn-default share-btn fa fa-google-plus bg-google-plus" target="_blank"></a>
 
+
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-6 column">
+<div class="btn-group btn-group-justified">
+
 <a href="http://www.linkedin.com/cws/share?url={{ .Permalink }}&title={{ .Title | title }}&source={{ $.Site.BaseUrl }}" title="Share on LinkedIn" class="btn btn-sm btn-default share-btn fa fa-linkedin bg-linkedin" target="_blank"></a>
 
-<a href="http://pinterest.com/pin/create/button/?url={{ .Permalink }}&media={{ .Params.graphic }}&description={{ .Title | title }}&is_video=false" class="btn btn-sm btn-default share-btn fa fa-pinterest bg-pinterest" title="Pin it on Pinterest" target="_blank"></a>
-
-
-{{ with .Params.hackernewsID }}
 <!--
-<a href="http://news.ycombinator.com/submit" class="hn-share-button" data-title="{{ .Title | title }}" data-url="{{ .Permalink }}">Vote on HN</a>
+<a href="http://pinterest.com/pin/create/button/?url={{ .Permalink }}&media={{ .Params.graphic }}&description={{ .Title | title }}&is_video=false" class="btn btn-sm btn-default share-btn fa fa-pinterest bg-pinterest" title="Pin it on Pinterest" target="_blank"></a>
 -->
+
+{{ with .Params.id_hackernews }}
 <a href="http://news.ycombinator.com/item?id={{ . }}" title="Vote on Hacker News" class="btn btn-sm btn-default share-btn fa fa-hacker-news bg-hacker-news" target="_blank"></a>
 {{ else }}
-<a href="http://news.ycombinator.com/submit" title="Sumbit to Hacker News" class="btn btn-sm btn-default share-btn fa fa-hacker-news bg-hacker-news" target="_blank"></a>
+<a href="http://news.ycombinator.com/submitlink?u={{ .Permalink }}&t={{ .Title | title }}" title="Sumbit to Hacker News" class="btn btn-sm btn-default share-btn fa fa-hacker-news bg-hacker-news" target="_blank"></a>
 {{ end }}
 
-{{ with .Params.redditID }}
+{{ with .Params.id_reddit }}
 <a class="btn btn-sm btn-default share-btn fa fa-reddit bg-reddit" type="button" href="http://www.reddit.com/submit?url={{ $.Permalink }}&title={{ $.Title | title }}" title="Vote on Reddit" target="_blank"></a>
 {{ else }}
 <a class="btn btn-sm btn-default share-btn fa fa-reddit bg-reddit" type="button" href="http://www.reddit.com/submit?url={{ $.Permalink }}&title={{ $.Title | title }}" title="Submit to Reddit" target="_blank"></a>
@@ -53,4 +49,7 @@
 <a href="mailto:?subject={{ .Title | title }}&body=Check out this site I came across {{ .Permalink }}" class="btn btn-sm btn-default share-btn fa fa-envelope bg-email" title="Email"></a>
 
 
+</div>
+</div>
+</div>
 
