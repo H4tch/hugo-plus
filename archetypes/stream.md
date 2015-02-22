@@ -1,8 +1,12 @@
 +++
 date = ""
-category = "stream"
+last_modified = ""
+author = ""
+category = ""
 stream = ""
-description = ""
 graphic = ""
+thumbnail = ""
+continue_message = ""
+#related = [""]
 +++
 

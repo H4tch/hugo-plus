@@ -1,13 +1,14 @@
 +++
-type = "meta"
-author = ""
+meta = "true"
+title = ""
+name = ""
 first_name = ""
 last_name = ""
-username = ""
 gender = ""
 email = ""
 website = ""
 job_title = ""
-description = ""
+avatar = ""
+continue_message = ""
 +++
 
