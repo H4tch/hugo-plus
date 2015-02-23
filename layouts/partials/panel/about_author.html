@@ -4,9 +4,10 @@
 <div class="list-group">
 	<div class="list-group-item">
 	<div class="row clearfix">
-	{{ if (and .Params.author (ne (index .Params.author 0) $.Site.Author.name)) }}
+	{{ if (not .Params.author) }}
+		{{ $name := $.Site.Author.name }}
 		{{ range (index $.Site.Sections "author").Pages }}
-			{{ if (eq .Params.name (index $.Params.author 0)) }}
+			{{ if (eq .Params.name $name) }}
 				{{ $author := .Params }}
 				<div class="col-xs-4 col-sm-4 col-md-12 column">
 					<div class="thumbnail">
@@ -20,16 +21,21 @@
 			{{ end }}
 		{{ end }}
 	{{ else }}
-		<!-- Should this lookup the default Author using Author.name?? -->
-		<div class="col-xs-4 col-sm-4 col-md-12 column">
-			<div class="thumbnail">
-				<a href="/about"><img src="{{ $.Site.Author.avatar }}" title="{{ $.Site.Author.name }}"
-				 class="img-responsive center-block"></a>
-			</div>
-		</div>
-		<div class="col-xs-8 col-sm-8 col-md-12 column">
-			<p class="text-justify">{{ $.Site.Author.description }}</p>
-		</div>
+		{{ $name := (index $.Params.author 0) }}
+		{{ range (index $.Site.Sections "author").Pages }}
+			{{ if (eq .Params.name $name) }}
+				{{ $author := .Params }}
+				<div class="col-xs-4 col-sm-4 col-md-12 column">
+					<div class="thumbnail">
+						<a href="/author/{{ $author.name | lower | urlize }}"><img src="{{ $author.avatar }}" title="{{ $author.name }}"
+						 class="img-responsive center-block"></a>
+					</div>
+				</div>
+				<div class="col-xs-8 col-sm-8 col-md-12 column">
+					<p class="text-justify">{{ .Summary }}</p>
+				</div>
+			{{ end }}
+		{{ end }}
 	{{ end }}
 	</div>
 	</div>
