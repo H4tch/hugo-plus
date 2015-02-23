@@ -1,37 +1,12 @@
 
-<!-- This current displays different results depending on the page type.
-	If the page is a content piece it will display other content from the same Section.
-	If it is a 'node' page, it will display results site-wide.
-	
-	If Homepage, Archive, Taxonomy list page, find content site-wide
-	If Taxonomy term page, find content with Term
-		.isNode, with .Site.Taxonomies .Term, .Pages
-	If Content page, find content within Category
--->
-
 <div class="list-group">
-	{{ if (or .IsNode .Params.meta) }}
-		{{ if $.Site.Recent }} <!-- (not $.Section)) -->
-			<a class="list-group-item active">Recent</a>
-			{{ range first 4 $.Site.Recent }}
-			{{ if (not .Params.meta) }}
-				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
-			{{ end }}
-			{{ end }}
-		{{ end }}
-	{{ else }}
-		{{ $section := index .Site.Sections .Section }}
-		{{ if $section.Pages }}
-			<a class="list-group-item active">Recent</a>
-			{{ range first 4 $section.Pages.ByDate.Reverse }}
-			{{ if (not .Params.meta) }}
-				<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
-			{{ end }}
-			{{ end }}
-		<!--
-			else range $name, $category := $.Site.Taxonomies.categories
-		-->
+{{ if $.Site.Recent }} <!-- (not $.Section)) -->
+	<a class="list-group-item active">Recent</a>
+	{{ range first 4 $.Site.Recent }}
+		{{ if (not .Params.meta) }}
+			<a href="{{ .Permalink }}" class="list-group-item">{{ .Title | title }}</a>
 		{{ end }}
 	{{ end }}
+{{ end }}
 </div>
 
