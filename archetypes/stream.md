@@ -2,7 +2,7 @@
 date = ""
 draft = "true"
 last_modified = ""
-author = ""
+author = [""]
 tags = [""]
 categories = [""]
 series = [""]
