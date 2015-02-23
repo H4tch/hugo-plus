@@ -4,17 +4,7 @@
 	<div class="section panel panel-default">
 		<div class="article panel-body">
 			<div class="voffset-20"></div>
-			<a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
-			<div class="voffset-10"></div>
-			<aside class="article-meta vcenter">
-				<date>{{ .Date.Format "Jan 2, 2006" }}</date>
-				{{ with .Params.Author }}
-					- <a href="{{ $.Site.BaseUrl }}/about/{{ . }}" class="author">{{ . }}</a>
-				{{ else }}{{ with $.Site.Author.name }} 
-						- <a href="{{ $.Site.BaseUrl }}/about" class="author">{{ . }}</a>
-				{{ end }}{{ end }}
-			</aside>
-		
+			{{ partial "content_header.html" . }}
 			<div class="voffset10"></div>
 			{{ .Content }}
 		

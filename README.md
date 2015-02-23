@@ -39,11 +39,13 @@ Nothing should be left to magic.
 * Categories label buttons and Tag menu per post
 * Categories panel
 * Recent Posts panel
+* About Author panel
+	* Doesn't show up on the author's bio page
+	* If Author is not specified for content, it defaults to the main author
 * Mutliple Author support
-	* Good for doing guest posts
-	* If Hugo, had incremental builds, then this feature could really be
-		abused to make a larger content publishing site
-* Syntax highlighting for code with customizable theme per content.
+	* Useful for things like guest posts
+	* May not be suitable for a larger content publishing site due to Hugo's limitations
+* Syntax highlighting for code with customizable theme per content
 
 
 # Getting Started
@@ -112,7 +114,12 @@ whenever the `bootstrap` folder is updated.
 # Todo
 #### Documentation
 * How is this different from Hugo?
-	* We support multiple Authors, Project page, Series, etc.
+	* We support multiple Authors, Project page, Series, etc
+	* Don't use Hugo's plural/singular system for taxonomies
+	* Don't use .Params.description
+		* Not worth increased template complexity
+		* The Summary section of content is preferred instead
+	* Hidden `meta` content
 * Sections
 * Taxonomies
 * Parameters
@@ -135,12 +142,10 @@ whenever the `bootstrap` folder is updated.
 	* Homepage groups and showcases content using overloaded Summary templates
 * Use Hugo's menu system to render breadcrumbs
 	* I need a way to parameterize the template code though
-* Update `partials/panel/about_author.html` to reflect the author of the current content
 #### Future
 * Rss links for Taxonomies and Sections.
 * Don't use partial system for customized Sections
 	* Use `{{ template "file.html" }}`
-* Don't use 'description'. Just use summary.
 * Table of contents
 	* The system provided doesn't work well
 	* Maybe just have a paramter to enable TOC?
