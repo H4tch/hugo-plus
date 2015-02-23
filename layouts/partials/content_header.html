@@ -15,9 +15,11 @@
 		- <a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
 	{{ end }}
 	
-	{{ with (index .Params.series 0) }}
-		- <a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">{{ . }}</a>
+	{{ if .Params.series }}
+		{{ $series := index .Params.series 0 }}
+		- <a href="{{ $.Site.BaseUrl }}/series/{{ $series | lower | urlize }}">{{ $series }}</a>
 	{{ end }}
 </aside>
+
 
 
