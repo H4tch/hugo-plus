@@ -3,7 +3,7 @@
 	This is done automatically within  "_default/summary.html".
 -->
 
-{{ if (isset .Params "continue_message") }}
+{{ if .Params.continue_message }}
 	<a class="text-info" href="{{ .Permalink }}">{{ .Params.continue_message }} »</a>
 {{ else }}
 	{{ if .Truncated }}

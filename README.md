@@ -120,6 +120,8 @@ whenever the `bootstrap` folder is updated.
 		* Not worth increased template complexity
 		* The Summary section of content is preferred instead
 	* Hidden `meta` content
+* Guidelines
+	* Don't use `isset`. A Parameter may be set, but empty.
 * Sections
 * Taxonomies
 * Parameters
@@ -143,6 +145,7 @@ whenever the `bootstrap` folder is updated.
 * Use Hugo's menu system to render breadcrumbs
 	* I need a way to parameterize the template code though
 #### Future
+* Follow buttons for author
 * Rss links for Taxonomies and Sections.
 * Don't use partial system for customized Sections
 	* Use `{{ template "file.html" }}`
