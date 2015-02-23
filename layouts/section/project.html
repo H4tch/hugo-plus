@@ -1,0 +1,11 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+{{ range .Data.Pages }}
+	{{ .Render "summary" }}
+{{ end }}
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+

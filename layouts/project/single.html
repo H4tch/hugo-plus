@@ -1,0 +1,44 @@
+{{ if .Params.page }}
+	{{ partial .Params.page . }}
+{{ else }}
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="section panel panel-default">
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			{{ partial "content_header.html" . }}
+			<div class="voffset10"></div>
+			{{ .Content }}
+			
+			<div class="voffset20"></div>
+			{{ partial "share_buttons.html" . }}
+		
+			{{ if .Params.series }}
+				<div class="voffset30"></div>
+				{{ partial "panel/series.html" . }}
+			{{ else }}
+				<hr/>
+			{{ end }}
+		
+			<div class="voffset20"></div>
+			{{ partial "content_footer.html" . }}
+			{{ if (not .Params.series) }}
+				<div class="voffset10"></div>
+				{{ partial "pager.html" . }}
+			{{ end }}
+		</div>
+		<div class="panel-footer">
+			{{ partial "comments_ondemand.html" . }}
+		</div>
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">
+	{{ partial "sidebar.html" . }}
+</div>
+
+{{ partial "footer.html" . }}
+{{ end }}
+
+
