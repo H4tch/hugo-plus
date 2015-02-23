@@ -1,15 +1,19 @@
 +++
 date = ""
+draft = "true"
 last_modified = ""
 author = ""
-category = ""
-series = ""
+tags = [""]
+categories = [""]
+series = [""]
 graphic = ""
 thumbnail = ""
 continue_message = ""
 table_of_contents = "false"
 id_reddit = ""
 id_hackernews = ""
-#related = [""]
+related = [""]
+
+syntax_theme = ""
 +++
 

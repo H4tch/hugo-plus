@@ -1,0 +1,94 @@
+{{ partial "meta.html" . }}
+
+{{ .Site.Menus }}
+OKOOKOOKOKOK
+{{ .Site.Menus.nav }}
+OKOOKOOKOKOK
+{{ .Site.Menus.projects }}
+
+
+<div class="wrapper">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+	<!--
+	<div class="img-responsive hcenter"><img alt="Advertise here" src="http://lorempixel.com/900/100/abstract"></div>
+	-->
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="message"></div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+						<span class="sr-only">Toggle</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- <a class="navbar-brand" href="{{ $.Site.BaseUrl }}">
+						<img class="img-responsive" src="img/logo.png" ></img></a>
+					 -->
+					<a class="navbar-brand" href="{{ $.Site.BaseUrl }}">{{ $.Site.Title }}</a>
+				</div>
+				<!-- How to highlight the section to convey the current page?
+					Something like this? How to concatenate strings?
+						{ { if (eq $.Url "/$name/") }}
+				-->
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav">
+						{{ range $name, $section := $.Site.Sections }}
+							{{ if (eq $name "page") }}
+								{{ range $section.Pages }}
+									<li><a href="{{ .Permalink }}" class="nav-link">
+										{{ .Title | title }}</a></li>
+								{{ end }}
+							{{ else if (eq $name "project") }}
+								<li class="dropdown">
+									<a href="{{ $.Site.BaseUrl }}/{{ $name }}" class="nav-link"
+									 style="display:inline-block;padding-right:0px">
+										{{ $name | title }}s</a>
+									<a class="dropdown-toggle" data-toggle="dropdown" style="display:inline-block;padding-left:0px">
+										<strong class="caret"></strong></a>
+									<!-- Button dropdown menu, caret is too hard to click?
+									<button class="btn btn-default btn-xs dropdown-toggle"
+									  data-toggle="dropdown" style="display:inline-block;">
+										<strong class="caret"></strong></a></button>
+									-->
+									<ul class="dropdown-menu">
+									{{ range $section.Pages }}
+										<li><a href="{{ .Permalink }}" class="nav-link">
+											{{ .Title | title }}</a></li>
+									{{ end }}
+									</ul>
+								</li>
+							{{ else if $name }}
+								{{ if (ne ((index $section.Pages 0).Type) "meta") }}
+								<li><a href="{{ $.Site.BaseUrl }}/{{ $name }}" class="nav-link">
+									{{ $name | title }}</a></li>
+								{{ end }}
+							{{ end }}
+						{{ end }}
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="{{ $.Site.BaseUrl }}/archive" class="nav-link">
+							Archives</a></li>
+						<!--
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								Social <strong class="caret"></strong>&nbsp;&nbsp;</a>
+							<ul class="dropdown-menu list-group list-unstyled">
+								{ { partial "social_links.html" . } }
+							</ul>
+						</li>
+						-->
+					</ul>
+				</div>
+			</div><!--/column-->
+		</div><!--/row-->
+	</div><!--/container-->
+</nav>
+
+
+<div class="container">
+	<div class="row clearfix">
+
+
+				

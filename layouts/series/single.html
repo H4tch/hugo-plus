@@ -20,7 +20,8 @@
 		
 			<ul class="list-group list-unstyled">
 			<!-- Get a list of pages within the `Taxonomy`.
-				Uses the current `Section` as the Taxonomy's name
+				Section must be equal to Taxonomy's name.
+				DONT USE HUGO's SINGULAR/PLURAL SYSTEM
 			-->
 			{{ range (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
 				<a href="{{ .Permalink }}" class="list-group-item">

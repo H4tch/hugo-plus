@@ -4,9 +4,9 @@
 <div class="list-group">
 	<div class="list-group-item">
 	<div class="row clearfix">
-	{{ if (and .Params.author (ne .Params.author $.Site.Author.name)) }}
+	{{ if (and .Params.author (ne (index .Params.author 0) $.Site.Author.name)) }}
 		{{ range (index $.Site.Sections "author").Pages }}
-			{{ if (eq .Params.name $.Params.author) }}
+			{{ if (eq .Params.name (index $.Params.author 0)) }}
 				{{ $author := .Params }}
 				<div class="col-xs-4 col-sm-4 col-md-12 column">
 					<div class="thumbnail">

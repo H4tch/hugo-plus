@@ -1,0 +1,19 @@
+{{ if .Params.page }}
+	{{ partial .Params.page . }}
+{{ else }}
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="section panel panel-default">
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			{{ partial "content_header.html" . }}
+			{{ .Content }}
+		</div>
+	</div>
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+{{ end }}
+

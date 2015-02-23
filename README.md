@@ -1,16 +1,24 @@
 
 # Hugo-plus
-A featured-packed Hugo theme that's built using Bootstrap components.
-The idea is to provide a large foundation of modules that can be used to piece
-	together a website/blog, while allowing the theme to be interchangeable.
+A modular featured-packed Hugo theme that's built using Bootstrap components.
+The idea is to provide a large foundation of componets that can targetted to
+	provide a consistent set of features across Hugo themes.
+Each theme should provide a different layout while allowing the Bootstap theme
+	to be interchangeable.
+In theory this foundation will allow you to have your own Bootstrap theme that
+	can then be applied to different layouts, each supporting a similar set of
+	features.
 
 ### Why?
-Hugo has potential, but it's a pain to use due to its poor documentation.
-This project is meant to provide a foundation to showoff Hugo's potential.
+Hugo has potential, but it's a pain to use due to its poor documentation and
+	inconsistency between themes.
+This project is meant to provide a set of guidelines, conventions, structure,
+	and completely functional base on which to build.
 
 ### Who?
 Targeted at lazy developers that value their time and want a solution to host
-	their thoughts, portfolio, and projects. 
+	their thoughts, portfolio, and projects while having full control of the
+	final product.
 This project chock-full of features to use, learn from, and build off of.
 Nothing should be left to magic.
 
@@ -103,11 +111,16 @@ whenever the `bootstrap` folder is updated.
 
 # Todo
 #### Documentation
+* How is this different from Hugo?
+	* We support multiple Authors, Project page, Series, etc.
 * Sections
 * Taxonomies
 * Parameters
 	* Site Parameters
 	* Content Parameters
+	* Custom Parameters
+		* Visually separate them from the default ones. Let me know about them!
+* Page
 * Blog
 * Authors
 * Series
@@ -124,11 +137,13 @@ whenever the `bootstrap` folder is updated.
 	* I need a way to parameterize the template code though
 * Update `partials/panel/about_author.html` to reflect the author of the current content
 #### Future
+* Rss links for Taxonomies and Sections.
+* Don't use partial system for customized Sections
+	* Use `{{ template "file.html" }}`
+* Don't use 'description'. Just use summary.
 * Table of contents
 	* The system provided doesn't work well
 	* Maybe just have a paramter to enable TOC?
-* Don't use partial system for customized Sections
-	* Use `{{ template "file.html" }}`
 * Customized Summary pages for different Sections
 * Reflect current page/section within the navigation bar
 * Group content by year within 'list' pages

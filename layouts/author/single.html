@@ -1,0 +1,33 @@
+{{ partial "header.html" . }}
+
+<div class="col-md-9 column">
+	<div class="section panel panel-default">
+		<div class="article panel-body">
+			<div class="voffset-20"></div>
+			{{ partial "content_header.html" . }}
+			{{ .Content }}
+		</div>
+	</div>
+	
+	<div class="voffset30"></div>
+	<h1>Posts</h1>
+	<div class="voffset-10"></div>
+	<hr/>
+	
+	<!-- Get a list of pages within the `Taxonomy`.
+		Section must be equal to Taxonomy's name.
+		DONT USE HUGO's SINGULAR/PLURAL SYSTEM
+	-->
+	{{ $pages := (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
+	{{ if (gt (len $pages) 3) }}
+		{{ range $pages }}
+			{{ .Render "summary" }}
+		{{ end }}
+	{{ else }}
+		{{ partial "panel/no_content_found.html" . }}
+	{{ end }}
+</div>
+
+<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "footer.html" . }}
+
