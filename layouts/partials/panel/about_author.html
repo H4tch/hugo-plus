@@ -1,6 +1,6 @@
 
-<!-- Params.name should only be found within an 'author' content file. -->
-{{ if (not .Params.name) }}
+{{ if (or (eq .Section "author") (eq .Title "Authors")) }}
+{{ else }}
 <div class="list-group">
 	<div class="list-group-item">
 	<div class="row clearfix">

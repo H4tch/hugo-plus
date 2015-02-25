@@ -1,11 +1,10 @@
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-{{ range .Data.Pages }}
-	{{ .Render "summary" }}
-{{ end }}
-</div>
+{{ partial "main_begin.html" . }}
+	{{ range .Data.Pages }}
+		{{ .Render "summary" }}
+	{{ end }}
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
 

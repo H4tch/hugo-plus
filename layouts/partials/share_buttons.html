@@ -3,6 +3,7 @@
 <div class="col-xs-12 col-sm-6 column">
 <div class="btn-group btn-group-justified">
 
+
 {{ with .Site.Params.gratipay }}
 <a href="https://gratipay.com/{{ . }}" title="Support me on Gratipay" class="btn btn-sm btn-default share-btn fa fa-gratipay bg-gratipay" target="_blank"></a>
 {{ end }}
@@ -22,9 +23,9 @@
 
 </div>
 </div>
-
 <div class="col-xs-12 col-sm-6 column">
 <div class="btn-group btn-group-justified">
+
 
 <a href="http://www.linkedin.com/cws/share?url={{ .Permalink }}&title={{ .Title | title }}&source={{ $.Site.BaseUrl }}" title="Share on LinkedIn" class="btn btn-sm btn-default share-btn fa fa-linkedin bg-linkedin" target="_blank"></a>
 

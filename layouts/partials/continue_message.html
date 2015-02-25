@@ -1,0 +1,13 @@
+
+{{ if .Params.continue_message }}
+	<a class="text-info" href="{{ .Permalink }}">{{ .Params.continue_message }} »</a>
+{{ else }}
+	{{ if .Truncated }}
+		<a class="text-info" href="{{ .Permalink }}">Continue Reading »</a>
+	{{ else }}
+		<a class="text-info" href="{{ .Permalink }}">Comment and Share »</a>
+	{{ end }}
+
+{{ end }}
+
+

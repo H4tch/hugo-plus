@@ -1,35 +1,19 @@
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			{{ partial "content_header.html" . }}
-			<div class="voffset10"></div>
-		
-			{{ .Content }}
-			<ul class="list-group list-unstyled">
-			<!-- Get a list of pages within the `Taxonomy`.
-				Section must be equal to Taxonomy's name.
-				DONT USE HUGO's SINGULAR/PLURAL SYSTEM
-			-->
-			{{ range (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
-				<a href="{{ .Permalink }}" class="list-group-item">
-					{{ .Title }}
-					<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
-				</a>
-			{{ end }}
-			</ul>
-		</div>
-		<div class="panel-footer">
-			{{ partial "share_buttons.html" . }}
-			<div class="voffset20"></div>
-			{{ partial "comments_ondemand.html" . }}
-		</div>
+{{ partial "main_begin.html" . }}
+	{{ partial "content_header.html" . }}
+	<div class="article-content">{{ .Content }}</div>
+	<div class="voffset20"></div>
+	<div class="panel panel-default">
+		<div class="panel-heading text-primary">Articles within this series:</div>
+		<ul class="list-group list-unstyled">
+		{{ range (index (index .Site.Taxonomies "series") (.Title | lower | urlize)).Pages.ByDate }}
+			{{ .Render "li" }}
+		{{ end }}
+		</ul>
 	</div>
-</div>
+	{{ partial "content_footer.html" . }}
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
-
 

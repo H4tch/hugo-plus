@@ -3,8 +3,10 @@
 A modular featured-packed Hugo theme that's built using Bootstrap components.
 The idea is to provide a large foundation of componets that can targetted to
 	provide a consistent set of features across Hugo themes.
+
 Each theme should provide a different layout while allowing the Bootstap theme
 	to be interchangeable.
+
 In theory this foundation will allow you to have your own Bootstrap theme that
 	can then be applied to different layouts, each supporting a similar set of
 	features.
@@ -12,6 +14,7 @@ In theory this foundation will allow you to have your own Bootstrap theme that
 ### Why?
 Hugo has potential, but it's a pain to use due to its poor documentation and
 	inconsistency between themes.
+
 This project is meant to provide a set of guidelines, conventions, structure,
 	and completely functional base on which to build.
 
@@ -19,20 +22,24 @@ This project is meant to provide a set of guidelines, conventions, structure,
 Targeted at lazy developers that value their time and want a solution to host
 	their thoughts, portfolio, and projects while having full control of the
 	final product.
-This project chock-full of features to use, learn from, and build off of.
+
+This project is chock-full of features to use, learn from, and build off of.
 Nothing should be left to magic.
 
 
 # Features
-* Support for `meta` pages to hide from content feeds. (about, archive, etc)
+* Support for `meta` pages to hide from content feeds. (example: archive page)
 * Ability to render arbitrary custom pages for any content through the `page` parameter
+* `Series` taxonomy to group blog posts into a series.
+	* Series section also exists which allows you to organize the blog posts
+		better and create an overview page for the series.
+	* Series can be hierarchical
 * Fully Bootstrapped responsive default layouts
 * Disqus comment integration
 	* Optional on-demand comment loading
 		* Auto loads if user jumps to comment section through "#comments" anchor
 	* Comment count querying
 		* Custom script to inject "No comments" when Disqus fails to
-* Breadcrumb support for Taxonomies
 * Social sharing buttons
 * Auto updating copyright year insertion
 	* exmple: `(c) 2015` will become `(c)2015-2016` once 2016 rolls around
@@ -67,13 +74,57 @@ This creates new content of type `post` within the `blog` *section* found
 	in `content/blog`.
 This content will be written and formatted using MarkDown as denoted by the
 	`md` extension.
+
 Content can be organized by Section, Type, and Taxonomy.
 In the next sections we'll see the abilities and trade-offs involved with each.
 
-## Organizing Content Using Taxonomies
-### Creating Your Own Taxonomy
 ## Organizing Content Using Sections
-### When to Override `Types`?
+Sections allow you to group content by 'type', and determines how they are displayed.
+For example, all blog posts follow the same format, so they are stored within the same section.
+
+For file organization purposes you can create a section that is rendered and grouped
+	together within another section. For this to work, each piece of content needs
+	to specify its `type` as that of the other section.
+```
+content/
+	blog/
+		first-post.md
+	travel-blog/
+		trip-to-mars.md
+```
+```
+	trip-to-mars.md:
+	+++
+	type = "blog"
+	+++
+
+	...
+```
+
+## Organizing Content Using Taxonomies
+A `Taxonomy` is a "type of label" used to provide classification for content across `sections`.
+Examples of Taxonomies are `Category`, `Tag`, `Author`, and `Series`.
+(`Date` could even be considered as a Taxonomy.) Each Taxonomy groups the content by `terms`.
+
+Categories should generally be limited to a small set of general terms like:
+	`News`, `Random`, `Technology`. A piece of content should rarely belong to more than two Categories.
+
+Tags are a much more fine-grained mechanism to add metadata to content.
+These generally don't provide much benefit, but if you do use them, try to be
+	consistent to prevent tags from only linking to a singular content piece.
+
+The `Author` Taxonomy allows you to find or subscribe to content written by a specific author.
+Due to Hugo's implementation, the `author` parameter within a content's front matter
+	must be an array of terms, even though only one author is needed(hugo-plus only support one).
+
+To customize the Author, Project, or Series Taxonomy pages, [read this section](#custom-taxonomy-and-term-pages).
+
+
+### Creating Your Own Taxonomy
+If you need to create your own Taxonomy to classify content across sections
+	that `hugo-plus` let us know.
+## Custom Content Pages
+## Custom Taxonomy and Term Pages
 ## Overview of Templates
 ### How is the Site Built?
 ### What Pre-Made Templates Exist?
@@ -136,15 +187,19 @@ whenever the `bootstrap` folder is updated.
 * Streams
 * Layout Structure
 #### In-progress
+* Should I have a `meta` section for defining parameters that sections may contain?
+	* This could be used to specify my own data model for Sections and Taxonomies.
+	* Could be used to create an alias between sections? Or change a section name.
 * Project section page, summary, etc
-* Summary area should be used for Streams, Series, Projects, etc
-	* More summary implementations
 * Use List view as a short Summary view, like a thumbnail
 * More template layouts for things like Projects or Portfolios
 	* Homepage groups and showcases content using overloaded Summary templates
 * Use Hugo's menu system to render breadcrumbs
 	* I need a way to parameterize the template code though
 #### Future
+* Modular/Parametized Breadcrumbs
+* I think ".Render" functionality could be used for section specific "partials"
+	* May have to enter a certain "scope" though?
 * Follow buttons for author
 * Rss links for Taxonomies and Sections.
 * Don't use partial system for customized Sections
@@ -164,8 +219,12 @@ whenever the `bootstrap` folder is updated.
 * Host documentation for projects (via Doxygen)
 * Forum support (via Discourse)
 * Shortcodes - Plugins for adding to content (NOTE, currently working...)
+	* Stream posts
 	* Carousal
 	* Thumbnail (caption, link, full res version) + thumbnail browser
+		* http://lokeshdhakar.com/projects/lightbox2/
+		* http://fancybox.net/
+			* Can embed, youtube, google maps, iframe, swf, 
 	* Gallery, maybe tied in with Thumbails
 	* Youtube, with subscribe and other widgets?
 	* Gist

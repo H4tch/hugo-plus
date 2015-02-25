@@ -3,17 +3,12 @@
 {{ else }}
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			{{ partial "content_header.html" . }}
-			{{ .Content }}
-		</div>
-	</div>
-</div>
+{{ partial "main_begin.html" . }}
+	{{ partial "content_header.html" . }}
+	<div class="article-content">{{ .Content }}</div>
+	{{ partial "content_footer.html" . }}
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
 {{ end }}
 

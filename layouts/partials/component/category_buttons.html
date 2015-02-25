@@ -1,0 +1,9 @@
+
+{{ with .Params.categories }}
+	{{ range . }}
+		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
+		 class="btn btn-primary btn-xs">{{ . | title }}</a>
+	{{ end }}
+{{ end }}
+
+

@@ -1,14 +1,14 @@
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-{{ range .Data.Pages }}
-	{{ if (not .Params.meta) }}
-		{{ .Render "summary" }}
+{{ partial "main_begin.html" . }}
+	{{ range .Data.Pages }}
+		{{ if (not .Params.meta) }}
+			{{ .Render "summary" }}
+		{{ end }}
 	{{ end }}
-{{ end }}
-</div>
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
+{{ partial "sidebar.html" . }}
 {{ partial "footer.html" . }}
 
 

@@ -1,11 +1,16 @@
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-{{ range .Data.Pages }}
-	{{ .Render "summary" }}
-{{ end }}
-</div>
+{{ partial "main_begin.html" . }}
+	{{ if (not .Data.Pages ) }}
+		<div class="panel-body">
+			<h4 class="text-muted">No content found matching this criteria</h4>
+		</div>
+	{{ else }}
+		{{ range .Data.Pages }}
+			{{ .Render "summary" }}
+		{{ end }}
+	{{ end }}
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
 

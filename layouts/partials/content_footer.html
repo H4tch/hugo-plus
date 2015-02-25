@@ -1,35 +1,55 @@
 
-<!--Placed after a full piece of content, not the summary. -->
+<!--Placed after a full piece of content, not the summary.-->
 
-<div class="row">
-{{ with .Params.categories }}
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
-	{{ range . }}
-		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
-		 class="btn btn-primary btn-xs">{{ . }}</a>
-	{{ end }}
-	</div>
+<div class="voffset20"></div>
+<!--<hr/>-->
+
+{{ if .Params.series }}
+	<div class="voffset30"></div>
+	{{ partial "panel/series.html" . }}
 {{ end }}
-	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
-	{{ with .Params.tags }}
-		<div class="btn-group pull-right">
-			<button class="btn btn-default btn-xs dropdown-toggle"
-			 id="tag-menu" type="button" data-toggle="dropdown"
-			 aria-expanded="false">
-				tags <strong class="caret"></strong>
-				<span class="sr-only">Toggle Dropdown</span>
-			</button>
-			<ul class="dropdown-menu dropdown-menu-right"
-			 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
-			{{ range . }}
-					<li role="presentation">
-					<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
-					 role="menuitem">{{ . }}</a></li>
-			{{ end }}
-			</ul>
+
+{{ if (not .Params.no_share_buttons) }}
+	{{ partial "share_buttons.html" . }}
+{{ end }}
+
+{{ if (not .Params.no_follow_buttons) }}
+	{{ partial "follow_buttons.html" . }}
+{{ end }}
+
+
+{{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
+<div class="row">
+	{{ if (not .Params.no_categories) }}
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+			{{ partial "component/category_buttons.html" . }}
 		</div>
 	{{ end }}
-	</div>
+
+	{{ if (not .Params.no_tags) }}
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
+			<div class="btn-group pull-right">
+				{{ partial "component/tag_menu_button.html" . }}
+			</div>
+		</div>
+	{{ end }}
 </div>
+
+
+{{ if (and (not .Params.series) (not .Params.no_pager)) }}
+	<div class="voffset10"></div>
+	{{ partial "pager.html" . }}
+{{ end }}
+
+
+</div><!--/article panel-body-->
+
+<div class="panel-footer">
+	{{ if (not .Params.no_comments) }}
+		{{ partial "comments_ondemand.html" . }}
+	{{ end }}
+</div>
+
+</div><!--/panel-->
 
 

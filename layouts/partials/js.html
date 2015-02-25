@@ -1,20 +1,4 @@
 
-<!-- Needed for "share_buttons_old.html"
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script src="//hnbutton.appspot.com/static/hn.min.js" async defer></script>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
--->
-
 <script> // GoogleAnalytics
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -23,6 +7,46 @@
 	ga('create', '{{ .Site.Params.googleAnalytics }}', 'auto');
 	ga('send', 'pageview');
 </script>
+
+
+
+<!-- jQuery required by Disqus, Magnific -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif] d-->
+
+
+
+<!--Magnific Popup-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+
+<a class="image-link" href="/img/h4tch.png">Open popup</a>
+<script>
+	$(document).ready(function() {
+	  $('.image-link').magnificPopup({type:'image'});
+	});
+</script>
+<div class="image-group">
+  <a href="/img/h4tch.png">Open popup 1</a>
+  <a href="/img/h4tch.png">Open popup 2</a>
+  <a href="/img/h4tch.png">Open popup 3</a>
+</div>
+<script>
+	$('.image-group').magnificPopup({
+		delegate: 'a', // child items selector, by clicking on it popup will open
+		type: 'image'
+	});
+</script>
+
 
 
 <!-- This should only be loaded if actually used. How to determine this?
@@ -40,12 +64,15 @@
 	// After the page loads, insert "No Comments " where Disqus fails to do so
 	commentCountChecker = function(){
 		nodes = document.getElementsByClassName("disqus-comment-count");
-		for(var i = 0; i < nodes.length; i++ ){
-			if(nodes[i].innerHTML == ""){nodes[i].innerHTML = "No Comments "; }
+		for(var i = 0; i < nodes.length; i++) {
+			if(nodes[i].innerHTML == "") {
+				nodes[i].innerHTML = "No Comments ";
+			}
 		}
 	};
 	setTimeout(commentCountChecker, 200);
 </script>
 {{ end }}
+
 
 

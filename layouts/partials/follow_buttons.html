@@ -1,26 +1,56 @@
 
 <!--
-{{ with .Site.Params.googleplus }}
-	<div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/u/0/{{ . }" data-rel="author"></div>
-{{ end }}
-
-{{ with .Site.Params.twitter }}
-	<a href="https://twitter.com/{{ . }}" class="twitter-follow-button" data-show-count="false">Follow @{{ . }}</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-{{ end }}
-
-{{ with .Site.Params.linkedin }}
-	<a href="http://www.linkedin.com/in/{{ . }}">
-		<img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_liprofile_blue_80x15.png" width="80" height="20" border="0" alt="View {{ $.Site.Author.name }}'s profile on LinkedIn"></a>
-{{ end }}
-
-{{ with .Site.Params.pinterest }}
-	<a data-pin-do="buttonFollow" href="http://www.pinterest.com/{{ . }}/">{{ $.Site.Author.name }}</a>
-	<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
-{{ end }}
-
-{{ with .Site.Params.tumblr }}
-	<iframe class="btn" border="0" scrolling="no" allowtransparency="true" src="http://platform.tumblr.com/v1/follow_button.html?button_type=2&tumblelog=staff&color_scheme=light" frameborder="0" height="25" width="114"></iframe>
-{{ end }}
-
+	This template is useful for following Authors or Projects
+	Parameters are defined within the content front matter section.
 -->
+
+<div class="row no-pad">
+<div class="col-xs-12 col-sm-3 column">
+<div class="btn-group btn-group-justified">
+
+
+{{ with .Params.gratipay }}
+<a href="https://gratipay.com/{{ . }}" title="Support me on Gratipay" class="btn btn-sm btn-default share-btn fa fa-gratipay bg-gratipay" target="_blank"></a>
+{{ end }}
+
+{{ with .Params.flattr }}
+<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
+{{ end }}
+
+{{ with .Params.subreddit }}
+<a class="btn btn-sm btn-default share-btn fa fa-reddit bg-reddit" type="button" href="http://www.reddit.com/submit?url={{ $.Permalink }}&title={{ $.Title | title }}" title="Vote on Reddit" target="_blank"></a>
+{{ end }}
+
+
+</div>
+</div>
+<div class="col-xs-12 col-sm-9 column">
+<div class="btn-group btn-group-justified">
+
+
+{{ with .Params.googleplus }}
+<a href="https://plus.google.com/u/0/{{ . }}" title="Follow on Google+" class="btn btn-sm btn-default share-btn fa fa-google-plus bg-google-plus" target="_blank"></a>
+{{ end }}
+
+{{ with .Params.facebook }}
+<a href="https://www.facebook.com/{{ . }}" title="Follow on Facebook" class="btn btn-sm btn-default share-btn fa fa-facebook bg-facebook" target="_blank"></a>
+{{ end }}
+
+{{ with .Params.twitter }}
+<a href="https://twitter.com/intent/follow?original_referer={{ $.Permalink }}&region=follow_link&screen_name={{ . }}&tw_p=followbutton" title="Follow @{{ . }} on Twitter" class="btn btn-sm btn-default share-btn fa fa-twitter bg-twitter" target="_blank"></a>
+{{ end }}
+
+{{ with .Params.pinterest }}
+<a href="http://www.pinterest.com/{{ . }}" class="btn btn-sm btn-default share-btn fa fa-pinterest bg-pinterest" title="Follow {{ . }} on Pinterest" target="_blank"></a>
+{{ end }}
+
+{{ with .Params.tumblr }}
+<a class="btn btn-sm btn-default share-btn fa fa-tumblr bg-tumblr" href="http://www.tumblr.com/register/follow/{{ . }}" title="Follow {{ . }} on Tumblr"></a>
+{{ end }}
+
+
+</div>
+</div>
+</div>
+
+

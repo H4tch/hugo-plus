@@ -1,19 +1,18 @@
 
-<!-- Must be instantiated on a content page?
-	TODO: Pass in the 'series' name?
+<!-- Must be instantiated on a content page because .Params.series is checked.
+	Would be nice if series name was passed in instead
 -->
 
-{{ with index .Params.series 0 }}
+{{ if .Params.series }}{{ with index .Params.series 0 }}
 	{{ $name := (. | lower | urlize) }}
 	{{ $series := index $.Site.Taxonomies.series $name }}
 	{{ if $series.Pages }}
-	
 		<div class="series panel panel-default">
 			<div class="panel-heading">
 				<div class="row clearfix">
 					<div class="col-xs-12 column">
 						<h4 class="active"><a href="{{ $.Site.BaseUrl }}/series/{{ . | lower | urlize }}">
-						{{ . }}</a>
+						{{ . | title }} Series</a>
 						<a href="{{ $.Site.BaseUrl }}/series" class="label label-primary pull-right">All series</a></h4>
 					</div>
 				</div>
@@ -28,12 +27,10 @@
 					{{ .Title }}
 					<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
 				</a>
-				<a href="{{ .Permalink }}" class="list-group-item">Second post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
-				<a href="{{ .Permalink }}" class="list-group-item">third post<div class="pull-right">{{ .Date.Format "Jan 02" }}</div></a>
 			{{ end }}
 			</ul>
 		</div>
 	{{ end }}
-{{ end }}
+{{ end }}{{ end }}
 
 

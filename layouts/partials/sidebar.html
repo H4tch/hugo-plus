@@ -1,24 +1,31 @@
 
-<div class="row clearfix">
-	<div class="col-xs-12 col-sm-6 col-md-12 column">
-		{{ partial "panel/about_author.html" . }}
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-12 column">
-		{{ partial "panel/recent_posts.html" . }}
-	</div>
-</div>
-
-<div class="row clearfix">
-	{{ partial "panel/social_links.html" . }}
-	<div class="col-xs-12 col-sm-6 col-md-12 column">
-		{{ partial "panel/categories.html" . }}
-	</div>
-</div>
-
-<!--
-<div class="row clearfix">
-	{{ partial "panel/ads.html" . }}
-</div>
+<!-- Sidebar current contains recent_posts, about_author, and social_links, and
+		categories panels.
 -->
 
+<div class="content-secondary col-md-3 column">
+	<div class="row clearfix">
+		<div class="col-xs-12 col-sm-6 col-md-12 column">
+			{{ partial "panel/about_author.html" . }}
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-12 column">
+			{{ partial "panel/recent_posts.html" . }}
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-xs-12 col-sm-6 col-md-12 column">
+			{{ partial "panel/social_links.html" . }}
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-12 column">
+			{{ partial "panel/categories.html" . }}
+		</div>
+	</div>
+
+	<!--
+	<div class="row clearfix">
+		{{ partial "panel/ads.html" . }}
+	</div>
+	-->
+</div>
 

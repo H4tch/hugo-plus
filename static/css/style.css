@@ -21,6 +21,7 @@ h2,h3,h4,h5,h6 { color: #444; }
 	vertical-align:top; zoom:1; *display:inline; 
 	border:none;-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
 }
+.share-btn > i { font-size:20px !important; }
 .share-btn > img { width: 20px; margin: auto; display:block; }
 
 .bg-gratipay{ background-color: #339966; }
@@ -34,6 +35,15 @@ h2,h3,h4,h5,h6 { color: #444; }
 .bg-hacker-news { background-color: #FF6600; }
 .bg-tumblr { background-color: #34465D; }
 .bg-email { background-color: #7D3697; }
+
+.white-popup {
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	width: auto;
+	max-width: 500px;
+	margin: 20px auto;
+}
 
 /* Large desktop */
 @media (min-width: 1200px) {

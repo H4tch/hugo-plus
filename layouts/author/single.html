@@ -1,26 +1,14 @@
 {{ partial "header.html" . }}
 
-<div class="col-md-9 column">
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			
-			<span class="thumbnail pull-right" style="max-width:96px" >
-				<a href="{{ .Permalink }}"><img src="{{ .Params.avatar }}" title="{{ .Params.name }}"
-				 class="img-responsive center-block"></a>
-			</span>
-			<a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
-			<div class="voffset10"></div>
-			{{ .Content }}
-		</div>
-	</div>
-	
+{{ partial "main_begin.html" . }}
+	{{ partial "content_header.html" . }}
+	<div class="article-content">{{ .Content }}</div>
+	{{ partial "content_footer.html" . }}
 	
 	<div class="voffset30"></div>
 	<h1>Posts</h1>
 	<div class="voffset-10"></div>
 	<hr/>
-	
 	<!-- Get a list of pages within the `Taxonomy`.
 		Section must be equal to Taxonomy's name.
 		DONT USE HUGO's SINGULAR/PLURAL SYSTEM
@@ -33,9 +21,8 @@
 	{{ else }}
 		{{ partial "panel/no_content_found.html" . }}
 	{{ end }}
-</div>
+{{ partial "main_end.html" . }}
 
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
 
 

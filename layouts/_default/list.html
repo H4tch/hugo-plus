@@ -4,19 +4,17 @@
 	Other defaults are provided so this is never instantiated.
 -->
 
-<div class="col-md-9 column">
-{{ range .Data.Pages.ByDate.Reverse }}
-	<div class="section panel panel-default">
-		{{ .Render "li" }}
-		<div class="panel-footer">
-			{{ partial "summary_footer.html" . }}
+{{ partial "main_begin".html" . }}
+	{{ range .Data.Pages.ByDate.Reverse }}
+		<div class="section panel panel-default">
+			{{ .Render "li" }}
+			<div class="panel-footer">
+				{{ partial "summary_footer.html" . }}
+			</div>
 		</div>
-	</div>
-{{ end }}
-</div>
+	{{ end }}
+{{ partial "main_end".html" . }}
 
-
-<div class="content-secondary col-md-3 column">{{ partial "sidebar.html" . }}</div>
 {{ partial "footer.html" . }}
 
 
