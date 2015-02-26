@@ -1,38 +1,61 @@
 
-<!-- src, type, title, etc -->
-
 <!--
-<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl=MP3link" width="400" height="27">
+	Embeds an HTML5 audio control widget into the webpage
+	
+{{/*
+	USAGE:
+		{{< audio src="/audio/song.mp3" >}}
+*/}}
+		
+	Parameters:
+		src - Address of the audio file
+		type - Audio encoding(mp3, ogg, etc)
+		title - Title of audio track
+		attr - Attribution
+		attr_link - Link to attribution
+		year - Year the audio was produced
+		artist - Artist of the audio
+		album_title - Title of the album
+		album_art - Link to the album art
+		label - Record label
+		
+		class - Class attribute(s) of the audio element
+				By default it contains "audio_controls"
+		width - Width of HTML5 audio control widget
+		height - Height of HTML5 audio control widget
+		
+		
+		backup_src? backup_type? backup_codecs?
+	
+	TODO
+		Fallback to a flash-based audio player
+			<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl={{ .Get "src" }}">
 -->
 
-<audio controls>
-	<source src="{{ src }}" type="audio/{{ type }}">
-	Your browser does not support the audio element
-</audio>
 
-<audio controls class="audio_controls">
-	<source src="{{ src }}"
-		type='audio/mp3'>
-	<!-- The next two lines are only executed if the browser doesn't support MP4 files -->
-	<source src="{{ backup }} "
-		type='audio/ogg; codecs=vorbis'>
-	<!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
-	<p>Your user agent does not support the HTML5 Audio element.</p>
+<audio controls class="audio_controls {{ with .Get "class" }}{{ . }}{{ end }}"
+	{{ with .Get "title" }}data-info-title="{{ . }}"{{ end }}
+	{{ with .Get "attr" }}data-info-attr="{{ . }}"{{ end }}
+	{{ with .Get "attr_link" }}data-info-attr-link="{{ . }}"{{ end }}
+	{{ with .Get "year" }}data-info-year="{{ . }}"{{ end }}
+	{{ with .Get "artist" }}data-info-artist="{{ . }}"{{ end }}
+	{{ with .Get "album_title" }}data-info-album-title="{{ . }}"{{ end }}
+	{{ with .Get "album_art" }}data-info-album-art="{{ . }}"{{ end }}
+	{{ with .Get "label" }}data-info-label="{{ . }}"{{ end }}
+	style="{{ with .Get "width" }}width:{{ . }};{{ end }}
+	{{ with .Get "height" }}height:{{ . }}:;{{ end }}"
+	
+>
+	<source {{ with .Get "src" }}src="{{ . }}"{{ end }}
+		{{ with .Get "type" }}type="audio/{{ . }}"{{ end }}>
+	
+	{{ if .Get "backup_src" }}
+		<source src="{{ .Get "backup_src" }}"
+			{{ with .Get "backup_type" }}type="audio/{{ . }}"{{ end }}
+			{{ with .Get "backup_codec" }}codecs="{{ . }}"{{ end }}
+		>
+	{{ end }}
+	<p>Your browser does not support the audio element</p>
 </audio>
-
-<!--
-<audio controls
-	data-info-album-art=""
-	data-info-album-title=""
-	data-info-artist=""
-	data-info-title=""
-	data-info-label=""
-	data-info-year=""
-	data-info-att=""
-	data-info-att-link="">
-	<source src="" type="audio/" />
-	<a href="">text</a>
-</audio>
--->
 
 
