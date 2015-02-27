@@ -21,6 +21,8 @@
 		
 		class - Class attribute(s) of the audio element
 				By default it contains "audio_controls"
+		id - Id attribute of the audio element
+		style - Style attribute of the audio element
 		width - Width of HTML5 audio control widget
 		height - Height of HTML5 audio control widget
 		
@@ -33,7 +35,12 @@
 -->
 
 
-<audio controls class="audio_controls {{ with .Get "class" }}{{ . }}{{ end }}"
+<audio controls
+	class="audio_controls {{ with .Get "class" }}{{ . }}{{ end }}"
+	{{ with .Get "id" }}id={{ . }}{{ end }}
+	style="{{ with .Get "style" }}{{ . }}; {{ end }}
+		{{ with .Get "width" }}width:{{ . }}; {{ end }}
+		{{ with .Get "height" }}height:{{ . }};{{ end }}"
 	{{ with .Get "title" }}data-info-title="{{ . }}"{{ end }}
 	{{ with .Get "attr" }}data-info-attr="{{ . }}"{{ end }}
 	{{ with .Get "attr_link" }}data-info-attr-link="{{ . }}"{{ end }}
@@ -42,14 +49,12 @@
 	{{ with .Get "album_title" }}data-info-album-title="{{ . }}"{{ end }}
 	{{ with .Get "album_art" }}data-info-album-art="{{ . }}"{{ end }}
 	{{ with .Get "label" }}data-info-label="{{ . }}"{{ end }}
-	style="{{ with .Get "width" }}width:{{ . }};{{ end }}
-	{{ with .Get "height" }}height:{{ . }}:;{{ end }}"
 	
 >
+	{{ if .Get "src" }}
 	<source {{ with .Get "src" }}src="{{ . }}"{{ end }}
 		{{ with .Get "type" }}type="audio/{{ . }}"{{ end }}>
-	
-	{{ if .Get "backup_src" }}
+	{{ else if .Get "backup_src" }}
 		<source src="{{ .Get "backup_src" }}"
 			{{ with .Get "backup_type" }}type="audio/{{ . }}"{{ end }}
 			{{ with .Get "backup_codec" }}codecs="{{ . }}"{{ end }}
