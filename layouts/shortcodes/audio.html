@@ -8,8 +8,12 @@
 */}}
 		
 	Parameters:
-		src - Address of the audio file
-		type - Audio encoding(mp3, ogg, etc)
+		src - (required) Address of the audio file
+		type - (required) Audio encoding(mp3, ogg, etc)
+		preload - Should the audio be preloaded when the page loads
+				Valid values are: "none", "metadata", and "auto"
+				Default is set to "metadata"
+		
 		title - Title of audio track
 		attr - Attribution
 		attr_link - Link to attribution
@@ -29,15 +33,17 @@
 		
 		backup_src? backup_type? backup_codecs?
 	
-	TODO
+	Todo:
 		Fallback to a flash-based audio player
 			<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl={{ .Get "src" }}">
 -->
 
 
 <audio controls
-	class="audio_controls {{ with .Get "class" }}{{ . }}{{ end }}"
+	class="audio_controls {{ .Get "class" }}"
 	{{ with .Get "id" }}id={{ . }}{{ end }}
+	{{ with .Get "preload" }}preload="{{ . }}"{{ else }}preload="metadata"{{ end }}
+	
 	style="{{ with .Get "style" }}{{ . }}; {{ end }}
 		{{ with .Get "width" }}width:{{ . }}; {{ end }}
 		{{ with .Get "height" }}height:{{ . }};{{ end }}"
@@ -49,7 +55,6 @@
 	{{ with .Get "album_title" }}data-info-album-title="{{ . }}"{{ end }}
 	{{ with .Get "album_art" }}data-info-album-art="{{ . }}"{{ end }}
 	{{ with .Get "label" }}data-info-label="{{ . }}"{{ end }}
-	
 >
 	{{ if .Get "src" }}
 	<source {{ with .Get "src" }}src="{{ . }}"{{ end }}
