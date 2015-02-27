@@ -1,0 +1,51 @@
+<!--
+	The Breadcrumbs shortcode allows you to build a Bootstrapped breadcrumb list
+		from a series of terms. Supports up to five breadcrumbs.
+	
+	USAGE:
+		{{< breadcrumbs term1="Home" url1="/" term2="Categories" url2="/category" >}}
+	
+	Parameters:
+		id - Id attribute of the `ul` breadcrumb element
+		class - Class attribute of the `ul` breadcrumb element.
+				`breadcrumb list-unstyled` is pre-attached
+		style - Style attribute of the `ul` breadcrumb element
+		last_active - Should the last element be `active`
+		
+		Below are the text and url parameters for each breadcrumb (up to five) 
+		term1, url1
+		term2, url2
+		term3, url3
+		term4, url4
+		term5, url5
+-->
+
+{{/*
+	{{ if (not (.Get "term2"))}}{{ end }}
+*/}}
+
+<ul class="breadcrumb list-unstyled {{ .Get "class" }}"
+	{{ with .Get "id" }}id="{{ . }}"{{ end }}
+	{{ with .Get "style" }}style="{{ . }}"{{ end }}
+>
+	{{ if .Get "term1" }}<li><a href="{{ .Get "url1" }}">{{ .Get "term1" }} </a>
+		{{ if .Get "term2" }}<span class="divider"></span>{{ end }}</li>
+	{{ end }}
+	
+	{{ if .Get "term2" }}<li><a href="{{ .Get "url2" }}">{{ .Get "term2" }} </a>
+		{{ if .Get "term3" }}<span class="divider"></span>{{ end }}</li>
+	{{ end }}
+	
+	{{ if .Get "term3" }}<li><a href="{{ .Get "url3" }}">{{ .Get "term3" }} </a>
+		{{ if .Get "term4" }}<span class="divider"></span>{{ end }}</li>
+	{{ end }}
+	
+	{{ if .Get "term4" }}<li><a href="{{ .Get "url4" }}">{{ .Get "term4" }} </a>
+		{{ if .Get "term5" }}<span class="divider"></span>{{ end }}</li>
+	{{ end }}
+	
+	{{ if .Get "term5" }}<li><a href="{{ .Get "url5" }}">{{ .Get "term5" }} </a></li>{{ end }}
+</ul>
+
+
+
