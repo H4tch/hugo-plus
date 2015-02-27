@@ -1,0 +1,32 @@
+<!--
+	This Gallery shortcode allows you to embed the following shortcodes:
+		photo
+		video
+		iframe
+		inline
+	
+	{{/*
+	USAGE:
+		{{% gallery %}}
+			{{% photo src="/image/test.png" title="This is just a test" %}}
+			{{% photo src="image/test2.png" title="Another test" %}}
+			{{% video src="youtu.be/hugo" title="Video test" %}}
+		{{% /gallery %}}
+	*/}}
+	
+	Parameters:
+		-config - Configuration file found within `.Site.Data`('data' directory)
+		id - Id attribute for gallery's out `div` tag
+		class - Class attribute for gallery's out `div` tag
+		style - Style attribute for gallery's out `div` tag
+-->
+
+
+<div class="magnific-gallery {{ .Get "class" }}"
+	{{ with .Get "id" }}id="{{ . }}"{{ end }}
+	{{ with .Get "class" }}class="{{ . }}"{{ end }}
+	{{ with .Get "style" }}style="{{ . }}"{{ end }}
+>
+	{{ .Inner }}
+</div>
+
