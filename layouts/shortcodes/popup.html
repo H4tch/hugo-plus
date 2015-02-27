@@ -1,0 +1,51 @@
+<!--
+	This popup shortcode allows you to create a popup containing custom HTML code.
+		If you want to create a popup around an iframe, use the iframe shortcode instead.
+
+{{/*
+	USAGE:
+		{{% popup id="popup-test" link_text="Click to see my custom popup!" %}}
+			# Header1
+				* **How bold are you?**
+				* Is this working?
+		{{% /popup %}}
+	
+	Note: You'll want to use the `%` shortcode variant so inner MarkDown is
+		processed and rendered to HTML
+*/}}
+	
+	Parameter:
+		id - (required) Id attribute of the popup content
+		
+		(Either 'link_text' or 'link_html' is also required)
+		link_text - Text to use for the link which opens the popup
+		link_html - Embed custom HTML within the link element(after the text)
+		link_class - Class attribute for the link element
+		link_style - Style attribute for the link element
+		
+		popup_class - Class attribute of outer div tag element of the popup
+		popup_style - Style attribute of outer div tag element of the popup
+		
+		
+	Notes:
+		The popup's inline HTML is contained within a div tag that is themed
+			using the 'popup-container' class. This outer div tag also has a
+			"container" attached to it to support Bootstrap's grid system.
+-->
+
+
+{{ if .Get "id" }}
+<div id="{{ .Get "id" }}" class="container popup-container mfp-hide {{ .Get "popup_class" }}"
+{{ with .Get "popup_style" }}style="{{ . }}"{{ end }}>
+	{{ .Inner }}
+</div>
+
+<!-- Link that opens the popup -->
+<a href="" class="magnific-popup mfp-inline {{ .Get "link_class" }}" data-mfp-src="#{{ .Get "id" }}"
+{{ with .Get "link_style" }}style="{{ . }}"{{ end }}>
+	{{ .Get "link_text" }}
+	{{ .Get "link_html" }}
+</a>
+{{ end }}
+
+
