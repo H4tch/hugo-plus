@@ -23,7 +23,7 @@
 		album_art - Link to the album art
 		label - Record label
 		
-		class - Class attribute(s) of the audio element
+		class - Class attribute of the audio element
 				By default it contains "audio_controls"
 		id - Id attribute of the audio element
 		style - Style attribute of the audio element
@@ -41,7 +41,7 @@
 
 <audio controls
 	class="audio_controls {{ .Get "class" }}"
-	{{ with .Get "id" }}id={{ . }}{{ end }}
+	{{ with .Get "id" }}id="{{ . }}"{{ end }}
 	{{ with .Get "preload" }}preload="{{ . }}"{{ else }}preload="metadata"{{ end }}
 	
 	style="{{ with .Get "style" }}{{ . }}; {{ end }}
