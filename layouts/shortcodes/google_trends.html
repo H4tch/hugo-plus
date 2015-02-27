@@ -1,0 +1,16 @@
+
+<!--
+	Shortcode to embed a Google Trends chart into the content.
+	
+	Parameters:
+		terms - (required) Comma separated list of terms (up to four)
+		start_date - Earliest date to constrain the graph in the format "1/2006"
+		months - How many months from the start_date. Defaults to 12
+		
+		width - Width of the object, must be a plain number. Defaults to 550
+		height - Height of the object, must be a plain number. Defaults to 330
+-->
+
+<script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q={{ .Get "terms" }}&{{ if .Get "start_date" }}date={{ .Get "start_date" }} {{ with .Get "months" }}{{ . }}m{{ else }}12m{{ end }}{{ end }}&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w={{ with .Get "width" }}{{ . }}{{ else }}550{{ end }}&h={{ with .Get "height" }}{{ . }}{{ else }}330{{ end }}"></script>
+
+
