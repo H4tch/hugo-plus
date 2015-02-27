@@ -4,7 +4,7 @@
 	Other defaults are provided so this is never instantiated.
 -->
 
-{{ partial "main_begin".html" . }}
+{{ partial "main_begin.html" . }}
 	{{ range .Data.Pages.ByDate.Reverse }}
 		<div class="section panel panel-default">
 			{{ .Render "li" }}
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 	{{ end }}
-{{ partial "main_end".html" . }}
+{{ partial "main_end.html" . }}
 
 {{ partial "footer.html" . }}
 

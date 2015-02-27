@@ -9,14 +9,8 @@
 </script>
 
 
-
-<!-- jQuery required by Disqus, Magnific -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
 
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -24,55 +18,16 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif] d-->
 
+{{ partial "js/magnific_popup.html" . }}
+{{ partial "js/disqus.html" . }}
 
 
-<!--Magnific Popup-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
-
-<a class="image-link" href="/img/h4tch.png">Open popup</a>
-<script>
-	$(document).ready(function() {
-	  $('.image-link').magnificPopup({type:'image'});
-	});
-</script>
-<div class="image-group">
-  <a href="/img/h4tch.png">Open popup 1</a>
-  <a href="/img/h4tch.png">Open popup 2</a>
-  <a href="/img/h4tch.png">Open popup 3</a>
-</div>
-<script>
-	$('.image-group').magnificPopup({
-		delegate: 'a', // child items selector, by clicking on it popup will open
-		type: 'image'
-	});
-</script>
-
-
-
-<!-- This should only be loaded if actually used. How to determine this?
-	On my site, it is only used on 'node' pages. Maybe include it manually?
--->
-{{ with .Site.DisqusShortname }}
-<script type="text/javascript">
-	var disqus_shortname = '{{ . }}';
-	(function () {
-		var s = document.createElement('script'); s.async = true;
-		s.type = 'text/javascript';
-		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-	}());
-	// After the page loads, insert "No Comments " where Disqus fails to do so
-	commentCountChecker = function(){
-		nodes = document.getElementsByClassName("disqus-comment-count");
-		for(var i = 0; i < nodes.length; i++) {
-			if(nodes[i].innerHTML == "") {
-				nodes[i].innerHTML = "No Comments ";
-			}
-		}
-	};
-	setTimeout(commentCountChecker, 200);
-</script>
+{{/*
+{{ $global := . }}
+{{ range (index .Site.Data .Site.Params.theme).js_includes }}
+	{{ partial  (print "js/" . ".html") $global }}
 {{ end }}
+*/}}
 
 
 

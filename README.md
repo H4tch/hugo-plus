@@ -53,6 +53,7 @@ Nothing should be left to magic.
 	* Useful for things like guest posts
 	* May not be suitable for a larger content publishing site due to Hugo's limitations
 * Syntax highlighting for code with customizable theme per content
+* Google Analytics
 
 
 # Getting Started
@@ -165,14 +166,11 @@ whenever the `bootstrap` folder is updated.
 # Todo
 #### Documentation
 * How is this different from Hugo?
-	* We support multiple Authors, Project page, Series, etc
+	* Built-in support for multiple Authors, Project page, Series, etc
 	* Don't use Hugo's plural/singular system for taxonomies
 	* Don't use .Params.description
-		* Not worth increased template complexity
-		* The Summary section of content is preferred instead
-	* Hidden `meta` content
-* Guidelines
-	* Don't use `isset`. A Parameter may be set, but empty.
+		* The Summary of content is sufficient
+	* `meta` parameter to hide content
 * Sections
 * Taxonomies
 * Parameters
@@ -186,52 +184,38 @@ whenever the `bootstrap` folder is updated.
 * Series
 * Streams
 * Layout Structure
-#### In-progress
-* Should I have a `meta` section for defining parameters that sections may contain?
-	* This could be used to specify my own data model for Sections and Taxonomies.
-	* Could be used to create an alias between sections? Or change a section name.
-* Project section page, summary, etc
-* Use List view as a short Summary view, like a thumbnail
-* More template layouts for things like Projects or Portfolios
-	* Homepage groups and showcases content using overloaded Summary templates
-* Use Hugo's menu system to render breadcrumbs
-	* I need a way to parameterize the template code though
 #### Future
-* Modular/Parametized Breadcrumbs
+* More diverse layouts for Project, Homepage, etc.
+* Project section page, summary, etc
+* Define parameters for Sections using .Site.Data.<section name>
+* Rss links for Sections and "Taxonomy Ssctions"
 * I think ".Render" functionality could be used for section specific "partials"
 	* May have to enter a certain "scope" though?
 * Follow buttons for author
-* Rss links for Taxonomies and Sections.
 * Don't use partial system for customized Sections
 	* Use `{{ template "file.html" }}`
-* Table of contents
-	* The system provided doesn't work well
-	* Maybe just have a paramter to enable TOC?
+* Table of contents partial template
 * Customized Summary pages for different Sections
+	* Can I use shortcodes for more customizable/modular summary/content panels
 * Reflect current page/section within the navigation bar
-* Group content by year within 'list' pages
-* Can idividual Taxonomy Term pages be customized?
-	* Sections could be used to better address this? yes
+	* Hugo 0.13 has IsCurrent and HasCurrent data fields
+* Need to group content by year in more places, or add year to each list item
 * 'Hide comments' button(When unhiding, the comments shouldn't have to reload)
 * URL shortener integration for sharing
 	* Best implementation would be to hook into a Go function?
-* Email button
 * Host documentation for projects (via Doxygen)
 * Forum support (via Discourse)
-* Shortcodes - Plugins for adding to content (NOTE, currently working...)
-	* Stream posts
-	* Carousal
-	* Thumbnail (caption, link, full res version) + thumbnail browser
-		* http://lokeshdhakar.com/projects/lightbox2/
-		* http://fancybox.net/
-			* Can embed, youtube, google maps, iframe, swf, 
-	* Gallery, maybe tied in with Thumbails
+* Shortcodes
 	* Youtube, with subscribe and other widgets?
-	* Gist
-	* Link to a Source File with syntax highlighting
+	* Breadcrumbs
+		* Use Hugo's menu system to render breadcrumbs?
+	* Stream posts
 	* Amazon Affiliate Links
-	* Plot/Graph data
 	* Google-trends
+	* Link to a Source File with syntax highlighting
+	* Gist
+	* Carousal
+	* Plot/Graph data
 
 
 #### (c) 2015 Daniel Hatch (h4tch)
