@@ -36,7 +36,7 @@ h2,h3,h4,h5,h6 { color: #444; }
 .bg-tumblr { background-color: #34465D; }
 .bg-email { background-color: #7D3697; }
 
-.white-popup {
+.popup-container {
 	position: relative;
 	background: #FFF;
 	padding: 20px;
@@ -88,6 +88,11 @@ h2,h3,h4,h5,h6 { color: #444; }
 
 .footer, .push { height: 30px; }
 
+
+.border-left { border-left: 1px solid #ccc; }
+.border-right { border-right: 1px solid #ccc; }
+.border-top { border-top: 1px solid #ccc; }
+.border-bottom { border-bottom: 1px solid #ccc; }
 
 .vcenter { display: inline-block; vertical-align: middle; float: none; }
 
