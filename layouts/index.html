@@ -1,11 +1,12 @@
 {{ partial "header.html" . }}
 
 {{ partial "main_begin.html" . }}
-	{{ range .Data.Pages }}
+	{{ range .Paginator.Pages }}
 		{{ if (not .Params.meta) }}
 			{{ .Render "summary" }}
 		{{ end }}
 	{{ end }}
+	{{ template "_internal/pagination.html" . }}
 {{ partial "main_end.html" . }}
 
 {{ partial "footer.html" . }}
