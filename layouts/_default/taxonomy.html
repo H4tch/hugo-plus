@@ -69,7 +69,10 @@
 			{{ range .Data.Pages }}
 				<a class="list-group-item" href="{{ .Permalink }}">
 					<span class="text-primary">{{ .Title | title }}</span>
-					<span class="pull-right">{{ .Date.Format "Jan 2" }}</span>
+					<span class="pull-right">{{ $date := .Date }}
+						{{ with $.Site.Params.date_format_short }}{{ $date.Format . }}
+						{{ else }}{{ $date.Format "Jan 2" }}{{ end }}
+					</span>
 				</a>
 			{{ end }}
 			</ul>
