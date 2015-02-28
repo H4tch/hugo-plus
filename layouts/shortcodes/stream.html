@@ -1,0 +1,48 @@
+<!--
+	Embed a 'post' within the content area. This is designed for the 'stream'
+		section. Posts can be embedded within other posts.
+	
+{{/*
+	USAGES:
+		{{< stream text="" date="" >}}
+		or:
+		{{< stream text="" date="" >}}
+			{{< photo title="Embedded image" src="http://lorempixel.com/300/300/cats/" >}}
+		{{< /stream >}}
+*/}}
+	
+	Parameters:
+		text - Message body of the post, may contain
+		date - Date of the post in the format "Jan 02 2006"
+		
+	Todo:
+		font_size
+		thumbnail
+		twitter - Specify that this post is from twitter
+				Need to get Twitter username, show Twitter logo
+				use a twitter avatar? it should be the same as author's avatar
+-->
+
+<div class="panel panel-default">
+{{ with .Get "date" }}
+	<div class="panel-heading stream-post">
+		<div class="voffset-10"></div>
+		<div class="voffset1"></div>
+		{{ . }}
+		<div class="voffset-10"></div>
+	</div>
+{{ end }}
+	<div class="stream-inner panel-body">
+		{{ .Get "text" }}
+		{{ if .Inner }}
+			<div class="voffset20"></div>
+			{{ .Inner }}
+		{{ end }}
+	</div>
+	<!--
+			<hr/>
+		<div class="panel-footer"></div>
+	-->
+</div>
+
+

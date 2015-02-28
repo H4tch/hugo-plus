@@ -1,0 +1,16 @@
+{{ partial "header.html" . }}
+
+{{ partial "main_begin.html" . }}
+	{{ if (not .Data.Pages ) }}
+		<div class="panel-body">
+			<h4 class="text-muted">No content found matching this criteria</h4>
+		</div>
+	{{ else }}
+		{{ range .Data.Pages }}
+			{{ .Render "summary" }}
+		{{ end }}
+	{{ end }}
+{{ partial "main_end.html" . }}
+
+{{ partial "footer.html" . }}
+

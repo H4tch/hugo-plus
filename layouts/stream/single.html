@@ -1,0 +1,14 @@
+{{ if .Params.page }}
+	{{ partial .Params.page . }}
+{{ else }}
+{{ partial "header.html" . }}
+
+{{ partial "main_begin.html" . }}
+	{{ partial "content_header.html" . }}
+	<div class="article-content">{{ .Content }}</div>
+	{{ partial "content_footer.html" . }}
+{{ partial "main_end.html" . }}
+
+{{ partial "footer.html" . }}
+{{ end }}
+
