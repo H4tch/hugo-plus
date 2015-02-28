@@ -1,0 +1,58 @@
+
+# A live demo can be found here: https://highlightjs.org/static/demo/
+
+[theme]
+	agate = true
+	androidstudio = true
+	arta = true
+	ascetic = true
+	atelier-dune.dark = true
+	atelier-dune.light = true
+	atelier-forest.dark = true
+	atelier-forest.light = true
+	atelier-heath.dark = true
+	atelier-heath.light = true
+	atelier-lakeside.dark = true
+	atelier-lakeside.light = true
+	atelier-seaside.dark = true
+	atelier-seaside.light = true
+	brown_paper = true
+	codepen-embed = true
+	color-brewer = true
+	dark = true
+	darkula = true
+	default = true
+	docco = true
+	far = true
+	foundation = true
+	github = true
+	googlecode = true
+	hybrid = true
+	idea = true
+	ir_black = true
+	kimbie.dark = true
+	kimbie.light = true
+	magula = true
+	mono-blue = true
+	monokai = true
+	monokai_sublime = true
+	obsidian = true
+	paraiso.dark = true
+	paraiso.light = true
+	pojoaque = true
+	railscasts = true
+	rainbow = true
+	school_book = true
+	solarized_dark = true
+	solarized_light = true
+	sunburst = true
+	tomorrow-night-blue = true
+	tomorrow-night-bright = true
+	tomorrow-night-eighties = true
+	tomorrow-night = true
+	tomorrow = true
+	vs = true
+	xcode = true
+	zenburn = true
+
+
