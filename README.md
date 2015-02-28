@@ -28,32 +28,42 @@ Nothing should be left to magic.
 
 
 # Features
-* Support for `meta` pages to hide from content feeds. (example: archive page)
-* Ability to render arbitrary custom pages for any content through the `page` parameter
+* Fully responsive layouts and components built with Bootstrap
+* Mutliple Author support
+	* Useful for things like guest posts
+	* May not be suitable for a larger content publishing site due to Hugo's limitations
 * `Series` taxonomy to group blog posts into a series.
 	* Series section also exists which allows you to organize the blog posts
 		better and create an overview page for the series.
 	* Series can be hierarchical
-* Fully Bootstrapped responsive default layouts
+* `Stream` section where each content piece is defined as a series of stream posts
 * Disqus comment integration
 	* Optional on-demand comment loading
 		* Auto loads if user jumps to comment section through "#comments" anchor
 	* Comment count querying
 		* Custom script to inject "No comments" when Disqus fails to
-* Social sharing buttons
-* Auto updating copyright year insertion
-	* exmple: `(c) 2015` will become `(c)2015-2016` once 2016 rolls around
+* Lightbox popup support using [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
+	* Supports photos, videos, iframes, and custom inline HTML code
+	* Popup items can also be grouped into a Gallery
+* HTML5 Audio control widget for embedding audio files within content
+	* Support for title, album info, albumn art, and preloading of the data
+* Syntax highlighting for code with customizable theme per content
 * Categories label buttons and Tag menu per post
-* Categories panel
+* Categories panel for the sidebar
 * Recent Posts panel
 * About Author panel
-	* Doesn't show up on the author's bio page
 	* If Author is not specified for content, it defaults to the main author
-* Mutliple Author support
-	* Useful for things like guest posts
-	* May not be suitable for a larger content publishing site due to Hugo's limitations
-* Syntax highlighting for code with customizable theme per content
-* Google Analytics
+* Custom Social sharing buttons
+* Custom Social follow buttons for Author, Site, or Projects
+* Google Analytics integration
+* Google Trends widget
+* Auto updating copyright year insertion
+	* exmple: `(c) 2015` will become `(c)2015-2016` once 2016 rolls around
+* Content management, organization, and customization
+	* Author, Series, Categories, and Tags Taxonomies
+	* Support for `meta` pages to hide from content feeds. (example: archive page)
+	* Ability to render arbitrary custom pages for any content through the `page` parameter
+
 
 
 # Getting Started
@@ -185,33 +195,25 @@ whenever the `bootstrap` folder is updated.
 * Streams
 * Layout Structure
 #### Future
-* More diverse layouts for Project, Homepage, etc.
-* Project section page, summary, etc
-* Define parameters for Sections using .Site.Data.<section name>
-* Rss links for Sections and "Taxonomy Ssctions"
-* I think ".Render" functionality could be used for section specific "partials"
-	* May have to enter a certain "scope" though?
-* Follow buttons for author
-* Don't use partial system for customized Sections
-	* Use `{{ template "file.html" }}`
-* Table of contents partial template
-* Customized Summary pages for different Sections
-	* Can I use shortcodes for more customizable/modular summary/content panels
+* More diverse layouts for Project, Homepage, Streams etc.
+* Custom parameters for Sections using .Site.Data.<section name>
 * Reflect current page/section within the navigation bar
 	* Hugo 0.13 has IsCurrent and HasCurrent data fields
-* Need to group content by year in more places, or add year to each list item
+* Rss links for Sections and "Taxonomy Sections"
+* I think ".Render" functionality could be used for section specific "partials"
+	* May have to enter a certain "scope" though?
+* Don't use partial system for customized Sections?
+	* Use `{{ template "file.html" }}`
+* Table of contents partial template
+* Need to group content by year in more places, or add year to the date of each item
 * 'Hide comments' button(When unhiding, the comments shouldn't have to reload)
 * URL shortener integration for sharing
-	* Best implementation would be to hook into a Go function?
-* Host documentation for projects (via Doxygen)
+	* Hook into a Go function to interface with an api?
+* Project Documentation hosting (via Doxygen)
 * Forum support (via Discourse)
+* Breadcrumbs
+	* Use Hugo's menu system or use .Site.Data
 * Shortcodes
-	* Youtube, with subscribe and other widgets?
-	* Breadcrumbs
-		* Use Hugo's menu system to render breadcrumbs?
-	* Stream posts
-	* Amazon Affiliate Links
-	* Google-trends
 	* Link to a Source File with syntax highlighting
 	* Gist
 	* Carousal

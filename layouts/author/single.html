@@ -9,11 +9,8 @@
 	<h1>Posts</h1>
 	<div class="voffset-10"></div>
 	<hr/>
-	<!-- Get a list of pages within the `Taxonomy`.
-		Section must be equal to Taxonomy's name.
-		DONT USE HUGO's SINGULAR/PLURAL SYSTEM
-	-->
-	{{ $pages := (index (index .Site.Taxonomies .Section) (.Title | lower | urlize)).Pages.ByDate }}
+	<!-- Get a list of pages within the `Taxonomy`-->
+	{{ $pages := (index (index .Site.Taxonomies "author") (.Title | lower | urlize)).Pages.ByDate }}
 	{{ if (gt (len $pages) 0) }}
 		{{ range $pages }}
 			{{ .Render "li" }}

@@ -19,6 +19,11 @@
 		Magnific popup uses 'iframe_src' to set link.
 		How does it detect the src otherwise though?
 		maybe uses 'data-mfp-src'?
+		
+		Responsive objects is supported by iframe, video, embed, object
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="..."></iframe>
+			</div>
 -->
 
 <div {{ with .Get "id" }}id="{{ . }}"{{ end }}

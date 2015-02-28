@@ -15,18 +15,23 @@
 	*/}}
 	
 	Parameters:
-		-config - Configuration file found within `.Site.Data`('data' directory)
 		id - Id attribute for gallery's out `div` tag
 		class - Class attribute for gallery's out `div` tag
 		style - Style attribute for gallery's out `div` tag
+	
+	Todo
+		config - Configuration file found within `.Site.Data`('data' directory)
+			This could only work if magnific js code was included here,
+				'magnific-gallery' class attribute was removed, and the `id`
+				attribute is set.(maybe use src as an id instead?)
 -->
 
 
 <div class="magnific-gallery {{ .Get "class" }}"
 	{{ with .Get "id" }}id="{{ . }}"{{ end }}
-	{{ with .Get "class" }}class="{{ . }}"{{ end }}
 	{{ with .Get "style" }}style="{{ . }}"{{ end }}
 >
 	{{ .Inner }}
 </div>
+
 

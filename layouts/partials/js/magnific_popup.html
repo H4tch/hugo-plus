@@ -11,37 +11,13 @@ data-mfp-src
 		<div class="mfp-counter"></div>
 	</div>
 </div>
-
-<script>
-$('.gallery').each(function() {
-	$(this).magnificPopup({
-		delegate: 'a', // the selector for gallery item
-		gallery: {
-			enabled:true
-		}
-	});
-});
-</script>
-
 -->
 
 
 {{ if (not .Params.no_lightbox) }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
 
-
-<a class="magnific-popup" href="#test-popup" data-mfp-src="#test-popup">
-	Show inline popup
-</a>
-
-
 <script>
-/*var galleries = document.getElementsByClassName( "magnific-gallery" );
-for( var i = 0; i < galleries.length; i++ ) {
-	var photos = galleries[i].get(0).getElementsByClassName("magnific-photo");
-	for(var i = 0; i < photos.length; i++) { photos[i].classList.remove("magnific-photo"); }
-	galleries[i].magnificPopup({
-*/
 $('.magnific-gallery').each(function() {
 	var elems = $(this).get(0).getElementsByClassName("magnific-photo");
 	while( elems[0] ) { elems[0].classList.remove("magnific-photo"); }
