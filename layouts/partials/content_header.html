@@ -14,7 +14,11 @@
 	<a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
 	<div class="voffset-10"></div>
 	<aside class="article-meta vcenter">
-		{{ if (not .Params.no_date) }}<date>{{ .Date.Format "Jan 2, 2006" }}</date>{{ end }}
+		{{ if (not .Params.no_date) }}
+			{{ with $.Site.Params.date_format }}<date>{{ $.Date.Format . }} </date>
+			{{ else }}<date>{{ .Date.Format "2 Jan 2006" }}</date>
+			{{ end }}
+		{{ end }}
 		{{ if (not .Params.no_author) }}
 			{{ if (not .Params.no_date) }} - {{ end }}
 		{{ if .Params.author }}
