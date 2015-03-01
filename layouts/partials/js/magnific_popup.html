@@ -1,24 +1,18 @@
 
 <!--
-mfp-image (image, inline, iframe)
-data-mfp-src
-
-<div class="mfp-figure">
-	<div class="mfp-close"></div>
-	<div class="mfp-img"></div>
-	<div class="mfp-bottom-bar">
-		<div class="mfp-title"></div>
-		<div class="mfp-counter"></div>
-	</div>
-</div>
+	Code to download Magniific Popup and initialize all instances
+	Goto `data/magnific.toml` to configure this component
 -->
 
+{{ $data := $.Site.Data.magnific }}
 
 {{ if (not .Params.no_lightbox) }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
 
 <script>
 $('.magnific-gallery').each(function() {
+	// This initial code prevents further magnific popup functions to be called on theme
+	// In the future, all content types will contain these gallery settings
 	var elems = $(this).get(0).getElementsByClassName("magnific-photo");
 	while( elems[0] ) { elems[0].classList.remove("magnific-photo"); }
 	elems = $(this).get(0).getElementsByClassName("magnific-popup");
@@ -27,12 +21,14 @@ $('.magnific-gallery').each(function() {
 		delegate: 'a',
 		gallery: {
 			enabled: true,
-			preload: [0,2],
-			navigateByImgClick: true,
-			arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', // markup of an arrow button
-			tPrev: 'Previous',
-			tNext: 'Next',
-			tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
+			preload:{{ with $data.gallery.preload }}{{ . }}{{ else }}[0,2]{{ end }},
+			navigateByImgClick: {{ with $data.gallery.navigateByImgClick }}{{ . }}{{ else }}true{{ end }},
+			arrowMarkup: {{ with $data.gallery.arrowMarkup }}{{ . }}
+				{{ else }}'<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>'{{ end }},
+			tPrev: {{ with $data.gallery.tPrev }}{{ . }}{{ else }}'Previous'{{ end }},
+			tNext: {{ with $data.gallery.tNext }}{{ . }}{{ else }}'Next'{{ end }},
+			tCounter: {{ with $data.gallery.tCounter }}{{ . }}
+				{{ else }}'<span class="mfp-counter">%curr% of %total%</span>'{{ end }}
 		}
 	});
 });
@@ -44,13 +40,12 @@ $(this).magnificPopup({
 				+ item.el.attr('caption') + '</small>';
 			return (text) ? text : "";
 		}
-	// INCLUDE GALLERY?? Will this allow videos with photos though???
 	},
 });});
 
 $('.magnific-popup').each(function() {
 $(this).magnificPopup({
-	midClick: true
+	midClick: {{ with $data.inline.midClick }}{{ . }}{{ else }}true{{ end }},
 });});
 
 $('.magnific-video').magnificPopup({
