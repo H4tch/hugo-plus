@@ -13,16 +13,7 @@ id_reddit = ""
 id_hackernews = ""
 
 continue_message = ""
-syntax_theme = ""
-show_comments = true
-
-no_date = false
-no_author = false
-no_series = false
-no_categories = false
-no_tags = false
-no_share_buttons = false
-no_pager = false
-no_comments = false
+# Syntax highlighting theme. See `.Site.Data.highlightjs.toml`
+highlightjs = ""
 +++
 

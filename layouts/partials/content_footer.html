@@ -1,6 +1,9 @@
 
 <!--Placed after a full piece of content, not the summary.-->
 
+
+{{ $section := index (index $.Site.Data "section") $.Section }}
+
 </div><!--/content-header clearfix-->
 
 <div class="voffset20"></div>
@@ -11,24 +14,24 @@
 	{{ partial "panel/series.html" . }}
 {{ end }}
 
-{{ if (not .Params.no_share_buttons) }}
+{{ if (not $section.no_share_buttons) }}
 	{{ partial "share_buttons.html" . }}
 {{ end }}
 
-{{ if (not .Params.no_follow_buttons) }}
+{{ if (not $section.no_follow_buttons) }}
 	{{ partial "follow_buttons.html" . }}
 {{ end }}
 
 
 {{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
 <div class="row">
-	{{ if (not .Params.no_categories) }}
+	{{ if (not $section.no_categories) }}
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
 			{{ partial "component/category_buttons.html" . }}
 		</div>
 	{{ end }}
 
-	{{ if (not .Params.no_tags) }}
+	{{ if (not $section.no_tags) }}
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
 			<div class="btn-group pull-right">
 				{{ partial "component/tag_menu_button.html" . }}
@@ -38,7 +41,7 @@
 </div>
 
 
-{{ if (and (not .Params.series) (not .Params.no_pager)) }}
+{{ if (and (not .Params.series) (not $section.no_pager)) }}
 	<div class="voffset10"></div>
 	{{ partial "pager.html" . }}
 {{ end }}
@@ -47,7 +50,7 @@
 </div><!--/article panel-body-->
 
 <div class="panel-footer">
-	{{ if (not .Params.no_comments) }}
+	{{ if (not $section.no_comments) }}
 		{{ partial "comments_ondemand.html" . }}
 	{{ end }}
 </div>

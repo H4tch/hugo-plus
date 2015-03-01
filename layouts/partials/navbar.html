@@ -25,9 +25,17 @@
 				-->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav">
-					{{ range (index $.Site.Menus "nav") }}
+					{{ $node := . }}
+					{{ range $.Site.Menus.nav }}
+						<!-- Check if the menu item is also a menu by checking
+								if there is a menu with the current items name
+						-->
 						{{ if (not (index $.Site.Menus (.Name | lower))) }}
-							<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ if $node.HasMenuCurrent "nav" . }}
+								<li><a href="{{ .Url }}" class="nav-link active">{{ .Name }}</a></li>
+							{{ else }}
+								<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ end }}
 						{{ else }}
 							<li class="dropdown">
 								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">
@@ -46,7 +54,11 @@
 					<ul class="nav navbar-nav navbar-right">
 					{{ range (index .Site.Menus "nav-right") }}
 						{{ if (not (index $.Site.Menus (.Name | lower))) }}
-							<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ if $node.HasMenuCurrent "nav" . }}
+								<li><a href="{{ .Url }}" class="nav-link active">{{ .Name }}</a></li>
+							{{ else }}
+								<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ end }}
 						{{ else }}
 							<li class="dropdown">
 								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">

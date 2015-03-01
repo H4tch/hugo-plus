@@ -18,8 +18,8 @@
 		{{ else }} - {{ .LinkTitle }}
 		{{ end }}
 	</title>
-	<meta name="description" content="{{ .Description }}">
-	<meta name="keywords" content="{{ .Keywords }}">
+	<meta name="description" content="{{ .Site.Params.description }}">
+	<meta name="keywords" content="{{ .Site.Params.keywords }}">
 	<meta name="author" content="{{ .Site.Author.name }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link type="application/rss+xml" href="{{ .RSSlink }}" rel="alternate" title="{{ .Site.Title }}">
