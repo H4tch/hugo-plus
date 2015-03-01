@@ -72,8 +72,10 @@ Nothing should be left to magic.
 
 # Getting Started
 First, [download and install Hugo.](http://gohugo.io/)
+To initialize your website, type `hugo new site <site_name>`.
 
-Next, [dowload hugo-plus directly](https://github.com/H4tch/hugo-plus/archive/master.zip),
+Hugo-plus is meant to be installed within your site's `themes/` folder.
+You can [dowload hugo-plus directly](https://github.com/H4tch/hugo-plus/archive/master.zip),
 	or clone it by typing:
 > git clone https://github.com/H4tch/hugo-plus/
 
@@ -90,6 +92,7 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 
 
 # Todo
+* Test that this theme works with a blank Hugo project.
 * More diverse layouts for Project, Homepage, Streams etc.
 * Breadcrumbs
 	* Use Hugo's menu system or use .Site.Data
