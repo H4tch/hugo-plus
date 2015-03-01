@@ -222,3 +222,7 @@ whenever the `bootstrap` folder is updated.
 
 #### (c) 2015 Daniel Hatch (h4tch)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/H4tch/hugo-plus/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
