@@ -75,19 +75,18 @@
 	<!--Magnific Popup-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css"> 
 	
-	{{ if (and .Params.syntax_theme (index $.Site.Data.highlightjs.theme .Params.highlightjs)) }}
+	{{ if (and .Params.highlightjs (index $.Site.Data.highlightjs.theme .Params.highlightjs)) }}
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/{{ .Params.highlightjs }}.min.css">
 	{{ else }}
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/{{ .Site.Params.highlightjs }}.min.css">
 	{{ end }}
 	
-	
 	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-114.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-72.png">
-	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-57.png">
-	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-72.png">
+	<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-57.png">
+	<link rel="shortcut icon" href="/img/favicon.png">
 </head>
 <body>
 
