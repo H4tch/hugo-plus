@@ -2,6 +2,12 @@
 
 {{ partial "main_begin.html" . }}
 	{{ partial "content_header.html" . }}
+	<div class="voffset-20"></div>
+	<div class="author-contact" style="">
+		{{ with .Params.website }}&nbsp;<i class="fa fa-home"></i> <a href="{{ . }}">{{ . }}&nbsp;&nbsp;</a>{{ end }}
+		{{ with .Params.email }}&nbsp;<i class="fa fa-envelope"></i> <a href="{{ . }}">{{ . }}</a>{{ end }}
+	</div>
+	<div class="voffset15"></div>
 	<div class="article-content">{{ .Content }}</div>
 	{{ partial "content_footer.html" . }}
 	
