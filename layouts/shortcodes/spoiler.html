@@ -10,9 +10,11 @@
 	Parameters:
 		text - Text that is displayed on the panel's header
 		open - If "true", the content is shown by default
+		footer - Adds a message to the footer area of the panel, hidden by default.
+				This is useful if the hidden content is really long.
 		
 		id - Id attribute for the collapsible element.
-			Should be used if `text` is really long
+				Should be used if `text` is really long
 		class - Class attribute for the outer-most div tag
 		style - Style attribute for the outer-most div tag
 	
@@ -26,19 +28,22 @@
 {{ with .Get "style" }}style="{{ . }}"{{ end }}>
 	<div class="panel-heading">
 		<a class="collapsed" data-toggle="collapse"
-			style="display:block;{{ if (not (.Get "text")) }}text-decoration:none;{{ end }}"
-			{{ with .Get "id" }}href="#{{ . }}"
-			{{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}
-		>
+		 style="display:block;{{ if (not (.Get "text")) }}text-decoration:none;{{ end }}"
+		 {{ with .Get "id" }}href="#{{ . }}" {{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
 			{{ with .Get "text" }}{{ . }}{{ else }}&nbsp;{{ end }}
 		</a>
 	</div>
 	{{ if .Inner }}
 	<div class="panel-collapse collapse {{ if (eq (.Get "open") "true") }}in{{ end }}"
-		{{ with .Get "id" }}id="{{ . }}"
-		{{ else }}id="{{ .Get "text" | lower | urlize }}"{{ end }}
-	>
+	 {{ with .Get "id" }}id="{{ . }}"{{ else }}id="{{ .Get "text" | lower | urlize }}"{{ end }}>
 		<div class="panel-body">{{ .Inner }}</div>
+		{{ if .Get "footer" }}
+			<div class="panel-footer">
+				<a class="collapsed" data-toggle="collapse" style="display:block;"
+				 {{ with .Get "id" }}href="#{{ . }}"{{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
+					{{ .Get "footer" }}</a>
+			</div>
+		{{ end }}
 	</div>
 	{{ end }}
 </div>
