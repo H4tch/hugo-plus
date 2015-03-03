@@ -117,4 +117,6 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 
 #### (c) 2015 Daniel Hatch (h4tch)
 
+[![Gratipay Badge](http://img.shields.io/gratipay/danielh4tch.svg)](http://gratipay.com/danielh4tch "Support me on Gratipay")
+[![Flattr Badge](http://button.flattr.com/flattr-badge-large.png)](http://flattr.com/submit/auto?user_id=h4tch&url=github.com/h4tch/hugo-plus "Flattr this")
 
