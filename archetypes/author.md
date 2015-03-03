@@ -12,5 +12,6 @@ avatar = ""
 
 continue_message = ""
 no_author_thumbnail = false
+flattr_category = "people"
 +++
 

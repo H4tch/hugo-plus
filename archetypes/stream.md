@@ -9,7 +9,9 @@ series = []
 stream = ""
 graphic = ""
 thumbnail = ""
-continue_message = ""
 related = []
+
+continue_message = ""
+flattr_category = "text"
 +++
 

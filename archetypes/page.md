@@ -9,6 +9,8 @@ author = []
 tags = []
 categories = []
 series = []
+
+flattr_category = "rest"
 +++
 
 

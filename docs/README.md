@@ -4,8 +4,6 @@
 * How is this different from Hugo?
 	* Built-in support for multiple Authors, Project page, Series, etc
 	* Don't use Hugo's plural/singular system for taxonomies
-	* Don't use .Params.description
-		* The Summary of content is sufficient
 	* `meta` parameter to hide content
 * Sections
 * Taxonomies
@@ -72,22 +70,63 @@ To customize the Author, Project, or Series Taxonomy pages, [read this section](
 ### Creating Your Own Taxonomy
 If you need to create your own Taxonomy to classify content across sections
 	that `hugo-plus` let us know.
-## Custom Content Pages
-## Custom Taxonomy and Term Pages
+
+
 ## Overview of Templates
+Hugo's documentation on templates can be found [here](http://gohugo.io/templates/overview/)
+
+Templates are used to build HTML pages for the different types of Hugo pages:
+	`section`, `taxonomy`, `terms`, `single`, `list` as well as the different
+	types of `content views`: `summary` and `li`.
+	Default implementations of these templates are found within `layouts/_default/`.
+
+Templates are composed of smaller templates called `partials` located within `layouts/partials/`.
+Partials are used to define reusable template components that multiple templates
+	share, for example, a site's sidebar, navbar, or footer.
+
+Some components can be enabled/disabled on a per-section basis by setting
+	parameters for that section within `data/section/<section name>.toml`.
+	For example, you can disable comments for content within the author section
+		by setting `no_comments = true` within `data/section/author.toml`.
+
+Other templates use site-wide parameters defined within the `config.toml` file.
+	These configurations include navigation bar links and menus, social links
+		for the site, footer text, date format for posts, theme, site
+		description, etc.
+
+See [this page](Parameters.md) full documentation of the pre-defined parameters.
+	
+
 ### How is the Site Built?
+
 ### What Pre-Made Templates Exist?
 Pages should largely just consist of the following partial templates
 	* `header`
 	* `main_begin`
 	* `content_header`
-	* <custom content code>
+	* <custom code to display content>
 	* `content_footer`
 	* `main_end`
 	* `footer`
 This allows you to maintain a consistent structure across all the pages.
 To enable/disable some features, you can set parameters in the content piece
 	(soon to be done on a per-section basis).
+
+### Custom Content Pages
+You can define your own custom page for a piece of content by setting the `page`
+	parameter within the content's front matter
+
+```
+content.md:
+	+++
+	page = "page/CustomContentPage.html"
+	+++
+```
+
+This will load the HTML page `layouts/partials/page/CustomContentPage.html` and
+	use it as the complete template for rendering the content.
+
+
 
 ## Customizing the Bootstrap Theme's Look and Feel
 Bootstrap is used as the foundation due to its ubiquity and popularity in this
@@ -102,7 +141,7 @@ create your own theme. Some also allow you to download the `variables.less`
 file which is used to compile into the final css file. This can be useful if
 you want to modify the theme in the future.
 
-### Compiling and Customizing From Source
+### Compiling and Customizing Bootstrap From Source
 Bootstrap is written using Less, which is then compiled into CSS.
 Before we continue, you'll need to setup the toolchain.
 

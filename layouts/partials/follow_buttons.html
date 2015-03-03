@@ -14,7 +14,7 @@
 {{ end }}
 
 {{ with .Params.flattr }}
-<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}{{ with .Params.Title }}&title={{ . }}{{ end }}{{ with .Params.description }}&description={{ . }}{{ end }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
+<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}{{ with $.Title }}&title={{ . }}{{ end }}{{ with $.Description }}&description={{ . }}{{ end }}{{ with $.Params.categories }}&tags={{ range . }}{{ . }},{{ end }}{{ end }}{{ with $.Params.tags }}{{ range . }}{{ . }},{{ end }}{{ end }}{{ with $.Params.flattr_category }}&category={{ . }}{{ end }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
 {{ end }}
 
 {{ with .Params.subreddit }}

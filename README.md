@@ -92,8 +92,8 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 
 
 # Todo
-* Test that this theme works with a blank Hugo project.
-* More diverse layouts for Project, Homepage, Streams etc.
+* Test that this theme against a blank Hugo project
+* More diverse layouts for Project, Homepage, Streams etc
 * Breadcrumbs
 	* Use Hugo's menu system or use .Site.Data
 * Project Documentation hosting (via Doxygen)

@@ -8,8 +8,9 @@ categories = []
 series = []
 graphic = ""
 thumbnail = ""
+related = []
 
 continue_message = ""
-related = []
+flattr_category = "text"
 +++
 

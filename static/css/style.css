@@ -24,6 +24,8 @@ h2,h3,h4,h5,h6 { color: #444; }
 .share-btn > i { font-size:20px !important; }
 .share-btn > img { width: 20px; margin: auto; display:block; }
 
+.twitter-timeline { width:100% !important; }
+
 .bg-gratipay{ background-color: #339966; }
 .bg-flattr { background-color: #F67C1A; }
 .bg-twitter { background-color: #00ADE8; }
