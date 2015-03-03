@@ -9,7 +9,7 @@
 {{ end }}
 
 {{ with .Site.Params.flattr }}
-<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
+<a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}{{ with .Params.Title }}&title={{ . }}{{ end }}{{ with .Params.description }}&description={{ . }}{{ end }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
 {{ end }}
 
 {{ with .Site.Params.twitter }}
