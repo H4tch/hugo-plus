@@ -1,12 +1,20 @@
 {{ partial "header.html" . }}
 
 {{ partial "main_begin.html" . }}
-	{{ range .Paginator.Pages }}
-		{{ if (not .Params.meta) }}
-			{{ .Render "summary" }}
+	{{ if .Site.Params.pagination }}
+		{{ range .Paginator.Pages }}
+			{{ if (not .Params.meta) }}
+				{{ .Render "summary" }}
+			{{ end }}
+		{{ end }}
+		{{ template "_internal/pagination.html" . }}
+	{{ else }}
+		{{ range first (or .Site.Params.paginate 10) .Site.Pages }}
+			{{ if (not .Params.meta) }}
+				{{ .Render "summary" }}
+			{{ end }}
 		{{ end }}
 	{{ end }}
-	{{ template "_internal/pagination.html" . }}
 {{ partial "main_end.html" . }}
 
 {{ partial "footer.html" . }}

@@ -87,11 +87,21 @@ This creates new content of type `post` within the `blog` *section* found
 This content will be written and formatted using Markdown as denoted by the
 	`md` extension.
 
+To build the website run `hugo` in the site folder. Make sure `draft=true`
+	isn't set so the content shows up, or run `hugo --BuildDrafts`.
+
 Content can be organized by Section, Type, and Taxonomy.
 Futher documentation can be found at [docs/README.md](docs/README.md).
 
 
 # Todo
+* Theme support
+	* These are different from Hugo themes in that the web framework, layouts,
+		and plugins are separated
+	* Plugins and layouts depend on web framework. Default framework is Bootstrap
+* `est_reading_time` and `word_count`
+* Can I detect this: content `draft=true`, but is being rendered
+	* I could then add a bade/label/alert/message "In development" (`msg_draft`)
 * Test that this theme against a blank Hugo project
 * More diverse layouts for Project, Homepage, Streams etc
 * Breadcrumbs

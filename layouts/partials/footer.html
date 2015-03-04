@@ -13,12 +13,9 @@
 			<div class="thumbnail"><img alt="Advertise here" src="http://lorempixel.com/900/100/abstract"></div>
 			-->
 			<p class="text-muted credit"><small>
+				&copy; {{ .Now.Format "2006" }}
 				{{ with .Site.Author.name }}<a href="{{ $.Site.BaseUrl }}" class="text-muted">{{ . }}</a>.{{end}}
 				{{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
-				&copy; 2015
-				{{ if (ne "2015" (.Now.Format "2006") ) }}
-					- {{ .Now.Format "2006" }}
-				{{ end }}
 			</small></p>
 		</div>
 	</footer>

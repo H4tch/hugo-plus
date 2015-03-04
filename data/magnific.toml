@@ -1,4 +1,9 @@
 
+js = [""]
+css = [""]
+requires_jquery = true
+
+
 #<div class="mfp-figure">
 #	<div class="mfp-close"></div>
 #	<div class="mfp-img"></div>

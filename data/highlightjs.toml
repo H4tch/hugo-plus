@@ -1,6 +1,11 @@
 
 # A live demo can be found here: https://highlightjs.org/static/demo/
 
+css = [""]
+js = ["magnifc.html"]
+requires_jquery = false
+
+
 [theme]
 	agate = true
 	androidstudio = true

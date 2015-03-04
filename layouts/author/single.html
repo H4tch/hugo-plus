@@ -15,8 +15,16 @@
 	<h1>Posts</h1>
 	<hr/>
 	<div class="voffset-10"></div>
-	<!-- Get a list of pages within the `author` 'Taxonomy'-->
-	{{ $pages := first 10 (index (index .Site.Taxonomies "author") (.Title | lower | urlize)).Pages.ByDate }}
+	<!-- Get the Taxonomy beloing to the current Section -->
+	{{ $authorTaxonomy := index (index .Site.Taxonomies .Section) (.Title | lower | urlize) }}
+	{{ $pages := $authorTaxonomy.Pages.ByDate }}
+	
+	<!--Can these items be paginated?
+		Can I have a link to the Author Taxonomy term?
+			Right now, the Section is overriding its rendering
+		Maybe use javascript to implement a 'Show more' button to incrementally
+			load more posts from the author
+	-->
 	{{ if (gt (len $pages) 0) }}
 		{{ range $pages }}
 			{{ .Render "li" }}

@@ -14,18 +14,13 @@
 				<div class="voffset-30"></div>
 			</div>
 		</div>
-		<!-- Possible addon. If number of Categories is greater than 8~10, remove "h4" tags -->
+		<!-- ?If number of Categories is greater than 8~10 make list element smaller? -->
 		{{ if (not .Data.Terms ) }}
 			<div class="panel-body">
 				<h4 class="text-muted">No content found matching this criteria</h4>
 			</div>
 		{{ else }}
-			<!--Inconsistency here on **Hugo's** part...
-				Any spaces within the term are automagically converted
-				to hyphens for your convenience
-				Workaround: get the first page of the term, then access the
-					taxonomy within its ".Params"
-			-->
+			<!--Note: Any spaces within the term name are automagically converted to hyphens-->
 			<ul class="list-group list-unstyled">
 			{{ range .Data.Terms.ByCount }}
 				<a class="list-group-item" href="{{ $.Site.BaseUrl }}{{ $.Url }}{{ .Term }}">

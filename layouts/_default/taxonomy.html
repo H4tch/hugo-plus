@@ -13,42 +13,11 @@
 				<ul class="breadcrumb list-unstyled">
 					<li><a href="{{ $.Site.BaseUrl }}">Home </a>
 					 <span class="divider"></span></li>
-					<!--There's gotta be a better way to get the Taxonomy?
-						NOTE, "Plural" doesn't (currently?) work
-						.Site.Taxonomies
-						(index $value.Pages 0).Taxonomies (.Data.Taxonomies?)
-						IMPORTANT: If you have custom taxonomies, make the
-							plural equal to singular. Then store the plural version
-							in .Site.Params.taxonomy or something.
-						NOTE: The newest version of hugo may have plural/singular support,
-							which is why it is in the docs.
-						UPDATE: "terms.html" has access to Singular/Plural in its ".Data" field
-							Maybe instead of treating data differently if it's a "page" or if
-							it's a member of another page, you make the data and access methods
-							the same...
-						NOTE: "terms.html" has direct access to plural/singular...
-						PS: "taxonomy.html" and "terms.html" are unintuitive
-							"Cateory" is a taxonomy
-							"Category.Project" is a term within the Taxonomy
-							swap them, rename "terms" to either "term" or "taxonomy.term"
-						{ { .Data }} is map that containes "category", yet
-							{ { (index .Data "category").Data }} crashes Go
-					-->
-					{{ range $key, $value := .Data }}
-						{{ if (ne $key "Pages") }}
-							{{ if (eq $key "category") }}
-								<li><a href="{{ $.Site.BaseUrl }}/categories">Categories </a>
-							{{ else if (eq $key "tag") }}
-								<li><a href="{{ $.Site.BaseUrl }}/tags">Tags </a>
-							{{ else }}
-								<!-- Taxononmy's plural must equal its singular
-									form for this to work
-								-->
-								<li><a href="{{ $.Site.BaseUrl }}/{{ $key | urlize }}">
-									{{ $key | title }} </a>
-							{{ end }}
-							 <span class="divider"></span></li>
-						{{ end }}
+					<!--"Pages" is hidden from URL, so hide from breadcrumbs as well-->
+					{{ if (ne $.Data.Singular "Page") }}
+						<li><a href="{{ $.Site.BaseUrl }}/{{ $.Data.Plural | lower | urlize }}">
+							{{ $.Data.Plural | title }} </a>
+						 <span class="divider"></span></li>
 					{{ end }}
 					<li class="active">{{ .Title | title }}</li>
 				</ul>
