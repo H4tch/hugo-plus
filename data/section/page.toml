@@ -1,12 +1,18 @@
 # These should actually be defined per content?
-no_date = true
-no_author = true
-no_series = false
-no_toc = true
-no_share_buttons = true
-no_follow_buttons = false
-no_categories = false
-no_tags = false
-no_pager = true
-no_comments = true
+show_date = false
+show_author = false
+show_series = true
+show_toc = false
+show_share_buttons = false
+show_follow_buttons = true
+show_categories = true
+show_tags = true
+show_pager = false
+
+show_navbar = true
+show_sidebar = true
+show_footer = true
+
+show_comments = false
+comments_on_demand = true
 

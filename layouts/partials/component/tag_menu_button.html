@@ -1,5 +1,7 @@
 
-{{ with .Params.tags }}
+{{ $section := index (index $.Site.Data "section") $.Section }}
+
+{{ if (and $section.show_tags .Params.tags) }}
 	<button class="btn btn-default btn-xs dropdown-toggle"
 	 id="tag-menu" type="button" data-toggle="dropdown"
 	 aria-expanded="false">
@@ -8,7 +10,7 @@
 	</button>
 	<ul class="dropdown-menu dropdown-menu-right"
 	 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
-	{{ range . }}
+	{{ range .Params.tags }}
 		<li role="presentation">
 		<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
 		 role="menuitem">{{ . }}</a></li>

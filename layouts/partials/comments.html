@@ -1,11 +1,36 @@
 
-{{ if .Site.DisqusShortname }}
+{{ $section := index (index $.Site.Data "section") $.Section }}
+
+{{ if (and $section.show_comments .Site.DisqusShortname) }}
 <div id="comments" class="comments-area">
+	{{ if $section.comments_on_demand }}
+		<button class="show-comments btn btn-default btn-md btn-block" type="button">
+			<em style="font-size:120%;" class="fa fa-comments"></em>
+				&nbsp;&nbsp;Load Comments</button>
+	{{ end }}
 	<div id="disqus_thread"></div>
 </div>
 
-<!-- Disqus Comments Container -->
-<script type="text/javascript">
+
+<script>
+{{ if $section.comments_on_demand }}
+	$(document).ready(function() {
+		loadComments = function() {
+			var disqus_shortname = '{{ $.Site.DisqusShortname }}';
+			var disqus_identifier = '{{ .Title | lower | urlize }}';
+			$.ajax({ type: "GET", url: "http://" + disqus_shortname + ".disqus.com/embed.js",
+			dataType: "script", cache: true });
+			$('.show-comments').fadeOut(); }
+			$('.show-comments').on('click', loadComments);
+	});
+	// Check if the user clicked on a link to view comments.
+	// If so, load the comments and remove the checker. 
+	commentLoader = window.setInterval(function() {
+		if (window.location.hash == "#comments") {
+			loadComments(); window.clearInterval(commentLoader);
+		}
+	}, 2000);
+{{ else }}
 	var disqus_shortname = '{{ .Site.DisqusShortname }}';
 	var disqus_identifier = '{{ .Title | lower | urlize }}';
 	(function() {
@@ -15,7 +40,11 @@
 		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {{ end }}
+</script>
+<noscript>Please enable JavaScript to view the
+	<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+{{ end }}
+
 

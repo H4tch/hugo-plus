@@ -1,12 +1,15 @@
-no_date = true
-no_author = false
-no_series = false
-no_toc = true
-no_share_buttons = false
-no_follow_buttons = true
-no_categories = false
-no_tags = false
-no_pager = false
-no_comments = false
+show_date = false
+show_author = true
+show_series = true
+show_toc = false
+show_share_buttons = true
+show_follow_buttons = false
+show_categories = true
+show_tags = true
+show_pager = true
 
+show_sidebar = false
+
+show_comments = true
+comments_on_demand = true
 

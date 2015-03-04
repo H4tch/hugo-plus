@@ -11,10 +11,10 @@
 	<div class="article-content">{{ .Content }}</div>
 	{{ partial "content_footer.html" . }}
 	
-	<div class="voffset30"></div>
+	<div class="voffset50"></div>
 	<h1>Posts</h1>
-	<hr/>
 	<div class="voffset-10"></div>
+	<hr/>
 	<!-- Get the Taxonomy beloing to the current Section -->
 	{{ $authorTaxonomy := index (index .Site.Taxonomies .Section) (.Title | lower | urlize) }}
 	{{ $pages := $authorTaxonomy.Pages.ByDate }}

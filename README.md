@@ -100,6 +100,9 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 		and plugins are separated
 	* Plugins and layouts depend on web framework. Default framework is Bootstrap
 * `est_reading_time` and `word_count`
+* Show Author's pages on a separate page from their profile page
+	* Somehow use Taxonomy page? Right now the section is overriding the Taxonomy...
+	* Use javascript to incrementall `load more` posts. Like 20 at a time.
 * Can I detect this: content `draft=true`, but is being rendered
 	* I could then add a bade/label/alert/message "In development" (`msg_draft`)
 * Test that this theme against a blank Hugo project
