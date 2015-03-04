@@ -16,10 +16,26 @@
 			</div>
 		</div>
 		<ul class="list-group list-unstyled">
-		{{ range $.Site.Recent }}
-		{{ if (not .Params.meta) }}
-			{{ .Render "li" }}
-		{{ end }}
+		<!--Groups posts by year. Doesn't display the current year. Most recent articles first.-->
+		{{ $groups := $.Site.Pages.GroupByDate "2006-01" }}
+		{{ range $index, $group := $groups }}
+			<!-- Posts are grouped by year and month, the month is then
+					stripped using (first 4 $group.Key ), and duplicate years
+					are then removed by comparing the key against the previous one
+			-->
+			{{ $key := first 4 $group.Key }}
+			{{ $prevKey := and (ne $index 0) (first 4 (index $groups 0).Key) }}
+			{{ if (and $key (and (ne $key $prevKey) (and (ne $key ($.Date.Format "20016")) (ne $key "0001")))) }}
+				<div id="{{ $key }}" class="list-group-item active">
+						<!--centers the year: style="margin:auto; width:45px; display:block;"-->
+						<span class="list-item-year">{{ $key }}</span>
+				</div>
+			{{ end }}
+			{{ range .Pages }}
+				{{ if (not .Params.meta) }}
+					{{ .Render "li" }}
+				{{ end }}
+			{{ end }}
 		{{ end }}
 		</ul>
 	</div>
