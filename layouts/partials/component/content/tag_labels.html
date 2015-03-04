@@ -1,8 +1,8 @@
 
-{{ $section := index $.Site.Data.section $.Section }}
-{{ $components := or $section.components $section }}
+{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
-{{ if (and $components.tags .Params.tags) }}
+{{ if (and $component.tags .Params.tags) }}
 	<button class="btn btn-default btn-xs dropdown-toggle"
 	 id="tag-menu" type="button" data-toggle="dropdown"
 	 aria-expanded="false">

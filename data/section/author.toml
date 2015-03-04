@@ -1,6 +1,13 @@
 
-[components]
+title = "Authors"
+
+[component]
 	author_thumbnail = true
+	jumbotron = true
+	carousel = true
+	sidebar = true
+	page_header = true
+#[content]
 	date = false
 	author = false
 	series = false
@@ -11,11 +18,5 @@
 	tags = false
 	pager = false
 	comments = false
-	carousel = true
-	jumbotron = true
-
-
-[comments]
-	on_demand = true
 
 

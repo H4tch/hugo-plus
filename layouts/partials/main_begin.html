@@ -1,23 +1,24 @@
 
-<!-- Page-header And breadcrumbs
-<div class="voffset-20"></div>
-<div class="container"><h1>{{ .Title | title }}</h1></div>
-<div class="section panel panel-default">
-<div class="panel-heading">
-	<div class="row">
-		<div class="voffset-10"></div>
-		<ul class="breadcrumb list-unstyled">
-			<li><a href="{{ $.Site.BaseUrl }}">Home </a>
-				<span class="divider"></span></li>
-			<li class="active">{{ .Title }}</li>
-		</ul>
-		<div class="voffset-30"></div>
-	</div>
-</div>
--->
+<div class="wrapper">
 
-<div class="col-md-9 column">
+{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
-<!--tag closed in "main_begin.html"-->
+{{ partial "navbar.html" . }}
+{{ partial "component/jumbotron.html" . }}
+{{ partial "component/carousel.html" . }}
+
+<div class="main">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-9 column">
+		{{ if (and $.IsNode $component.page_header) }}
+			<div class="voffset-20"></div>
+			<div class="container">
+			<h1 class="page-title">{{ (or $section.page_header.title .Title) | title }}</h1>
+			</div>
+		{{ end }}
+
+<!--tags closed in "main_end.html"-->
 
 

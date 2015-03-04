@@ -1,4 +1,6 @@
 
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
+
 {{ partial "content_header.html" . }}
 
 

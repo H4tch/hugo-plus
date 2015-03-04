@@ -1,7 +1,9 @@
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
-{{ if (and $section.ads $section.components.ads) }}
+{{ if (and $section.ads $section.component.ads) }}
+
 <div class="col-xs-6 col-sm-6 col-md-12 column">
 	<div class="thumbnail">
 		<img src="http://placekitten.com/g/200/300">
@@ -18,4 +20,16 @@
 	Advertise here</button>
 </div>
 -->
+
+
+{{/* banner ad
+<div class="row clearfix"><div class="col-xs-12 column">
+	<button href="" type="button" class="btn btn-primary btn-xs btn-block pull-right">
+		Advertise here</button>
+	<div class="thumbnail"><img alt="Advertise here" src="http://lorempixel.com/900/100/abstract"></div>
+</div></div>
+*/}}
+
+
 {{ end }}
+

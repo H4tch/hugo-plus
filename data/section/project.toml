@@ -1,5 +1,12 @@
 
-[components]
+title = "Projects"
+
+[component]
+	jumbotron = true
+	carousel = true
+	sidebar = false
+	page_header = true
+#[content]
 	date = false
 	author = false
 	series = true
@@ -9,11 +16,7 @@
 	categories = true
 	tags = true
 	pager = false
-	sidebar = false
 	comments = false
-	carousel = true
-	jumbotron = true
-
 
 [comments]
 	on_demand = true

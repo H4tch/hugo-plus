@@ -32,7 +32,7 @@ Parameters:
 
 Example:
 ```toml
-[components]
+[component]
 	carousel = true
 
 [carousel]
@@ -61,7 +61,7 @@ CSS Class Markup:
 		* right
 
 Notes:
-	If Content sets `content.carousel = false` the carousel won't be shown
+	If Content sets `component.carousel = false` the carousel won't be shown
 		even if it is set to true by the section.
 	If Content defines the carousel, but only the Section enables it,
 		**the Content's version is the one that's shown.**

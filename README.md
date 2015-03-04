@@ -95,21 +95,30 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 
 
 # Todo
+* How to best parameterize Taxonomies?
+* Don't utilize author content's title as the author's name (double-check)
+* Move social profile usernames into a 'social' data object
+* Summaries don't render embedded HTML code that was rendered from Markdown
+	* But Shortcode HTML is rendered
+	* Convert syntax code highlighting to use Shortcodes
+		* Add caption/title, line highlighting, etc
+* Use `safeCss` and `safeHtml` when injecting parameters within markup
+* Move `style.css` customizations into `style-src/hugo-plus.less`
+* Page_header needs more work. Not essential though.
 * Theme support
 	* These are different from Hugo themes in that the web framework, layouts,
 		and plugins are separated
 	* Plugins and layouts depend on web framework. Default framework is Bootstrap
 * `est_reading_time` and `word_count`
-* Show Author's pages on a separate page from their profile page
-	* Somehow use Taxonomy page? Right now the section is overriding the Taxonomy...
-	* Use javascript to incrementall `load more` posts. Like 20 at a time.
+* Don't show entirety of author's posts at once
+	* Use javascript to incrementally `show more` posts. Like 20 at a time.
+		* Also have a button to `show all`
 * Can I detect this: content `draft=true`, but is being rendered
 	* I could then add a bade/label/alert/message "In development" (`msg_draft`)
 * Test that this theme against a blank Hugo project
 * More diverse layouts for Project, Homepage, Streams etc
 * Breadcrumbs
 	* Use Hugo's menu system or use .Site.Data
-* Caption/Title for code blocks. Make code highlighting into a shortcode :/
 * Project Documentation hosting (via Doxygen)
 * Forum support (via Discourse)
 * Don't store custom Section templates in 'partials'?

@@ -90,9 +90,9 @@ h2,h3,h4,h5,h6 { color: #444; }
 	z-index:0; position:relative;
 }
 
+.navbar { margin-bottom: 0; }
 .jumbotron { margin-bottom: 0; }
 .carousel { margin-bottom: 0; }
-
 .main { padding-top: 30px; z-index:1; position:relative; background-color: rgb(252,252,252); }
 
 

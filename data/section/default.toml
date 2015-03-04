@@ -1,16 +1,19 @@
 
-# Everything is enabled by default
+# This file can be used as a template when creating a new section.
+
+title = ""
 
 framework = ""
 layout = ""
 css_theme = ""
 group_by_year = true
 
-[components]
-	sidebar = true
-	carousel = true
+[component]
 	jumbotron = true
+	carousel = true
 	page_header = true
+	sidebar = true
+#[content]
 	date = true
 	author = true
 	series = true
@@ -21,9 +24,6 @@ group_by_year = true
 	tags = true
 	pager = true
 	comments = true
-
-[comments]
-	on_demand = true
 
 
 # Available widgets to be configured
@@ -40,5 +40,11 @@ group_by_year = true
 	title = ""
 	url = ""
 	plugin = ""
+
+
+[comments]
+	on_demand = true
+
+
 
 

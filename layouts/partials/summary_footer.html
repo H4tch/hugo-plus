@@ -1,8 +1,8 @@
 
 <!-- Placed after a content summary. -->
 
-{{ $section := index $.Site.Data.section (or $.Section "homepage") }}
-{{ $components := or $section.components $section }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
 </div><!--/content-header clearfix-->
 
@@ -12,7 +12,7 @@
 
 <div class="panel-footer">
 	{{ partial "continue_message.html" . }}
-	{{ if (and (ne .Type "meta") $components.comments) }}
+	{{ if (and (ne .Type "meta") $component.comments) }}
 	<div class="pull-right">
 		<a style="text-decoration:none;" class="text-info" href="{{ .Permalink }}#comments">
 			<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.title "-" .Title) | lower | urlize }}"></span>

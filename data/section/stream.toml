@@ -1,5 +1,12 @@
 
-[components]
+title = "Stream"
+
+[component]
+	jumbotron = true
+	carousel = true
+	page_header = true
+	sidebar = false
+#[content]
 	date = false
 	author = true
 	series = true
@@ -9,13 +16,7 @@
 	categories = true
 	tags = true
 	pager = true
-
-	sidebar = false
-
 	comments = true
-
-	carousel = true
-	jumbotron = true
 
 
 [comments]

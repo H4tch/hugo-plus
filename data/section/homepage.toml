@@ -1,0 +1,40 @@
+
+title = "Home"
+
+[component]
+	jumbotron = true
+	carousel = true
+	page_header = false
+	sidebar = true
+#[content]
+	toc = false
+	date = true
+	author = true
+	series = true
+	share_buttons = true
+	follow_buttons = true
+	categories = true
+	tags = true
+	pager = true
+	comments = true
+
+
+[comments]
+	on_demand = true
+
+[jumbotron]
+	title = "Hello, Hugo!"
+	text = "This is and example of a jumbotron. It is defined within the content's front matter"
+	text_color = "#EEE"
+	graphic = "http://lorempixel.com/1200/300/city/5"
+	bg_color = "rgba( 0,0,0,0.5 )"
+	[[jumbotron.button]]
+		text = "Use the force, Luke!"
+		url = "#"
+		class = "btn-success"
+	[[jumbotron.button]]
+		text = "Give in to the Dark Side!"
+		url = "#"
+		class = "btn-warning"
+
+

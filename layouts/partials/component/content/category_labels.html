@@ -1,0 +1,12 @@
+
+{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
+
+{{ if (and $component.categories .Params.categories) }}
+	{{ range .Params.categories }}
+		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
+		 class="btn btn-primary btn-xs">{{ . | title }}</a>
+	{{ end }}
+{{ end }}
+
+

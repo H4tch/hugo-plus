@@ -1,7 +1,8 @@
 
 <!--Placed after a full piece of content, not the summary.-->
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
 </div><!--/content-header clearfix-->
 
@@ -20,12 +21,12 @@
 {{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
-		{{ partial "component/category_buttons.html" . }}
+		{{ partial "component/category_labels.html" . }}
 	</div>
 
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
 		<div class="btn-group pull-right">
-			{{ partial "component/tag_menu_button.html" . }}
+			{{ partial "component/tag_labels.html" . }}
 		</div>
 	</div>
 </div>

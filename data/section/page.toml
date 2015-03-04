@@ -1,5 +1,12 @@
 
-[components]
+title = "Pages"
+
+[component]
+	jumbotron = true
+	carousel = true
+	sidebar = true
+	page_header = true
+#[content]
 	date = false
 	author = false
 	series = true
@@ -10,12 +17,8 @@
 	tags = true
 	pager = false
 	navbar = true
-	sidebar = true
 	footer = true
 	comments = false
-	carousel = true
-	jumbotron = true
-
 
 [comments]
 	on_demand = true

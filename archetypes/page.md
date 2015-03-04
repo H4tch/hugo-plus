@@ -11,6 +11,9 @@ categories = []
 series = []
 
 flattr_category = "rest"
+
+[component]
+	comments = false
 +++
 
 

@@ -4,7 +4,7 @@ A jumbotron is just a large full-width section header on the page with large
 	image.
 
 Parameters:
-	* components.jumbotron - Enable/disables the jumbotron defined by the Content or Section
+	* component.jumbotron - Enable/disables the jumbotron defined by the Content or Section
 	* Jumbotron paramters:
 		* title - Title's text
 		* text - Smaller text 
@@ -27,26 +27,29 @@ Parameters:
 
 Usage:
 	Parameters can be specified by either the Section or the Content.
-	To enable set `components.jumbotron = true` and fill in the jumbotron's parameters.
+	To enable set `component.jumbotron = true` and fill in the jumbotron's parameters.
 	Jumbotron's data is defined within a [jumbotron] data object.
 	
 Example:
 ```toml
-	[jumbotron]
-		title = "Hello, Hugo!"
-		text = "This is and example of a jumbotron. It is defined within the content's front matter"
-		text_color = "#EEE"
-		graphic = "http://lorempixel.com/1200/300/city/5"
-		bg_color = "rgba(0,0,0,.5)"
-		parallax = true
-		[[jumbotron.button]]
-			text = "A button"
-			url = "#"
-			class = "btn-primary"
-		[[jumbotron.button]]
-			text = "Or two"
-			url = "#"
-			class = "btn-warning"
+[component]
+	jumbotron = true
+
+[jumbotron]
+	title = "Hello, Hugo!"
+	text = "This is and example of a jumbotron. It is defined within the content's front matter"
+	text_color = "#EEE"
+	graphic = "http://lorempixel.com/1200/300/city/5"
+	bg_color = "rgba(0,0,0,.5)"
+	parallax = true
+	[[jumbotron.button]]
+		text = "A button"
+		url = "#"
+		class = "btn-primary"
+	[[jumbotron.button]]
+		text = "Or two"
+		url = "#"
+		class = "btn-warning"
 ```
 
 CSS Class Markup:
@@ -57,7 +60,7 @@ CSS Class Markup:
 	* jumbotron-buttons
 
 Notes:
-	If Content sets `content.jumbotron = false` the jumbotron won't be shown
+	If Content sets `component.jumbotron = false` the jumbotron won't be shown
 		even if it is set to true by the section.
 	If Content defines the jumbotron, but only the Section enables it,
 		**the Content's version is the one that's shown.**

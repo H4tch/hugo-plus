@@ -1,20 +1,22 @@
 
-[components]
+title = "Tags"
+
+[component]
+	jumbotron = true
+	carousel = true
+	page_header = true
+	sidebar = true
+#[content]
 	date = false
 	author = false
 	series = false
 	toc = false
 	share_buttons = false
-	follow_buttons = true
+	follow_buttons = false
 	categories = false
 	tags = false
-	pager = false
-
-	comments = false
-
-	carousel = true
-	jumbotron = true
-
+	pager = true
+	comments = true
 
 [comments]
 	on_demand = true

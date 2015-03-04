@@ -16,5 +16,8 @@ continue_message = ""
 # Syntax highlighting theme. See `.Site.Data.highlightjs.toml`
 highlightjs = ""
 flattr_category = "rest"
+
+[component]
+	comments = true
 +++
 

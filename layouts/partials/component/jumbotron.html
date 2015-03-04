@@ -2,14 +2,14 @@
 	See `jumbotron.md` in the docs.
 -->
 
-{{ $section := index $.Site.Data.section (or $.Section "homepage") }}
-{{ $components := or $section.components $section }}
+{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
+{{ $component := or $section.component .Site.Data.null }}
 
 <!--Show Jumbotron if it is true within Content, or Content hasn't set
 		Jumbotron and it is true within Section.
 	Also, Jumbotron object data must exist.
 -->
-{{ $doShow := or .Params.components.jumbotron (and (not (isset .Params.components "jumbotron")) $components.jumbotron) }}
+{{ $doShow := or .Params.component.jumbotron (and (not (isset .Params.component "jumbotron")) $component.jumbotron) }}
 {{ $jumbotron := or .Params.jumbotron $section.jumbotron }}
 
 
