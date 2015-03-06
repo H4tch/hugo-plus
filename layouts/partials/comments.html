@@ -1,5 +1,5 @@
 
-{{ $section := index $.Site.Data.section $.Section }}
+{{ $section := index .Site.Data.section (or .Section "homepage") }}
 {{ $components := or $section.components $section }}
 
 {{ if (and $components.comments .Site.DisqusShortname) }}
@@ -18,7 +18,7 @@
 	$(document).ready(function() {
 		loadComments = function() {
 			var disqus_shortname = '{{ $.Site.DisqusShortname }}';
-			var disqus_identifier = '{{ .Title | lower | urlize }}';
+			var disqus_identifier = '{{ (print $section.title "-" .Title) | lower | urlize }}';
 			$.ajax({ type: "GET", url: "http://" + disqus_shortname + ".disqus.com/embed.js",
 			dataType: "script", cache: true });
 			$('.show-comments').fadeOut(); }
