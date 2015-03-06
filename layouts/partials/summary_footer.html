@@ -1,7 +1,7 @@
 
 <!-- Placed after a content summary. -->
 
-{{ $section := index $.Site.Data.section $.Section }}
+{{ $section := index $.Site.Data.section (or $.Section "homepage") }}
 {{ $components := or $section.components $section }}
 
 </div><!--/content-header clearfix-->
@@ -15,7 +15,7 @@
 	{{ if (and (ne .Type "meta") $components.comments) }}
 	<div class="pull-right">
 		<a style="text-decoration:none;" class="text-info" href="{{ .Permalink }}#comments">
-			<span class="disqus-comment-count" data-disqus-identifier="{{ .Title | lower | urlize }}"></span>
+			<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.title "-" .Title) | lower | urlize }}"></span>
 			<!-- style="font-size:150%;margin-top:1px;" -->
 			<i class="fa fa-comment-o pull-right">&nbsp;</i>
 		</a>
