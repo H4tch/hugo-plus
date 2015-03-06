@@ -3,6 +3,9 @@
 		categories panels.
 -->
 
+{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := $section.components }}
+
 <aside class="content-secondary col-md-3 column">
 	<div class="row clearfix">
 		<div class="col-xs-12 col-sm-6 col-md-12 column">

@@ -1,4 +1,7 @@
 
+{{ $section := index (index $.Site.Data "section") $.Section }}
+
+{{ if (and $section.ads $section.components.ads) }}
 <div class="col-xs-6 col-sm-6 col-md-12 column">
 	<div class="thumbnail">
 		<img src="http://placekitten.com/g/200/300">
@@ -15,4 +18,4 @@
 	Advertise here</button>
 </div>
 -->
-
+{{ end }}

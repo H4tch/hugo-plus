@@ -1,7 +1,7 @@
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
 
-{{ if (and $section.show_categories .Params.categories) }}
+{{ if (and $components.categories .Params.categories) }}
 	{{ range .Params.categories }}
 		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
 		 class="btn btn-primary btn-xs">{{ . | title }}</a>

@@ -2,7 +2,8 @@
 <!-- Placed before a piece of content or content summary. -->
 
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+
 
 <div class="section panel panel-default">
 <div class="article panel-body">
@@ -17,13 +18,13 @@
 	<a href="{{ .Permalink }}"><h1 class="title">{{ .Title | title }}</h1></a>
 	<div class="voffset-10"></div>
 	<aside class="article-meta vcenter">
-		{{ if $section.show_date }}
+		{{ if $components.date }}
 			{{ with $.Site.Params.date_format }}<date>{{ $.Date.Format . }} </date>
 			{{ else }}<date>{{ .Date.Format "2 Jan 2006" }}</date>
 			{{ end }}
 		{{ end }}
-		{{ if $section.show_author }}
-			{{ if $section.show_date }} - {{ end }}
+		{{ if $components.author }}
+			{{ if $components.date }} - {{ end }}
 		{{ if .Params.author }}
 			{{ $author := index .Params.author 0 }}
 			<a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
@@ -33,12 +34,12 @@
 		{{ end }}
 		
 		{{ if .Params.series }}
-			{{ if (or $section.show_date $section.show_author) }} - {{ end }}
+			{{ if (or $components.date $components.author) }} - {{ end }}
 			{{ $series := index .Params.series 0 }}
 			<a href="{{ $.Site.BaseUrl }}/series/{{ $series | lower | urlize }}">{{ $series | title }}</a>
 		{{ end }}{{ end }}
 	</aside>
-	{{ if (or (or $section.show_date $section.show_author) (and $section.show_series .Params.series)) }}
+	{{ if (or (or $components.date $components.author) (and $components.series .Params.series)) }}
 		<div class="voffset10"></div>
 	{{ else }}
 		<div class="voffset-5"></div>

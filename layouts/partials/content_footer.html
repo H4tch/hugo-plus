@@ -1,7 +1,7 @@
 
 <!--Placed after a full piece of content, not the summary.-->
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
 
 </div><!--/content-header clearfix-->
 

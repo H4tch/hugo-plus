@@ -1,7 +1,7 @@
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
 
-{{ if $section.show_share_buttons }}
+{{ if $components.share_buttons }}
 <div class="row no-pad">
 <div class="col-xs-12 col-sm-6 column">
 <div class="btn-group btn-group-justified">

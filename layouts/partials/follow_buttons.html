@@ -4,10 +4,10 @@
 	Parameters are defined within the content front matter section.
 -->
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
 
 
-{{ if $section.show_follow_buttons }}
+{{ if $components.follow_buttons }}
 <div class="row no-pad">
 <div class="col-xs-12 col-sm-3 column">
 <div class="btn-group btn-group-justified">

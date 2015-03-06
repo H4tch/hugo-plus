@@ -1,5 +1,5 @@
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
 
 <!-- Doesn't support anything fancy like detecting Section, Category, or Series
 	
@@ -11,7 +11,7 @@
 		series, include it. `show_in_recent_posts` must be "section".
 -->
 
-{{ if (and (not .Params.series) $section.show_pager) }}
+{{ if (and (not .Params.series) $components.pager) }}
 <div class="voffset10"></div>
 <div class="row clearfix">
 	<div class="col-md-6 column">

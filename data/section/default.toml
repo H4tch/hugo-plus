@@ -1,21 +1,44 @@
 
 # Everything is enabled by default
 
-show_date = true
-show_author = true
-show_series = true
-show_share_buttons = true
-show_follow_buttons = true
-show_categories = true
-show_tags = true
-show_pager = true
+framework = ""
+layout = ""
+css_theme = ""
+group_by_year = true
 
-show_sidebar = true
+[components]
+	sidebar = true
+	carousel = true
+	jumbotron = true
+	page_header = true
+	date = true
+	author = true
+	series = true
+	toc = false
+	share_buttons = true
+	follow_buttons = true
+	categories = true
+	tags = true
+	pager = true
+	comments = true
 
-show_comments = true
-comments_on_demand = true
+[comments]
+	on_demand = true
 
-# Shown if data is provided
-show_carousel = true
-show_jumbotron = true
+
+# Available widgets to be configured
+# Todo: Sidebar,
+[jumbotron]	
+[[carousel]]
+	title = ""
+	description =""
+	url = ""
+
+[sidebar]
+[[sidebar.item]]
+	menu = ""
+	title = ""
+	url = ""
+	plugin = ""
+
 

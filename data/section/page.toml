@@ -1,18 +1,22 @@
-# These should actually be defined per content?
-show_date = false
-show_author = false
-show_series = true
-show_toc = false
-show_share_buttons = false
-show_follow_buttons = true
-show_categories = true
-show_tags = true
-show_pager = false
 
-show_navbar = true
-show_sidebar = true
-show_footer = true
+[components]
+	date = false
+	author = false
+	series = true
+	toc = false
+	share_buttons = false
+	follow_buttons = true
+	categories = true
+	tags = true
+	pager = false
+	navbar = true
+	sidebar = true
+	footer = true
+	comments = false
+	carousel = true
+	jumbotron = true
 
-show_comments = false
-comments_on_demand = true
+
+[comments]
+	on_demand = true
 

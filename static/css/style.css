@@ -11,10 +11,13 @@ h2,h3,h4,h5,h6 { color: #444; }
 .row.no-pad > [class*='col-'] { padding-right:0; padding-left:0; }
 
 
-.social { overflow:hidden !important; width:60px; float:left; }
+.twitter-timeline { width:100% !important; }
 
+/* Classes used within social_links in the sidebar panel */
+.social { overflow:hidden !important; width:60px; float:left; }
 .social-icon { font-size:150% !important; margin-top: -1px; }
 
+/* Style of share and follow buttons */
 .share-btn {
 	width:50px;
 	font-size:20px !important;
@@ -24,8 +27,7 @@ h2,h3,h4,h5,h6 { color: #444; }
 .share-btn > i { font-size:20px !important; }
 .share-btn > img { width: 20px; margin: auto; display:block; }
 
-.twitter-timeline { width:100% !important; }
-
+/* Background of share and follow buttons */
 .bg-gratipay{ background-color: #339966; }
 .bg-flattr { background-color: #F67C1A; }
 .bg-twitter { background-color: #00ADE8; }
@@ -127,4 +129,3 @@ h2,h3,h4,h5,h6 { color: #444; }
 .voffset-150 { margin-top: -150px; }
 
  
-

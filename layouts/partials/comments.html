@@ -1,9 +1,10 @@
 
 {{ $section := index (index $.Site.Data "section") $.Section }}
+{{ $components := $section.components }}
 
-{{ if (and $section.show_comments .Site.DisqusShortname) }}
+{{ if (and $components.comments .Site.DisqusShortname) }}
 <div id="comments" class="comments-area">
-	{{ if $section.comments_on_demand }}
+	{{ if $section.comments.on_demand }}
 		<button class="show-comments btn btn-default btn-md btn-block" type="button">
 			<em style="font-size:120%;" class="fa fa-comments"></em>
 				&nbsp;&nbsp;Load Comments</button>
@@ -13,7 +14,7 @@
 
 
 <script>
-{{ if $section.comments_on_demand }}
+{{ if $section.comments.on_demand }}
 	$(document).ready(function() {
 		loadComments = function() {
 			var disqus_shortname = '{{ $.Site.DisqusShortname }}';

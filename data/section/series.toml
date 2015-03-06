@@ -1,15 +1,20 @@
-show_date = true
-show_author = true
-show_series = true
-show_toc = false
-show_share_buttons = true
-show_follow_buttons = false
-show_categories = true
-show_tags = true
-show_pager = true
 
-show_sidebar = false
+[components]
+	date = true
+	author = true
+	series = true
+	toc = false
+	share_buttons = true
+	follow_buttons = false
+	categories = true
+	tags = true
+	pager = true
+	sidebar = false
+	comments = true
+	carousel = true
+	jumbotron = true
 
-show_comments = true
-comments_on_demand = true
+
+[comments]
+	on_demand = true
 

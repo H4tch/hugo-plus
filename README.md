@@ -109,6 +109,7 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 * More diverse layouts for Project, Homepage, Streams etc
 * Breadcrumbs
 	* Use Hugo's menu system or use .Site.Data
+* Caption/Title for code blocks. Make code highlighting into a shortcode :/
 * Project Documentation hosting (via Doxygen)
 * Forum support (via Discourse)
 * Don't store custom Section templates in 'partials'?

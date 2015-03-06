@@ -1,30 +1,32 @@
 <!--
-	Carousel element's data:
+	See `carousel.md` in the docs
+	
 	[[carousel]]
 		title = ""
-		descrition = ""
+		text = ""
 		graphic = ""
-		width = 0
-		height = 0
+		height = 
 -->
 
+{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+
 {{ if .Params.carousel }}
-{{ $id := (or .Params.carousel_id ((index .Params.carousel 0).title | lower | urlize)) }}
+{{ $id := (or .Params.carousel.id ((index .Params.carousel.item 0).title | lower | urlize)) }}
 <div class="carousel slide" id="{{ $id }}">
 	<ol class="carousel-indicators">
-		{{ range $index, $elem := .Params.carousel }}
+		{{ range $index, $elem := .Params.carousel.item }}
 			<li {{ if (eq $index 0) }}class="active"{{ end }}
 				data-slide-to="{{ $index }}" data-target="#{{ $id }}}">
 			</li>
 		{{ end }}
 	</ol>
 	<div class="carousel-inner">
-	{{ range $index, $elem := .Params.carousel }}
+	{{ range $index, $elem := .Params.carousel.item }}
 		<div class="item {{ if (eq $index 0) }}active{{ end }}">
 			<img src="{{ $elem.graphic }}" alt="">
 			<div class="carousel-caption">
 				{{ with $elem.title }}<h4>{{ . }}</h4>{{ end }}
-				{{ with $elem.description }}<p>{{ . }}}</p>{{ end }}
+				{{ with $elem.text }}<p>{{ . }}}</p>{{ end }}
 			</div>
 		</div>
 	{{ end }}
