@@ -10,7 +10,6 @@ h2,h3,h4,h5,h6 { color: #444; }
 .row.no-pad { margin-right:0; margin-left:0; }
 .row.no-pad > [class*='col-'] { padding-right:0; padding-left:0; }
 
-
 .twitter-timeline { width:100% !important; }
 
 /* Classes used within social_links in the sidebar panel */
@@ -88,7 +87,14 @@ h2,h3,h4,h5,h6 { color: #444; }
 	height: 100%;
 	margin-bottom: -30px;
 	background-color: rgb(252,252,252);
+	z-index:0; position:relative;
 }
+
+.jumbotron { margin-bottom: 0; }
+.carousel { margin-bottom: 0; }
+
+.main { padding-top: 30px; z-index:1; position:relative; background-color: rgb(252,252,252); }
+
 
 .footer, .push { height: 30px; }
 
