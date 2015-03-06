@@ -8,7 +8,7 @@
 	IRC
 -->
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+{{ $section := index $.Site.Data.section $.Section }}
 
 <div class="row no-pad">
 <div class="col-xs-12 col-sm-6 column">

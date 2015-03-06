@@ -1,5 +1,6 @@
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 {{ if (and $components.categories .Params.categories) }}
 	{{ range .Params.categories }}

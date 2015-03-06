@@ -3,8 +3,8 @@
 		categories panels.
 -->
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
-{{ $components := $section.components }}
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 <aside class="content-secondary col-md-3 column">
 	<div class="row clearfix">

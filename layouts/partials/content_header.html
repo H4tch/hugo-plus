@@ -1,15 +1,14 @@
 
 <!-- Placed before a piece of content or content summary. -->
 
-
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
-
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 <div class="section panel panel-default">
 <div class="article panel-body">
 	<div class="content-header clearfix">
 	<div class="voffset-20"></div>
-	{{ if (and (eq .Section "author") .Params.show_author_thumbnail) }}
+	{{ if (and (eq .Section "author") .Params.components.author_thumbnail) }}
 		<span class="thumbnail pull-right" style="max-width:96px" >
 			<a href="{{ .Permalink }}"><img src="{{ .Params.avatar }}" title="{{ .Params.name }}"
 			 class="img-responsive center-block"></a>
@@ -25,19 +24,20 @@
 		{{ end }}
 		{{ if $components.author }}
 			{{ if $components.date }} - {{ end }}
-		{{ if .Params.author }}
-			{{ $author := index .Params.author 0 }}
-			<a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
-		{{ else }}
-			{{ $author := $.Site.Author.name }}
-			<a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
+			{{ if .Params.author }}
+				{{ $author := index .Params.author 0 }}
+				<a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
+			{{ else }}
+				{{ $author := $.Site.Author.name }}
+				<a href="{{ $.Site.BaseUrl }}/author/{{ $author | lower | urlize }}" class="author">{{ $author }}</a>
+			{{ end }}
+			
+			{{ if .Params.series }}
+				{{ if (or $components.date $components.author) }} - {{ end }}
+				{{ $series := index .Params.series 0 }}
+				<a href="{{ $.Site.BaseUrl }}/series/{{ $series | lower | urlize }}">{{ $series | title }}</a>
+			{{ end }}
 		{{ end }}
-		
-		{{ if .Params.series }}
-			{{ if (or $components.date $components.author) }} - {{ end }}
-			{{ $series := index .Params.series 0 }}
-			<a href="{{ $.Site.BaseUrl }}/series/{{ $series | lower | urlize }}">{{ $series | title }}</a>
-		{{ end }}{{ end }}
 	</aside>
 	{{ if (or (or $components.date $components.author) (and $components.series .Params.series)) }}
 		<div class="voffset10"></div>

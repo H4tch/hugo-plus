@@ -8,8 +8,9 @@
 		height = 
 -->
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
-
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
+<!--check for components.carousel-->
 {{ if .Params.carousel }}
 {{ $id := (or .Params.carousel.id ((index .Params.carousel.item 0).title | lower | urlize)) }}
 <div class="carousel slide" id="{{ $id }}">

@@ -1,6 +1,6 @@
 
-{{ $section := index (index $.Site.Data "section") $.Section }}
-{{ $components := $section.components }}
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 {{ if (and $components.comments .Site.DisqusShortname) }}
 <div id="comments" class="comments-area">

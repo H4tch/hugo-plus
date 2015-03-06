@@ -1,5 +1,6 @@
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 <!-- Doesn't support anything fancy like detecting Section, Category, or Series
 	

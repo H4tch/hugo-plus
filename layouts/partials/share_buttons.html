@@ -1,5 +1,6 @@
 
-{{ $components := (index (index $.Site.Data "section") $.Section).components }}
+{{ $section := index $.Site.Data.section $.Section }}
+{{ $components := or $section.components $section }}
 
 {{ if $components.share_buttons }}
 <div class="row no-pad">
