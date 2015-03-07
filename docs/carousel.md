@@ -14,7 +14,7 @@ Parameters:
 				Note that this value is CSS and you need to specify units
 		* full_width - (default = `true`). Determines if the carousel stretches
 				the entire width of the page. If false, it is put within a container.
-		* margin_top - Enable if there should be padding above the carousel.
+		* margin_top - Set the padding above the carousel.
 				You may want this in the case that `full_width` is false
 		* bg_color - Color of the Carousel's background. Shown if image is
 				non-existent or doesn't fit the entire width

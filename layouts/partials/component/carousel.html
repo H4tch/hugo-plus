@@ -19,7 +19,7 @@
 {{ if (and (not .full_width) (isset . "full_width")) }}<div class="container">{{ end }}
 <div id="{{ $id }}" class="carousel slide"
 	style="{{ with .bg_color }}background-color:{{ . | safeCss }};{{ end }}
-		{{ if .margin_top }}margin-top: 15px;{{ end }}"
+		{{ with .margin_top }}margin-top: {{ . | safeCss}};{{ end }}"
 >
 	<ol class="carousel-indicators">
 		{{ range $index, $slide := .slide }}
@@ -32,7 +32,7 @@
 	{{ range $index, $slide := .slide }}
 		<div class="carousel-slide item {{ if (eq $index 0) }}active{{ end }}">
 			<img src="{{ or $slide.graphic $carousel.graphic }}" alt="" style="float:none; margin:0 auto;{{ with .height }}height:{{ . | safeCss }};{{ end }}">
-			<div class="carousel-caption" style="{{ with or $slide.text_bg_color $carousel.text_bg_color }}background-color:{{ . | safeCss }};{{ end }}>
+			<div class="carousel-caption" style="{{ with or $slide.text_bg_color $carousel.text_bg_color }}background-color:{{ . | safeCss }};{{ end }}">
 				{{ $color := or .text_color $carousel.text_color }}
 				{{ if $slide.title }}
 					<h4 style="{{ with $color }}color:{{ . | safeCss }};{{ end }}">

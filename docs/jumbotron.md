@@ -16,6 +16,10 @@ Parameters:
 				`graphic` will scroll slower. Defaults to `true`
 		* height - Height of the jumbotron. Defaults to `300px`.
 				Note that this value is CSS and you need to specify units
+		* full_width - (default = `true`). Determines if the carousel stretches
+				the entire width of the page. If false, it is put within a container.
+		* margin_top - Set the padding above the jumbotron.
+				You may want this in the case that `full_width` is false
 	* Jumbotron button parameters:
 		* text - Text displayed on the button
 		* url - URL that the button links to
