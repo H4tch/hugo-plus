@@ -4,13 +4,13 @@ A jumbotron is just a large full-width section header on the page with large
 	image.
 
 Parameters:
-	* components.jumbotron - Shows the jumbotron defined by the Content or Section
+	* components.jumbotron - Enable/disables the jumbotron defined by the Content or Section
 	* Jumbotron paramters:
 		* title - Title's text
 		* text - Smaller text 
 		* text_color - Color to use for `title` and `text` font. Ex. `#EEE`
 		* graphic - Image to be used for the background
-		* background_color - Color to use behind the jumbotron's content.
+		* bg_color - Color to use behind the jumbotron's content.
 				Use this if text is hard to read against graphic, or change text_color
 		* parallax - When scrolling the page, the jumbtron's content and
 				`graphic` will scroll slower. Defaults to `true`
@@ -33,7 +33,7 @@ Example:
 		text = "This is and example of a jumbotron. It is defined within the content's front matter"
 		text_color = "#EEE"
 		graphic = "http://lorempixel.com/1200/300/city/5"
-		background_color = "rgba(0,0,0,.5)"
+		bg_color = "rgba(0,0,0,.5)"
 		parallax = true
 		[[jumbotron.button]]
 			text = "A button"
@@ -46,6 +46,7 @@ Example:
 ```
 
 CSS Class Markup:
+	* jumbotron
 	* jumbotron-content
 	* jumbotron-title
 	* jumbotron-text
@@ -57,7 +58,7 @@ Notes:
 	If Content defines the jumbotron, but only the Section enables it,
 		**the Content's version is the one that's shown.**
 	The jumbotron's content has a lower z-index than the `main` class which
-		holds the reset of the page.
+		holds the rest of the page.
 		This hides the content during scrolling whenever parallax is enabled.
 
 Todo:

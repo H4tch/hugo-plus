@@ -1,33 +1,47 @@
 <!--
 	See `carousel.md` in the docs
-	
-	[[carousel]]
-		title = ""
-		text = ""
-		graphic = ""
-		height = 
 -->
 
-{{ $section := index $.Site.Data.section $.Section }}
+{{ $section := index $.Site.Data.section (or $.Section "homepage") }}
 {{ $components := or $section.components $section }}
-<!--check for components.carousel-->
-{{ if .Params.carousel }}
-{{ $id := (or .Params.carousel.id ((index .Params.carousel.item 0).title | lower | urlize)) }}
-<div class="carousel slide" id="{{ $id }}">
+
+<!--Show Carousel if it is true within Content, or Content hasn't set Carousel
+		and it is true within Section.
+	Also, Carousel object data and Carousel items must exist.
+-->
+{{ $doShow := or .Params.components.carousel (and (not (isset .Params.components "carousel")) $components.carousel) }}
+{{ $carousel := or .Params.carousel $section.carousel }}
+
+
+{{ with (and $doShow $carousel) }}
+{{ $id := (or .id ((print $section.title "-" $.Title) | lower | urlize)) }}
+
+{{ if (and (not .full_width) (isset . "full_width")) }}<div class="container">{{ end }}
+<div id="{{ $id }}" class="carousel slide"
+	style="{{ with .bg_color }}background-color:{{ . | safeCss }};{{ end }}
+		{{ if .margin_top }}margin-top: 15px;{{ end }}"
+>
 	<ol class="carousel-indicators">
-		{{ range $index, $elem := .Params.carousel.item }}
+		{{ range $index, $slide := .slide }}
 			<li {{ if (eq $index 0) }}class="active"{{ end }}
-				data-slide-to="{{ $index }}" data-target="#{{ $id }}}">
+				data-slide-to="{{ $index }}" data-target="#{{ $id }}">
 			</li>
 		{{ end }}
 	</ol>
 	<div class="carousel-inner">
-	{{ range $index, $elem := .Params.carousel.item }}
-		<div class="item {{ if (eq $index 0) }}active{{ end }}">
-			<img src="{{ $elem.graphic }}" alt="">
-			<div class="carousel-caption">
-				{{ with $elem.title }}<h4>{{ . }}</h4>{{ end }}
-				{{ with $elem.text }}<p>{{ . }}}</p>{{ end }}
+	{{ range $index, $slide := .slide }}
+		<div class="carousel-slide item {{ if (eq $index 0) }}active{{ end }}">
+			<img src="{{ or $slide.graphic $carousel.graphic }}" alt="" style="float:none; margin:0 auto;{{ with .height }}height:{{ . | safeCss }};{{ end }}">
+			<div class="carousel-caption" style="{{ with or $slide.text_bg_color $carousel.text_bg_color }}background-color:{{ . | safeCss }};{{ end }}>
+				{{ $color := or .text_color $carousel.text_color }}
+				{{ if $slide.title }}
+					<h4 style="{{ with $color }}color:{{ . | safeCss }};{{ end }}">
+						{{ $slide.title }}</h4>
+				{{ end }}
+				{{ if $slide.text }}
+					<p style="{{ with $color }}color:{{ . | safeCss }};{{ end }}">
+						{{ $slide.text }}</p>
+				{{ end }}
 			</div>
 		</div>
 	{{ end }}
@@ -37,6 +51,7 @@
 	<a class="right carousel-control" href="#{{ $id }}" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
+{{ if (and (not .full_width) (isset . "full_width")) }}</div>{{ end }}
 {{ end }}
 
 

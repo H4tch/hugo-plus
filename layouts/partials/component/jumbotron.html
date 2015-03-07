@@ -21,7 +21,7 @@
 		background-size:cover; height:{{ with .height }}{{ . }}{{ else }}300px{{ end }}"
 {{ end }}
 >
-	<div class="jumbotron-content container" style="{{ with .background_color | safeCss }}background-color: {{ . }};{{ end }}">
+	<div class="jumbotron-content container" style="{{ with .bg_color | safeCss }}background-color: {{ . }};{{ end }}">
 		{{ if .title }}
 			<h1 class="jumbotron-title" {{ with .text_color }}style="color: {{ . }}"{{ end }}>
 				{{ .title }}</h1>
