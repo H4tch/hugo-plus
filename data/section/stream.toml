@@ -1,10 +1,12 @@
 
 title = "Stream"
+is_taxonomy = false
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	page_header = true
+	breadcrumbs = true
 	sidebar = false
 #[content]
 	date = false

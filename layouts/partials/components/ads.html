@@ -1,8 +1,8 @@
 
-{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
 
-{{ if (and $section.ads $section.component.ads) }}
+{{ if (and $section.ads $section.components.ads) }}
 
 <div class="col-xs-6 col-sm-6 col-md-12 column">
 	<div class="thumbnail">

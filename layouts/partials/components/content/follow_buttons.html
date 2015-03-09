@@ -4,8 +4,8 @@
 	Parameters are defined within the content front matter section.
 -->
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
 
 
 <div class="row no-pad">

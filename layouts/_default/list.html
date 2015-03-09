@@ -5,13 +5,17 @@
 -->
 
 {{ partial "main_begin.html" . }}
-	{{ range .Data.Pages.ByDate.Reverse }}
-		<div class="section panel panel-default">
-			{{ .Render "li" }}
-			<div class="panel-footer">
-				{{ partial "summary_footer.html" . }}
+	{{ if (not .Data.Pages ) }}
+		{{ partial "component/content/no_content_found.html" . }}
+	{{ else }}
+		{{ range .Data.Pages.ByDate.Reverse }}
+			<div class="section panel panel-default">
+				{{ .Render "li" }}
+				<div class="panel-footer">
+					{{ partial "summary_footer.html" . }}
+				</div>
 			</div>
-		</div>
+		{{ end }}
 	{{ end }}
 {{ partial "main_end.html" . }}
 

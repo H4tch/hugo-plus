@@ -8,8 +8,8 @@
 	IRC
 -->
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
-{{ $components := or $section.components .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components:= or $section.components .Site.Data.null }}
 
 <div class="row no-pad">
 <div class="col-xs-12 col-sm-6 column">

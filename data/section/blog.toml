@@ -1,10 +1,12 @@
 
 title = "Blog"
+is_taxonomy = false
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	sidebar = true
+	breadcrumbs = true
 	page_header = true
 #[content]
 	date = true

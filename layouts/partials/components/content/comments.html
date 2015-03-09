@@ -1,5 +1,5 @@
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
 {{ $components := or $section.components .Site.Data.null }}
 
 {{ if (and $components.comments .Site.DisqusShortname) }}

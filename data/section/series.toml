@@ -1,10 +1,12 @@
 
 title = "Series"
+is_taxonomy = true
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	sidebar = false
+	breadcrumbs = true
 	page_header = true
 #[content]
 	date = true

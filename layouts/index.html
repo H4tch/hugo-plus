@@ -1,17 +1,21 @@
 {{ partial "header.html" . }}
 
 {{ partial "main_begin.html" . }}
-	{{ if .Site.Params.pagination }}
-		{{ range .Paginator.Pages }}
-			{{ if (not .Params.meta) }}
-				{{ .Render "summary" }}
-			{{ end }}
-		{{ end }}
-		{{ template "_internal/pagination.html" . }}
+	{{ if (not .Data.Pages ) }}
+		{{ partial "component/content/no_content_found.html" . }}
 	{{ else }}
-		{{ range first (or .Site.Params.paginate 10) .Site.Pages }}
-			{{ if (not .Params.meta) }}
-				{{ .Render "summary" }}
+		{{ if .Site.Params.pagination }}
+			{{ range .Paginator.Pages }}
+				{{ if (not .Params.meta) }}
+					{{ .Render "summary" }}
+				{{ end }}
+			{{ end }}
+			{{ template "_internal/pagination.html" . }}
+		{{ else }}
+			{{ range first (or .Site.Params.paginate 10) .Site.Pages }}
+				{{ if (not .Params.meta) }}
+					{{ .Render "summary" }}
+				{{ end }}
 			{{ end }}
 		{{ end }}
 	{{ end }}

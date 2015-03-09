@@ -1,9 +1,6 @@
 
 <!-- Placed after a content summary. -->
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
-
 </div><!--/content-header clearfix-->
 
 <!--Makes inconsistent spacing with truncated summaries less noticeable-->
@@ -11,16 +8,10 @@
 </div><!--/article panel-body-->
 
 <div class="panel-footer">
-	{{ partial "continue_message.html" . }}
-	{{ if (and (ne .Type "meta") $component.comments) }}
+	{{ partial "components/content/continue_message.html" . }}
 	<div class="pull-right">
-		<a style="text-decoration:none;" class="text-info" href="{{ .Permalink }}#comments">
-			<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.title "-" .Title) | lower | urlize }}"></span>
-			<!-- style="font-size:150%;margin-top:1px;" -->
-			<i class="fa fa-comment-o pull-right">&nbsp;</i>
-		</a>
+		{{ partial "components/content/comment_count.html" . }}
 	</div>
-	{{ end }}
 </div>
 
 </div><!--/panel-->

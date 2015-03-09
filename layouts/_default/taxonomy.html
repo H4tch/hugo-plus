@@ -1,30 +1,9 @@
 {{ partial "header.html" . }}
 
-<!-- Use "text-muted" and "text-primary" to invert the breadcrumb text colors -->
-
 {{ partial "main_begin.html" . }}
-	<div class="section panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="voffset-10"></div>
-				<ul class="breadcrumb list-unstyled">
-					<li><a href="{{ $.Site.BaseUrl }}">Home </a>
-					 <span class="divider"></span></li>
-					<!--"Pages" is hidden from URL, so hide from breadcrumbs as well-->
-					{{ if (ne $.Data.Singular "Page") }}
-						<li><a href="{{ $.Site.BaseUrl }}/{{ $.Data.Plural | lower | urlize }}">
-							{{ $.Data.Plural | title }} </a>
-						 <span class="divider"></span></li>
-					{{ end }}
-					<li class="active">{{ .Title | title }}</li>
-				</ul>
-				<div class="voffset-30"></div>
-			</div>
-		</div>
+		{{ partial "components/breadcrumbs.html" . }}
 		{{ if (not .Data.Pages ) }}
-			<div class="panel-body">
-				<h4 class="text-muted">No content found matching this criteria</h4>
-			</div>
+			{{ partial "components/content/no_content_found.html" . }}
 		{{ else }}
 			<ul class="list-group list-unstyled">
 			<!-- Group by Year, only if there is more than one year?

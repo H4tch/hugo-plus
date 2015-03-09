@@ -5,10 +5,10 @@ type = "page"
 # They are relative to `layouts/partials/`.
 page = ""
 related = []
-author = []
+author = ""
 tags = []
 categories = []
-series = []
+series = ""
 
 flattr_category = "rest"
 

@@ -7,7 +7,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading text-primary">Articles within this series:</div>
 		<ul class="list-group list-unstyled">
-		{{ range (index (index .Site.Taxonomies "series") (.Title | lower | urlize)).Pages.ByDate }}
+		{{ range where .Site.Pages.ByDate ".Params.series" (.Title | lower | urlize) }}
 			{{ .Render "li" }}
 		{{ end }}
 		</ul>

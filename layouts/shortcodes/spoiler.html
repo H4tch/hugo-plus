@@ -1,36 +1,16 @@
 <!--
 	Uses Bootstap to show a clickable panel that reveals it's content
-
-{{/*
-	Usage:
-		{{< spoiler text="Click to reveal text" >}}You found me!{{ /spoiler }}
-*/}}
-	
-	Either `text` or `id` is required. 
-	Parameters:
-		text - Text that is displayed on the panel's header
-		open - If "true", the content is shown by default
-		footer - Adds a message to the footer area of the panel, hidden by default.
-				This is useful if the hidden content is really long.
-		
-		id - Id attribute for the collapsible element.
-				Should be used if `text` is really long
-		class - Class attribute for the outer-most div tag
-		style - Style attribute for the outer-most div tag
-	
-	Notes:
-		Outer div tag contains a 'spoiler' class attribute.
-		The id of the collapsible element will either by the `id` parameter, or
-			the `text` parameter in 'lowercase-urlized-form'.
+	See documentation for more details:
+		'docs/shortcodes/spoiler.md'
 -->
 
 <div class="spoiler panel panel-default {{ .Get "class" }}"
-{{ with .Get "style" }}style="{{ . }}"{{ end }}>
+{{ with .Get "style" }}style="{{ . | safeCss }}"{{ end }}>
 	<div class="panel-heading">
 		<a class="collapsed" data-toggle="collapse"
 		 style="display:block;{{ if (not (.Get "text")) }}text-decoration:none;{{ end }}"
 		 {{ with .Get "id" }}href="#{{ . }}" {{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
-			{{ with .Get "text" }}{{ . }}{{ else }}&nbsp;{{ end }}
+			{{ with .Get "text" }}{{ . | safeHtml }}{{ else }}&nbsp;{{ end }}
 		</a>
 	</div>
 	{{ if .Inner }}
@@ -41,7 +21,7 @@
 			<div class="panel-footer">
 				<a class="collapsed" data-toggle="collapse" style="display:block;"
 				 {{ with .Get "id" }}href="#{{ . }}"{{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
-					{{ .Get "footer" }}</a>
+					{{ .Get "footer" | safeHtml }}</a>
 			</div>
 		{{ end }}
 	</div>

@@ -1,8 +1,10 @@
 
 # Hugo-plus
 A modular featured-packed Hugo theme that's built using Bootstrap components.
-The idea is to provide a large foundation of componets that can targetted to
-	provide a consistent set of features across Hugo themes.
+The idea is to provide a consistent set of customizable features that remain
+	intact across theme and layout changes.
+	Layouts affect component placement, while themes affect coloring and minor
+		CSS styles.
 
 Each theme should provide a different layout while allowing the Bootstap theme
 	to be interchangeable.
@@ -18,6 +20,8 @@ Hugo has potential, but it's a pain to use due to its poor documentation and
 This project is meant to provide a set of guidelines, conventions, structure,
 	and completely functional base on which to build.
 
+To see differences between and Hugo [read this](/docs/hugo-vs-hugo-plus.md).
+
 ### Who?
 Targeted at lazy developers that value their time and want a solution to host
 	their thoughts, portfolio, and projects while having full control of the
@@ -27,48 +31,52 @@ This project is chock-full of features to use, learn from, and build off of.
 Nothing should be left to magic.
 
 
-
 # Features
-* Fully responsive layouts and components built with Bootstrap
-* Mutliple Author support
-	* Useful for things like guest posts
-	* May not be suitable for a larger content publishing site due to Hugo's limitations
-* `Series` taxonomy to group blog posts into a series.
-	* Series section also exists which allows you to organize the blog posts
-		better and create an overview page for the series.
-	* Series can be hierarchical
-* `Stream` section where each content piece is defined as a series of stream posts
-* Disqus comment integration
-	* Optional on-demand comment loading
-		* Auto loads if user jumps to comment section through "#comments" anchor
-	* Comment count querying
-		* Custom script to inject "No comments" when Disqus fails to
-* Lightbox popup support using [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
-	* Supports photos, videos, iframes, and custom inline HTML code
-	* Popup items can also be grouped into a Gallery
-* HTML5 Audio control widget for embedding audio files within content
-	* Support for title, album info, albumn art, and preloading of the data
-* OpenGraph metadata (contained within `partials/meta.html`)
-	* Supports Author data, Article data, `graphic` parameter
-* Syntax highlighting via `Hightlight.js`
-	*  Customizable theme per content, falls back on `.Site.Params.highlightjs`
-* Categories label buttons and Tag menu per post
-* Categories panel for the sidebar
-* Recent Posts panel
-* About Author panel
-* Custom Social sharing buttons
-* Custom Social follow buttons Author, Site, Projects, etc
-* Google Analytics integration
-* Google Trends widget
-* Auto updating copyright year insertion
-	* example: `(c) 2015` will become `(c)2015-2016` once 2016 rolls around
-* Content management, organization, and customization
-	* Customizable theme components on a per Section basis
-	* Author, Series, Categories, and Tags Taxonomies
-	* Support for `meta` pages to hide from content feeds. (example: archive page)
-	* Ability to render arbitrary custom pages for any content through the `page` parameter
+* Theming
+	* Fully responsive layouts and components built with Bootstrap
 
+* Components
+	* Jumbotron
+	* Carousel
+	* Panel widgets
+		* Recent Posts
+		* About Author (context aware, shows author related to current content)
+		* Social links
+	* HTML5 Audio control widget for embedding audio files within content
+		* Support for title, album info, albumn art, and preloading of the data
+	* Syntax highlighting via [Hightlight.js](https://highlightjs.org/)
+		* Theme can be customized per Content
+	* Disqus comment integration
+		* Optional on-demand comment loading
+		* Comment count querying
+	* [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/) lightbox
+		* Supports photos, videos, iframes, and custom inline HTML code
+		* Popup items can also be grouped into a Gallery
 
+* Content Organization
+	* Mutliple Author support
+		* Custom Author profile pages
+		* Author taxonomy for displaying and aggregating posts by an author
+	* `Series` taxonomy to group blog posts into a series.
+		* Series section also exists which allows you to organize the blog posts
+			better and create an overview page for the series.
+		* Series can be hierarchical
+	* `Stream` section where each content piece is defined as a series of posts
+		* Good for random thought streams, incremental progress throughout the
+			year, or live reporting of events.
+	* Content management, organization, and customization
+		* Author, Series, Categories, and Tags Taxonomies
+		* Content can be marked as `meta` to hide it from content feeds
+		* Ability to render arbitrary custom pages for any content through the `page` parameter
+
+* Other plugins or service integrations
+	* OpenGraph metadata integration
+		* Supports Author data, Article data, and custom `graphic` for the page
+	* Google Analytics integration
+	* Google Trends widget
+
+* Customization
+	
 
 # Getting Started
 First, [download and install Hugo.](http://gohugo.io/)
@@ -95,34 +103,47 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 
 
 # Todo
-* How to best parameterize Taxonomies?
-* Don't utilize author content's title as the author's name (double-check)
-* Move social profile usernames into a 'social' data object
-* Summaries don't render embedded HTML code that was rendered from Markdown
-	* But Shortcode HTML is rendered
-	* Convert syntax code highlighting to use Shortcodes
-		* Add caption/title, line highlighting, etc
-* Use `safeCss` and `safeHtml` when injecting parameters within markup
-* Move `style.css` customizations into `style-src/hugo-plus.less`
-* Page_header needs more work. Not essential though.
+* Ability to show content from other sections within a sections feed
+* Custom CSS and JS injection per-content and per-section
+	* These are for small user stylizations that shouldn't be applied site-wide
+* Should content title, metadata, and breadcrumbs be displayed in the page_header area?
+	* Or at least make this an option
+* Component.disabled parameters for non-content components
+* Section + content list plugin
+	* Display collapsable sections with their content articles 
+* Content-configurable
+	* Share buttons, ads
+* Custom Menu system?
+	* Or use the site's main system, where each section is at `.Site.Menus.section_name`?
+	* This will most likely clash with my own sub-menu system(need to fix)
+* More diverse layouts for Project, Homepage, Streams etc
+* Custom content view ".Render" layouts.
+* Optional Carousel keyboard arrowing support
 * Theme support
 	* These are different from Hugo themes in that the web framework, layouts,
 		and plugins are separated
 	* Plugins and layouts depend on web framework. Default framework is Bootstrap
+* Use `safeCss` and `safeHtml` when injecting parameters within markup
+* Move social profile usernames into a 'social' data object
+	* Make the content injected into to the templates
+* Move `style.css` customizations into `style-src/hugo-plus.less`
+* Summaries don't render embedded HTML code that was rendered from Markdown
+	* But Shortcode HTML is rendered
+	* Convert syntax code highlighting to use Shortcodes
+		* Add caption/title, line highlighting, etc
+* Section label component
+* Page_header needs more work
 * `est_reading_time` and `word_count`
 * Don't show entirety of author's posts at once
 	* Use javascript to incrementally `show more` posts. Like 20 at a time.
 		* Also have a button to `show all`
 * Can I detect this: content `draft=true`, but is being rendered
 	* I could then add a bade/label/alert/message "In development" (`msg_draft`)
-* Test that this theme against a blank Hugo project
-* More diverse layouts for Project, Homepage, Streams etc
-* Breadcrumbs
-	* Use Hugo's menu system or use .Site.Data
-* Project Documentation hosting (via Doxygen)
-* Forum support (via Discourse)
-* Don't store custom Section templates in 'partials'?
-	* I think ".Render" functionality could be used for section specific "partials"
+* Test that this theme works against a blank Hugo project (null data)
+* Parameterize no_content_found message
+* Example website with documentation
+* Doxygen - Bootstrap integration
+* Forum support (via Discourse or maybe Lefora)
 * Rss links for Sections and "Taxonomy Sections"
 * Need to group content by year in more places, or add year to the date of each item
 * URL shortener integration for sharing
@@ -136,10 +157,14 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 	* Gist
 	* Carousal
 	* Plot/Graph data
+	* Video with image placeholder
+* More specific class attribute attachment? ex. Menu item 'Projects': 'menu-item-projects'
+	* Allows fine-grained CSS stylizations
 
 
 #### (c) 2015 Daniel Hatch (h4tch)
 
 [![Gratipay Badge](http://img.shields.io/gratipay/danielh4tch.svg)](http://gratipay.com/danielh4tch "Support me on Gratipay")
 [![Flattr Badge](http://button.flattr.com/flattr-badge-large.png)](http://flattr.com/submit/auto?user_id=h4tch&url=github.com/h4tch/hugo-plus "Flattr this")
+
 

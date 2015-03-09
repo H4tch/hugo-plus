@@ -1,5 +1,5 @@
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
 
 {{ with (or .Params.continue_message $section.continue_message) }}
 	<a class="text-info" href="{{ $.Permalink }}">{{ .Params.continue_message }} »</a>

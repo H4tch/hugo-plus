@@ -1,10 +1,9 @@
 {{ partial "header.html" . }}
 
+<!-- { { if $section.is_taxonomy }} -->
 {{ partial "main_begin.html" . }}
 	{{ if (not .Data.Pages ) }}
-		<div class="panel-body">
-			<h4 class="text-muted">No content found matching this criteria</h4>
-		</div>
+		{{ partial "components/content/no_content_found.html" }}
 	{{ else }}
 		{{ range .Data.Pages }}
 			{{ .Render "summary" }}

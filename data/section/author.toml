@@ -1,11 +1,13 @@
 
 title = "Authors"
+is_taxonomy = true
 
-[component]
+[components]
 	author_thumbnail = true
 	jumbotron = true
 	carousel = true
 	sidebar = true
+	breadcrumbs = true
 	page_header = true
 #[content]
 	date = false

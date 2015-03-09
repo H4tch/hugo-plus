@@ -12,29 +12,25 @@
 	{{ partial "content_footer.html" . }}
 	
 	<div class="voffset50"></div>
-	<h1>Posts</h1>
+	<div class="container">
+		<h1>Posts</h1>
+	</div>
 	<div class="voffset-10"></div>
 	<hr/>
-	<!-- Get the Taxonomy beloing to the current Section -->
-	{{ $authorTaxonomy := index (index .Site.Taxonomies .Section) (.Title | lower | urlize) }}
-	{{ $pages := $authorTaxonomy.Pages.ByDate }}
 	
-	<!--Can these items be paginated?
-		Can I have a link to the Author Taxonomy term?
-			Right now, the Section is overriding its rendering
-		Maybe use javascript to implement a 'Show more' button to incrementally
-			load more posts from the author
-	-->
+	{{ $pages := where .Site.Pages.ByDate ".Params.author" .Params.name }}
 	{{ if (gt (len $pages) 0) }}
 		{{ range $pages }}
 			{{ .Render "li" }}
 		{{ end }}
 	{{ else }}
-		{{ partial "panel/no_content_found.html" . }}
+		<div class="panel panel-default">
+			{{ partial "components/content/no_content_found.html" . }}
+		</div>
 	{{ end }}
 	
 	<div class="voffset30"></div>
-	{{ partial "panel/twitter_timeline.html" . }}
+	{{ partial "plugins/twitter_timeline.html" . }}
 	
 {{ partial "main_end.html" . }}
 

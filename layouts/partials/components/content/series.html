@@ -1,0 +1,48 @@
+<!-- Must be instantiated on a content page because .Params.series is checked.
+	Would be nice if series name was passed in instead
+
+This could eventually be used to display either the series a post belongs within,
+	or the posts within the series the current page is hosting. This would allow
+	'series/single.html' to render both its series panel and the one it belongs within.
+	* Series must be embeddable within other series. Therefore, can't use logic
+		to check for .Params.series then fallback to .Title when in series section.
+		The .Params.series will always win out if defined.
+	* Need way to communicate which series container to show
+	* Best possibility would be to optionally pass in a list of pages belonging to the series
+	* If there is a list, then render that list, and make the current page active if
+		it is within that list.
+	* If there is no list, use the current page to use it's series and find the
+		list that way.
+-->
+
+{{ if .Params.series }}
+{{ $pages := where $.Site.Pages.ByDate "Params.series" .Params.series }}
+{{ if $pages }}
+<div class="series panel panel-default">
+	<div class="panel-heading">
+		<div class="row clearfix">
+			<div class="col-xs-12 column">
+				<h4 class="active"><a href="/series/{{ .Params.series | lower | urlize }}">
+				{{ $.Params.series | title }} Series</a>
+				<a href="/series" class="label label-primary pull-right">All series</a></h4>
+			</div>
+		</div>
+	</div>
+	<ul class="list-group">
+	<!--{ { range $series.Pages.ByDate }}<!--Most Recent on bottom-->
+	{{ range $pages }}
+		{{ if (eq .Permalink $.Permalink )}}
+			<a href="{{ .Permalink }}" class="list-group-item list-group-item-info">
+		{{ else }}
+			<a href="{{ .Permalink }}" class="list-group-item">
+		{{ end }}
+			{{ .Title }}
+			<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
+		</a>
+	{{ end }}
+	</ul>
+</div>
+{{ end }}
+{{ end }}
+
+

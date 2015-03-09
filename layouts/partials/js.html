@@ -22,10 +22,18 @@
 {{ partial "js/disqus.html" . }}
 
 
+<!--
+	For each plugin include its JS:
+		Do this for CSS too in the meta section.
+	
+	This code won't work right because I'm sending the global environment through a parameter.
+		They may have fixed this issue though.
+-->
 {{/*
 {{ $global := . }}
-{{ range (index .Site.Data .Site.Params.theme).js_includes }}
-	{{ partial  (print "js/" . ".html") $global }}
+{{ range .Site.Params.plugins.plugins }}
+	{{ range (index .Site.Data.plugin .).deps_js }}
+		{{ partial  (print "js/" . ".html") $global }}
 {{ end }}
 */}}
 

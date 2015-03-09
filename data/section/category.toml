@@ -1,10 +1,12 @@
 
 title = "Categories"
+is_taxonomy = true
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	page_header = true
+	breadcrumbs = true
 	sidebar = true
 #[content]
 	date = false
@@ -20,4 +22,15 @@ title = "Categories"
 
 [comments]
 	on_demand = true
+
+[breadcrumbs]
+	append_current_page = true
+[[breadcrumbs.item]]
+	title = "Home"
+	url = "/"
+[[breadcrumbs.item]]
+	title = "Categories"
+	url = "/categories/"
+
+
 

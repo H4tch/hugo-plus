@@ -1,22 +1,10 @@
 {{ partial "header.html" . }}
 
 {{ partial "main_begin.html" . }}
-	<div class="section panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="voffset-10"></div>
-				<ul class="breadcrumb list-unstyled">
-					<li><a href="{{ $.Site.BaseUrl }}">Home </a><span class="divider"></span></li>
-					<li class="active">{{ .Title | title }}</li>
-				</ul>
-				<div class="voffset-30"></div>
-			</div>
-		</div>
-		<!-- ?If number of Categories is greater than 8~10 make list element smaller? -->
+	{{ partial "components/breadcrumbs.html" . }}
+		<!-- If number of Categories is greater than 8~10 make list element smaller? -->
 		{{ if (not .Data.Terms ) }}
-			<div class="panel-body">
-				<h4 class="text-muted">No content found matching this criteria</h4>
-			</div>
+			{{ partial "components/content/no_content_found.html" . }}
 		{{ else }}
 			<!--Note: Any spaces within the term name are automagically converted to hyphens-->
 			<ul class="list-group list-unstyled">

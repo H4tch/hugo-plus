@@ -3,30 +3,30 @@
 		categories panels.
 -->
 
-{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
 
 <aside class="content-secondary col-md-3 column">
 	<div class="row clearfix">
 		<div class="col-xs-12 col-sm-6 col-md-12 column">
-			{{ partial "panel/about_author.html" . }}
+			{{ partial "components/about_author.html" . }}
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-12 column">
-			{{ partial "panel/recent_posts.html" . }}
+			{{ partial "components/recent_posts.html" . }}
 		</div>
 	</div>
 
 	<div class="row clearfix">
 		<div class="col-xs-12 col-sm-6 col-md-12 column">
-			{{ partial "panel/social_links.html" . }}
+			{{ partial "components/social_links.html" . }}
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-12 column">
-			{{ partial "panel/categories.html" . }}
+			{{ partial "components/categories.html" . }}
 		</div>
 	</div>
 	<!--
 	<div class="row clearfix">
-		{{ partial "panel/ads.html" . }}
+		{ { partial "components/ads.html" . }}
 	</div>
 	-->
 </aside>

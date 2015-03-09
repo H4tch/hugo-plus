@@ -1,10 +1,12 @@
 
 title = "Home"
+is_taxonomy = false
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	page_header = false
+	breadcrumbs = true
 	sidebar = true
 #[content]
 	toc = false
@@ -18,7 +20,6 @@ title = "Home"
 	pager = true
 	comments = true
 
-
 [comments]
 	on_demand = true
 
@@ -27,7 +28,7 @@ title = "Home"
 	text = "This is and example of a jumbotron. It is defined within the content's front matter"
 	text_color = "#EEE"
 	graphic = "http://lorempixel.com/1200/300/city/5"
-	bg_color = "rgba( 0,0,0,0.5 )"
+	text_bg_color = "rgba( 0,0,0,0.5 )"
 	[[jumbotron.button]]
 		text = "Use the force, Luke!"
 		url = "#"

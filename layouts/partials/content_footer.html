@@ -1,9 +1,6 @@
 
 <!--Placed after a full piece of content, not the summary.-->
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
-
 </div><!--/content-header clearfix-->
 
 <div class="voffset20"></div>
@@ -11,33 +8,33 @@
 
 {{ if .Params.series }}
 	<div class="voffset30"></div>
-	{{ partial "panel/series.html" . }}
+	{{ partial "components/content/series.html" . }}
 {{ end }}
 
-{{ partial "share_buttons.html" . }}
-{{ partial "follow_buttons.html" . }}
+{{ partial "components/content/share_buttons.html" . }}
+{{ partial "components/content/follow_buttons.html" . }}
 
 
 {{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
-		{{ partial "component/category_labels.html" . }}
+		{{ partial "components/content/category_labels.html" . }}
 	</div>
 
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
 		<div class="btn-group pull-right">
-			{{ partial "component/tag_labels.html" . }}
+			{{ partial "components/content/tag_labels.html" . }}
 		</div>
 	</div>
 </div>
 
 
-{{ partial "pager.html" . }}
+{{ partial "components/content/pager.html" . }}
 
 </div><!--/article panel-body-->
 
 <div class="panel-footer">
-	{{ partial "comments.html" . }}
+	{{ partial "components/content/comments.html" . }}
 </div>
 
 </div><!--/panel-->

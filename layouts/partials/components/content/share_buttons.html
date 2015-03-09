@@ -1,8 +1,8 @@
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular "homepage"))) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
 
-{{ if $component.share_buttons }}
+{{ if $components.share_buttons }}
 <div class="row no-pad">
 <div class="col-xs-12 col-sm-6 column">
 <div class="btn-group btn-group-justified">

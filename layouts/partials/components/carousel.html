@@ -2,14 +2,14 @@
 	See `carousel.md` in the docs
 -->
 
-{{ $section := or (index .Site.Data.section (or .Section .Data.Singular)) .Site.Data.null }}
-{{ $component := or $section.component .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
 
 <!--Show Carousel if it is true within Content, or Content hasn't set Carousel
 		and it is true within Section.
 	Also, Carousel object data and Carousel items must exist.
 -->
-{{ $doShow := or .Params.component.carousel (and (not (isset .Params.component "carousel")) $component.carousel) }}
+{{ $doShow := or .Params.components.carousel (and (not (isset .Params.components "carousel")) $components.carousel) }}
 {{ $carousel := or .Params.carousel $section.carousel }}
 
 

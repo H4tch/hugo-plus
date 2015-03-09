@@ -2,16 +2,18 @@
 # This file can be used as a template when creating a new section.
 
 title = ""
+is_taxonomy = false
 
 framework = ""
 layout = ""
 css_theme = ""
 group_by_year = true
 
-[component]
+[components]
 	jumbotron = true
 	carousel = true
 	page_header = true
+	breadcrumbs = true
 	sidebar = true
 #[content]
 	date = true
@@ -27,13 +29,14 @@ group_by_year = true
 
 
 # Available widgets to be configured
-# Todo: Sidebar,
+
 [jumbotron]	
 [[carousel]]
 	title = ""
 	description =""
 	url = ""
-
+	
+# Sidebar: todo
 [sidebar]
 [[sidebar.item]]
 	menu = ""
@@ -45,6 +48,15 @@ group_by_year = true
 [comments]
 	on_demand = true
 
+
+[breadcrumbs]
+	append_current_page = true
+[[breadcrumbs.item]]
+	title = "Home"
+	url = "/"
+[[breadcrumbs.item]]
+	title = "Tags"
+	url = "/tags/"
 
 
 
