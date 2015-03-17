@@ -8,33 +8,33 @@
 
 {{ if .Params.series }}
 	<div class="voffset30"></div>
-	{{ partial "components/content/series.html" . }}
+	{{ partial "default/content/series.html" . }}
 {{ end }}
 
-{{ partial "components/content/share_buttons.html" . }}
-{{ partial "components/content/follow_buttons.html" . }}
+{{ partial "default/content/share_buttons.html" . }}
+{{ partial "default/content/follow_buttons.html" . }}
 
 
 {{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
-		{{ partial "components/content/category_labels.html" . }}
+		{{ partial "default/content/category_labels.html" . }}
 	</div>
 
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
 		<div class="btn-group pull-right">
-			{{ partial "components/content/tag_labels.html" . }}
+			{{ partial "default/content/tag_labels.html" . }}
 		</div>
 	</div>
 </div>
 
 
-{{ partial "components/content/pager.html" . }}
+{{ partial "default/content/pager.html" . }}
 
 </div><!--/article panel-body-->
 
 <div class="panel-footer">
-	{{ partial "components/content/comments.html" . }}
+	{{ partial "default/content/comments.html" . }}
 </div>
 
 </div><!--/panel-->

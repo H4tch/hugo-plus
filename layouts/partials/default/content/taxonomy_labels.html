@@ -1,0 +1,37 @@
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+
+{{ if (or .Params.categories .Params.tags) }}<div class="voffset10"></div>{{ end }}
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+		{{ if (and $components.categories .Params.categories) }}
+			{{ range .Params.categories }}
+				<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
+				 class="btn btn-primary btn-xs">{{ . | title }}</a>
+			{{ end }}
+		{{ end }}
+	</div>
+
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column">
+		<div class="btn-group pull-right">
+			{{ if (and $components.tags .Params.tags) }}
+				<button class="btn btn-default btn-xs dropdown-toggle"
+				 id="tag-menu" type="button" data-toggle="dropdown"
+				 aria-expanded="false">
+					tags <strong class="caret"></strong>
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right"
+				 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
+				{{ range .Params.tags }}
+					<li role="presentation">
+					<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
+					 role="menuitem">{{ . }}</a></li>
+				{{ end }}
+				</ul>
+			{{ end }}
+		</div>
+	</div>
+</div>

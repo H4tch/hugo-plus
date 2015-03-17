@@ -1,0 +1,21 @@
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+{{ if (and $components.tags .Params.tags) }}
+	<button class="btn btn-default btn-xs dropdown-toggle"
+	 id="tag-menu" type="button" data-toggle="dropdown"
+	 aria-expanded="false">
+		tags <strong class="caret"></strong>
+		<span class="sr-only">Toggle Dropdown</span>
+	</button>
+	<ul class="dropdown-menu dropdown-menu-right"
+	 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
+	{{ range .Params.tags }}
+		<li role="presentation">
+		<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
+		 role="menuitem">{{ . }}</a></li>
+	{{ end }}
+	</ul>
+{{ end }}
+

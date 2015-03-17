@@ -1,0 +1,25 @@
+<!--
+Create your own custom google search [here](https://www.google.com/cse/create/new).
+Once done, to get this plugin working you'll need to:
+	* Click "Control Panel"
+	* Click "Search engin ID"
+	* Copy the ID
+	* In your site's `config.toml` file, paste this value to `params.google_search_id`
+-->
+
+{{ with .Site.Params.google_search_id }}
+<script>
+  (function() {
+    var cx = '{{ . }}';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+{{ end }}
+

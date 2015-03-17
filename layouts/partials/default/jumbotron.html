@@ -1,0 +1,62 @@
+<!--
+	See `components/jumbotron.md` in the docs.
+-->
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $config := or (and ($section.components) $section) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+<!--Show Jumbotron if it is true within Content, or Content hasn't set
+		Jumbotron and it is true within Section.
+	Also, Jumbotron object data must exist.
+-->
+{{ $doShow := or .Params.components.jumbotron (and (not (isset .Params.components "jumbotron")) $components.jumbotron) }}
+{{ $jumbotron := or .Params.jumbotron $section.jumbotron }}
+
+
+{{ with (and $doShow $jumbotron) }}
+
+{{ if (and (not .full_width) (isset . "full_width")) }}<div class="container">{{ end }}
+<div class="jumbotron"
+{{ if .graphic }}
+	style="background:url('{{ .graphic }}') no-repeat center center;
+		background-size:cover; height:{{ with .height }}{{ . | safeCss }}{{ else }}300px{{ end }}
+		{{ with .margin_top }}margin-top:{{ . | safeCss}};{{ end }}"
+{{ end }}
+>
+	<div class="jumbotron-content container" style="{{ with .text_bg_color }}background-color: {{ . | safeCss }};{{ end }}">
+		{{ if .title }}
+			<h1 class="jumbotron-title" {{ with .text_color }}style="color: {{ . | safeCss }}"{{ end }}>
+				{{ .title }}</h1>
+		{{ end }}
+	
+		{{ if .text }}
+			<p class="jumbotron-text" {{ with .text_color }}style="color: {{ . | safeCss }}"{{ end }}>
+				{{ .text }}</p>
+		{{ end }}
+	
+		{{ if .button }}<p class="jumbotron-buttons btn-toolbar">{{ end }}
+		{{ range .button }}
+			<button href="{{ .url }}" class="btn btn-large {{ .class }}" type="button">
+				{{ .text }}</button>
+		{{ end }}
+		{{ if .button }}</p>{{ end }}
+	</div>
+</div>
+{{ if (and (not .full_width) (isset . "full_width")) }}</div>{{ end }}
+
+<!--Checks if parallax parameter isn't specified or it is true, this allows the default to be `true`.-->
+{{ if (or (not (isset . "parallax")) .parallax) }}
+<script>
+	var jumboHeight = $('.jumbotron').outerHeight();
+	function parallax(){
+		var scrolled = $(window).scrollTop();
+		$('.jumbotron').get(0).style.height = (jumboHeight-scrolled) + 'px';
+	}
+	$(window).scroll(function(e){ parallax(); });
+</script>
+{{ end }}
+
+{{ end }}
+
+

@@ -88,26 +88,28 @@ By default, there is no fallback mechanism for individual component
 	component because it breaks the fallback chain for all the settings.
 	In most cases Section `components` configuration is preferred over content's.
 
-#### Fallback rules:
-* Get the `data/sections/<section_name>` file by using the page's `.Section`,
-	`.Data.Singular`, or `.Title` parameter. This allows content pages, list
-	pages, and the homepage to have a configuration file.
-* If this file is not found, the section will be set to `.Params`.
-	This allow configuration to fallback to the site's config, or the content's
-	front matter parameters.
-* Now that the Section configuration is found, it is time to find where the
-	Component configuration is specified.
-* The components configuration is found by getting `$section.components`.
-* If not found, this will fallback to `.Params.components`.
-* Finally, if that `components` data object isn't found it will fallback to
-	`Site.Params.components`.
+### Section Configuration Fallback Order
+	* Cection config file in `data/section/` using `.Section`, `.Data.Singular`,
+		or `.Title` as the section's name
+	* If no file, the section's configuration will set to `.Params` to be
+		defined by the content's front matter
 
-The following is the code used within the component templates which accomplishes
-	the above fallback rules.
+### Component Fallback Order		
+	* `$section.components`
+	* `.Params.components`
+	* `.Site.Params.components`
+
+The following code is used within component templates and accomplishes the
+	above fallback rules.
 ```
-{{ $section := or (index .Site.Data.sections (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ $components := or (or $section.components .Params.components) .Site.Params.components }}
 ```
+
+#### Notes
+The homepage uses 'data/seciton/homepage.toml' instead of the Site's config.
+This allows the homepage to have different components and theming compared to
+	the site-wide default.
 
 Some component configurations break this priority by favoring Content before
 Section. This usually applies when the configuration customizes the content

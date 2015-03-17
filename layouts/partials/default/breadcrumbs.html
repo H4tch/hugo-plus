@@ -1,0 +1,29 @@
+<!--
+	See `components/breadcrumbs.md` in the docs.
+-->
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+
+{{ with (and $section.components.breadcrumbs $section.breadcrumbs) }}
+<!--Hide last defined breadcrumb page if the Title is equal to the current page's title-->
+{{ $hideLast := eq $.Title (index .item (sub (len .item) 1)).title }}
+<div class="section panel panel-default">
+<div class="panel-heading">
+	<div class="row">
+		<div class="voffset-10"></div>
+		<ul class="breadcrumb list-unstyled">
+		{{ $items := .item }}
+		{{ range $index, $item := .item }}
+			{{ if (or (not $hideLast) (ne (print $index) (print (sub (len $items) 1)))) }}
+				<li><a href="{{ .url }}">{{ .title | title }} </a>
+					<span class="divider"></span></li>
+			{{ end }}
+		{{ end }}
+		{{ if (or .append_current_page (not (isset . "append_current_page"))) }}
+			<li class="active">{{ $.Title | title }}</li>
+		{{ end }}
+		</ul>
+		<div class="voffset-30"></div>
+	</div>
+</div>
+{{ end }}

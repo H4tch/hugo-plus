@@ -1,20 +1,30 @@
 
-# This file can be used as a template when creating a new section.
+# This file can be used as a base for customization when creating a new Section.
+# It specifies all of the base parameters rpovided by Hugo-plus for Sections.
 
 title = ""
-is_taxonomy = false
-
-framework = ""
+theme = "default"
 layout = ""
-css_theme = ""
+css = ""
+
+is_taxonomy = false
+content_view = "summary"
 group_by_year = true
+show_meta = false
+
+[taxonomy]
+	page_aggregation = true
 
 [components]
 	jumbotron = true
 	carousel = true
+	thumbnail = true
+	
+	navbar = true
 	page_header = true
 	breadcrumbs = true
 	sidebar = true
+
 #[content]
 	date = true
 	author = true
@@ -31,12 +41,12 @@ group_by_year = true
 # Available widgets to be configured
 
 [jumbotron]	
-[[carousel]]
-	title = ""
-	description =""
-	url = ""
-	
-# Sidebar: todo
+[carousel]
+	graphic = ""
+	[[carousel.slide]]
+		title = ""
+		text = ""
+
 [sidebar]
 [[sidebar.item]]
 	menu = ""
@@ -44,10 +54,8 @@ group_by_year = true
 	url = ""
 	plugin = ""
 
-
 [comments]
 	on_demand = true
-
 
 [breadcrumbs]
 	append_current_page = true

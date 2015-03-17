@@ -1,0 +1,56 @@
+
+layout = "default/layouts/main.html"
+css = ""
+framework = "bootstrap"
+debug_override = false
+
+[meta]
+	name = "Hugo-plus"
+	description = "Default theme"
+	homepage = "http://h4tch.github.com/project/hugo-plus"
+	source_repo = "http://www.github.com/h4tch/hugo-plus"
+	license = "MIT"
+	framework = "bootstrap"
+
+[meta.author]
+	name = "Daniel Hatch (h4tch)"
+	homepage = "http://h4tch.github.com"
+
+[meta.original]
+	theme = "Hugo-plus"
+	author =  "Daniel Hatch"
+	homepage = "http://h4tch.github.com"
+	repo = "http://github.com/h4tch/hugo-plus"
+
+
+
+[article]
+	components = [ "default/layouts/content.html",
+				"<HTML><div class='voffset20'></div>",
+				#"<HTML><hr/>",
+				"default/content/series.html",
+				"default/content/share_buttons.html",
+				"default/content/follow_buttons.html",
+				"default/content/taxonomy_labels.html",
+				"default/content/pager.html" ]
+	summary = ""
+	li = ""
+	list = ""
+
+[page_fold]
+	components = ["default/content/comments.html"]
+
+[header]
+	components = ["default/navbar.html", "default/jumbotron.html", "default/carousel.html"]
+
+[section]
+	components = ["default/page_header.html"]
+
+[aside]
+	components = ["default/sidebar.html"]
+
+[footer]
+	components = ["default/footer.html"]
+
+
+

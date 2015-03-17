@@ -1,0 +1,86 @@
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+	<!--
+	<div class="img-responsive hcenter"><img alt="Advertise here" src="http://lorempixel.com/900/100/abstract"></div>
+	-->
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="message"></div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+						<span class="sr-only">Toggle</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- <a class="navbar-brand" href="{{ $.Site.BaseUrl }}">
+						<img class="img-responsive" src="img/logo.png" ></img></a>
+					 -->
+					<a class="navbar-brand" href="{{ $.Site.BaseUrl }}">{{ $.Site.Params.title }}</a>
+				</div>
+				<!-- How to highlight the section to convey the current page?
+					Something like this? How to concatenate strings?
+						{ { if (eq $.Url "/$name/") }}
+				-->
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav">
+					{{ $node := . }}
+					{{ range $.Site.Menus.nav }}
+						<!-- Check if the menu item is also a menu by checking if there is a menu with the current items name-->
+						<!--{ { if .HasChildren }}-->
+						{{ if (not (index $.Site.Menus (.Name | lower))) }}
+							{{ if $node.HasMenuCurrent "nav" . }}
+								<li><a href="{{ .Url }}" class="nav-link active">{{ .Name }}</a></li>
+							{{ else }}
+								<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ end }}
+						{{ else }}
+						<!--{ { range .Children }}-->
+							<li class="dropdown">
+								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">
+									{{ .Name }}
+								<a class="btn dropdown-toggle" data-toggle="dropdown" style="display:inline-block;">
+									<strong class="caret"></strong></a></a>
+								<ul class="dropdown-menu">
+								{{ range (index $.Site.Menus (.Name | lower)) }}
+									<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+								{{ end }}
+								</ul>
+							</li>
+						{{ end }}
+					{{ end }}
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+					{{ range (index .Site.Menus "nav-right") }}
+						{{ if (not (index $.Site.Menus (.Name | lower))) }}
+							{{ if $node.HasMenuCurrent "nav" . }}
+								<li><a href="{{ .Url }}" class="nav-link active">{{ .Name }}</a></li>
+							{{ else }}
+								<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+							{{ end }}
+						{{ else }}
+							<li class="dropdown">
+								<a href="{{ .Url }}" class="nav-link" style="display:inline-block;padding-right:0px">
+									{{ .Name }}
+								<a class="btn dropdown-toggle" data-toggle="dropdown" style="display:inline-block;">
+									<strong class="caret"></strong></a></a>
+								<ul class="dropdown-menu">
+								{{ range (index $.Site.Menus (.Name | lower)) }}
+									<li><a href="{{ .Url }}" class="nav-link">{{ .Name }}</a></li>
+								{{ end }}
+								</ul>
+							</li>
+						{{ end }}
+					{{ end }}
+					</ul>
+				</div>
+			</div><!--/column-->
+		</div><!--/row-->
+	</div><!--/container-->
+</nav>
+
+

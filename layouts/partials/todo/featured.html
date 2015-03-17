@@ -1,5 +1,5 @@
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ $components := or $section.components .Site.Data.null }}
 {{ $featured := index .Site.Taxonomies.category "featured" }}
 

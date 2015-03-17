@@ -37,6 +37,8 @@ Defined within `data/section/<section_name>.toml`
 	* group_by_year - (not implemented)
 	* continue_message - Customize the message after the summary to invite
 			users to the full post. Ex: "Continue Reading" or "Read full story"
+	* content_view - 
+	* show_meta
 	
 In addition to the above parameters, Section also supports cofigurable Components.
 See [the documentation here](components.md) for more details.

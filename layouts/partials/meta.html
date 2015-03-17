@@ -1,10 +1,9 @@
 
-{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular .Title))) .Params }}
-{{ $components := or $section.components .Site.Data.null }}
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 
 <title>
 	{{ if .IsPage }}{{ .LinkTitle }} - {{ end }}
-	{{ $section.title }} - {{ .Site.Title }}
+	{{ $section.title }} - {{ .Site.Params.title }}
 </title>
 <meta name="description" content="{{ .Site.Params.description }}">
 <meta name="keywords" content="{{ .Site.Params.keywords }}">
@@ -34,7 +33,7 @@
 <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css">
 <!--Check if highlightjs is enabled first-->
-{{ if (and .Params.highlightjs (index $.Site.Data.highlightjs.theme .Params.highlightjs)) }}
+{{ if (and .Params.highlightjs (index .Site.Data.plugins.highlightjs.theme .Params.highlightjs)) }}
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/{{ .Params.highlightjs }}.min.css">
 {{ else }}
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/{{ .Site.Params.highlightjs }}.min.css">

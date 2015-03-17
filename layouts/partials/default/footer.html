@@ -1,0 +1,12 @@
+
+<footer class="footer row clearfix">
+	<div class="col-xs-12 column">
+		<p class="text-muted credit"><small>
+			&copy; {{ .Now.Format "2006" }}
+			{{ with .Site.Author.name }}<a href="{{ $.Site.BaseUrl }}" class="text-muted">{{ . }}</a>.{{end}}
+			{{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
+		</small></p>
+	</div>
+</footer>
+
+

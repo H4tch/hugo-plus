@@ -1,0 +1,36 @@
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+<!-- Doesn't support anything fancy like detecting Section, Category, or Series
+	
+	Section Data:
+		`show_in_recent_posts` = <""|"site"|"category"|"section"|>
+		`shown_in_recent_posts` = <true|false>`
+	
+	Series: Take the five most recent posts in section, if any belongs to the
+		series, include it. `show_in_recent_posts` must be "section".
+-->
+
+{{ if (and .IsPage (and (not .Params.series) $components.pager)) }}
+<div class="voffset10"></div>
+<div class="row clearfix pager">
+	<div class="col-md-6 column">
+	{{ with $.Prev }}
+		<!--
+		<a class="btn btn-primary" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> Prev</a>
+		-->
+		<a class="prev" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> {{ .Title | title }}</a>
+	{{ end }}
+	</div>
+	<div class="col-md-6 column next">
+	{{ with $.Next }}
+		<!--
+		<a class="btn btn-primary pull-right" href="{{ .Permalink }}">Next <i class="fa fa-caret-left"></i></a>
+		-->
+		<a class="pull-right" href="{{ .Permalink }}">{{ .Title | title }} <i class="fa fa-caret-right"></i></a>
+	{{ end }}
+	</div>
+</div>
+{{ end }}
+
