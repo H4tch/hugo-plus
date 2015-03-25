@@ -89,12 +89,12 @@ By default, there is no fallback mechanism for individual component
 	In most cases Section `components` configuration is preferred over content's.
 
 ### Section Configuration Fallback Order
-	* Cection config file in `data/section/` using `.Section`, `.Data.Singular`,
+	* Section config file in `data/section/` using `.Section`, `.Data.Singular`,
 		or `.Title` as the section's name
 	* If no file, the section's configuration will set to `.Params` to be
 		defined by the content's front matter
 
-### Component Fallback Order		
+### Component Fallback Order
 	* `$section.components`
 	* `.Params.components`
 	* `.Site.Params.components`

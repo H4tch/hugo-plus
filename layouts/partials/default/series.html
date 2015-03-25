@@ -15,8 +15,6 @@ This could eventually be used to display either the series a post belongs within
 		list that way.
 -->
 
-<div class="voffset30"></div>
-
 {{ if .Params.series }}
 {{ $pages := where $.Site.Pages.ByDate "Params.series" .Params.series }}
 {{ if $pages }}

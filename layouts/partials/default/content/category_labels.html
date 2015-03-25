@@ -4,7 +4,7 @@
 
 {{ if (and $components.categories .Params.categories) }}
 	{{ range .Params.categories }}
-		<a href="{{ $.Site.BaseUrl }}/categories/{{ . }}"
+		<a href="/categories/{{ . | lower | urlize }}"
 		 class="btn btn-primary btn-xs">{{ . | title }}</a>
 	{{ end }}
 {{ end }}

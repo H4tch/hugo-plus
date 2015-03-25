@@ -2,6 +2,7 @@
 {{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ $theme := index .Site.Data.themes (or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default"))) }}
 
+
 <!-- HEADER -->
 <div class="wrapper">
 {{ range $index, $layout := $theme.header.components }}
@@ -10,49 +11,44 @@
 {{ end }}
 
 
-<!-- SECTION -->
 <div class="main">
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-9 column">
-		{{ range $index, $layout := $theme.section.components }}
-			{{ if (in $layout "<HTML>") }} {{ (replace $layout "<HTML>" "") | safeHtml }}
-			{{ else }} {{ partial $layout $ }} {{ end }}
-		{{ end }}
+	
+<div class="col-md-9 column">
 
-
-<!-- ARTICLE
-	TODO: Make Content/Artcle layout include the components used?
-		Move page_fold to content layout?
--->
-{{ range $index, $layout := $theme.article.components }}
-	{{ if (in $layout "<HTML>") }} {{ (replace $layout "<HTML>" "") | safeHtml }}
+<!-- SECTION -->
+{{ range $index, $layout := $theme.section.components }}
+	{{ if (eq (first 1 $layout) "<" ) }} {{ (replace $layout "<HTML>" "") | safeHtml }}
 	{{ else }} {{ partial $layout $ }} {{ end }}
 {{ end }}
 
-</div><!--/article panel-body-->
-
-
-<!-- PAGE_FOLD -->
-<div class="panel-footer">
-{{ range $index, $layout := $theme.page_fold.components }}
-	{{ if (in $layout "<HTML>") }} {{ (replace $layout "<HTML>" "") | safeHtml }}
-	{{ else }} {{ partial $layout $ }} {{ end }}
+<!-- CONTENT -->
+{{ if .IsPage }}
+	{{ partial (or .Params.content_layout $theme.content_layout) . }}
+	{{ partial $theme.list_layout . }}
+<!-- CONTENT_LIST -->
+{{ else }}
+	{{ partial $theme.list_layout . }}
 {{ end }}
-</div>
 
-</div><!--/panel-->
+	
 </div><!--/col-md-9 column-->
 
 
 
 <!-- ASIDE
-	TODO: Iterate over elements, contain them within rows+columns
+	Iterate over elements, puts them within Bootstrap's grid system
 -->
 <aside class="content-secondary col-md-3 column">
-{{ range $index, $layout := $theme.page_fold.components }}
-	{{ if (in $layout "<HTML>") }} {{ (replace $layout "<HTML>" "") | safeHtml }}
-	{{ else }} {{ partial $layout $ }} {{ end }}
+{{ range $index, $layout := $theme.aside.components }}
+	{{ if (eq (first 1 $layout) "<") }}
+		{{ partial "Cannot embed HTML within ASIDE for current theme." }}
+	{{ end }}
+	{{ $isEven := eq (print (mod $index 2)) "0" }}
+	{{ if $isEven }} <div class="row clearfix"> {{ end }}
+	<div class="col-xs-12 col-sm-6 col-md-12 column"> {{ partial $layout $ }} </div>
+	{{ if (not $isEven) }} </div> {{ end }}
 {{ end }}
 </aside>
 
@@ -70,7 +66,7 @@
 <span class="voffset10">&nbsp;</span>
 <div class="container">
 {{ range $index, $layout := $theme.footer.components }}
-	{{ if (in $layout "<HTML>") }} {{ (replace $layout "<HTML>" "") | safeHtml }}
+	{{ if (eq (first 1 $layout) "<" ) }} {{ (replace $layout "<HTML>" "") | safeHtml }}
 	{{ else }} {{ partial $layout $ }} {{ end }}
 {{ end }}
 </div>

@@ -9,7 +9,7 @@ is_taxonomy = true
 	breadcrumbs = true
 	sidebar = true
 #[content]
-	date = false
+	data = false
 	author = false
 	series = false
 	toc = false

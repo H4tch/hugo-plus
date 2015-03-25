@@ -1,0 +1,15 @@
+<!--Renders a single list element for a Page with an accompanying Date.-->
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $theme := index .Site.Data.themes (or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default"))) }}
+{{ $list := or (and .IsPage (and $section.is_taxonomy $section.content_aggregation)) $section }}
+
+
+<a class="list-group-item" href="{{ .Permalink }}">
+	<span class="text-primary">{{ .Title | title }}</span>
+	<span class="pull-right">
+		{{ $date := .Date }}
+		{{ with (or $list.date_format $.Site.Params.date_format_short) }}{{ $date.Format . }}
+		{{ else }}{{ $date.Format "Jan 2" }}{{ end }}
+	</span>
+</a>
+

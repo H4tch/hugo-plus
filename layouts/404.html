@@ -1,16 +1,16 @@
+
+{{ $section := or .Site.Data.section.site .Site.Params }}
+{{ $theme := index .Site.Data.themes (or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default"))) }}
+{{ $layout := or $section.layout $theme.layout }}
+
 {{ partial "header.html" . }}
 
-{{ partial "main_begin.html" . }}
-	<div class="voffset-20"></div>
-	<div class="container"><h1>404 - Page Not Found</h1></div>
-	<div class="section panel panel-default">
-		<div class="article panel-body">
-			<div class="voffset-20"></div>
-			<div class="voffset10"></div>
-		</div>
-		<div class="panel-footer"></div>
-	</div>
-{{ partial "main_end.html" . }}
+{{ if $layout }}
+	{{ partial $layout . }}
+{{ else }}
+	<h4>Failed to find layout '{{ $layout }}'<h4>
+	<p>The 404 page's layout is defined within 'data/section/site.toml' or '.Site.Params'.</p>
+{{ end }}
 
 {{ partial "footer.html" . }}
 

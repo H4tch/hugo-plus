@@ -1,6 +1,25 @@
 
 title = "Authors"
 is_taxonomy = true
+taxonomy = "author"
+is_multi_term = false
+content_view = "summary"
+
+date_format = "2 Jan 2006"
+group_by_year = true
+show_meta = false
+paginiation = false
+recent_posts = 10
+
+aggregate_content = true
+[aggregation]
+	content_view = "list"
+	show_meta = false
+	date_format = "2 Jan"
+	group_by_year = true
+	paginiation = false
+	recent_posts = 10 
+	title = "Posts"
 
 [components]
 	author_thumbnail = true
@@ -9,6 +28,7 @@ is_taxonomy = true
 	sidebar = true
 	breadcrumbs = true
 	page_header = true
+	page_content_header = false
 #[content]
 	date = false
 	author = false

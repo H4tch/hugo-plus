@@ -4,9 +4,9 @@
 
 {{ if (and (ne .Type "meta") $components.comments) }}
 <a style="text-decoration:none;" class="text-info" href="{{ .Permalink }}#comments">
-			<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.title "-" .Title) | lower | urlize }}"></span>
-			<!-- style="font-size:150%;margin-top:1px;" -->
-			<i class="fa fa-comment-o pull-right">&nbsp;</i>
-		</a>
+	<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.title "-" .Title) | lower | urlize }}"></span>
+	<!-- style="font-size:150%;margin-top:1px;" -->
+	<i class="fa fa-comment-o pull-right">&nbsp;</i>
+</a>
 {{ end }}
 

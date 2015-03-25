@@ -12,7 +12,7 @@
 <a href="https://gratipay.com/{{ . }}" title="Support me on Gratipay" class="btn btn-sm btn-default share-btn fa fa-gratipay bg-gratipay" target="_blank"></a>
 {{ end }}
 
-{{ with .Params.flattr }}
+{{ with .Site.Params.flattr }}
 <a href="https://flattr.com/submit/auto?user_id={{ . }}&url={{ $.Permalink }}{{ with $.Title }}&title={{ . }}{{ end }}{{ with $.Description }}&description={{ . }}{{ end }}{{ with $.Params.categories }}&tags={{ range . }}{{ . }},{{ end }}{{ end }}{{ with $.Params.tags }}{{ range . }}{{ . }},{{ end }}{{ end }}{{ with $.Params.flattr_category }}&category={{ . }}{{ end }}" title="Flattr this" class="btn btn-sm btn-default share-btn bg-flattr" target="_blank"><img src="/img/flattr-white.png"></img></a>
 {{ end }}
 

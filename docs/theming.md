@@ -62,26 +62,27 @@ However, any plugins with custom layouts should adhere to the rules and data mod
 **(Should the default implementation handle the logic while allowing Markup injection)**
 Plugin implementation should be tied to the layout not just the theme...
 
-Custom HTML code can be inserted into the document by appending `<HTML>` to the
-	plugin's string.
+The string for a layout is treated as HTML code if it begins with a left angle
+	bracket (`<`).
+If you want to insert HTML code that doesn't begin with that bracket, you can
+	insert `<HTML>` in the beginning and it will automatically be removed.
 
 Example, note the use of a multi-line TOML string for more advance HTML
 	template code.
 ```
 layouts = [
-	"<HTML><div class="voffset20"></div>",
+	"<HTML><div class='voffset20'></div>",
 	"layouts/default_content.html",
-	"""<HTML>
-		<div class="column col-xs-6">
-			{{ partial "default/category_labels.html" . }}
-		</div>
-		<div class="column col-xs-6">
-			{{ partial "default/tag_labels.html" . }}
-		</div>
-	""",
+	"<HTML><div class='column col-xs-6'>",
+	,"default/category_labels.html",
+	"<HTML></div><div class='column col-xs-6'>",
+	"default/tag_labels.html",
+	"<HTML></div>",
 ]
 ```
-
+Note, template code is within any embedded `<HTML>` text will not be executed.
+If you have more complex HTML code, you can use multi-line strings within TOML
+	by ecasing the text within 3 quotes `"""`.
 
 # CSS Themes
 Content

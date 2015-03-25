@@ -30,6 +30,7 @@ h2,h3,h4,h5,h6 { color: #444; }
 .bg-gratipay{ background-color: #339966; }
 .bg-flattr { background-color: #F67C1A; }
 .bg-twitter { background-color: #00ADE8; }
+.bg-instagram { background-color: #375989; }
 .bg-facebook { background-color: #3D5B96; }
 .bg-google-plus { background-color: #DD3F34; }
 .bg-linkedin { background-color: #0E76A8; }
@@ -38,6 +39,14 @@ h2,h3,h4,h5,h6 { color: #444; }
 .bg-hacker-news { background-color: #FF6600; }
 .bg-tumblr { background-color: #34465D; }
 .bg-email { background-color: #7D3697; }
+.bg-github { background-color: #000; }
+.bg-bitbucket { background-color: #1F5182; }
+.bg-stackoverflow { background-color: #F37A21; }
+.bg-vimeo { background-color: #1AB7EA; }
+.bg-twitch { background-color: #6441A5; }
+.bg-hitbox { background-color: #ACE600; }
+.bg-slack { background-color: #77D4B7; }
+
 
 .popup-container {
 	position: relative;

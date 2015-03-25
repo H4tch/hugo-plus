@@ -31,6 +31,8 @@ Nothing should be left to magic.
 # Features
 * Theming
 	* Fully responsive layouts and components built with Bootstrap
+	* Themes built from layout files with portions populated with components
+	* Possible to change or vary layout without affecting components
 
 * Components
 	* Jumbotron
@@ -104,7 +106,6 @@ Futher documentation can be found at [docs/README.md](docs/README.md).
 # Todo
 * Improved customiation
 	* Theming
-		* Specify layout files for section, content views, and components
 		* CSS and JS injection per Content, Section, and site-wide
 	* Navbar
 	* Sidebar

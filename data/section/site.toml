@@ -1,6 +1,7 @@
 
 title = "Home"
 is_taxonomy = false
+group_by_year = true
 
 [components]
 	jumbotron = true

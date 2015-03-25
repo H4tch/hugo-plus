@@ -13,7 +13,7 @@
 	 style="min-width:0px" aria-labelledby="tag-menu" role="menu">
 	{{ range .Params.tags }}
 		<li role="presentation">
-		<a href="{{ $.Site.BaseUrl }}/tags/{{ . }}"
+		<a href="/tags/{{ . | lower | urlize }}"
 		 role="menuitem">{{ . }}</a></li>
 	{{ end }}
 	</ul>

@@ -6,32 +6,40 @@ title = ""
 theme = "default"
 layout = ""
 css = ""
+#content_override = false # Allow the Content Page to override the Section's theme
 
 is_taxonomy = false
 content_view = "summary"
+
+date_format = "2 Jan"
 group_by_year = true
 show_meta = false
+paginiation = false
+recent_posts = 10 
 
-[taxonomy]
-	page_aggregation = true
+
+aggregate_content = true
+[aggregation]
+	group_by_year = true
+	show_meta = false
+	paginiation = false
+	recent_posts = 10 
+	title = ""
+
 
 [components]
 	jumbotron = true
 	carousel = true
-	thumbnail = true
-	
-	navbar = true
-	page_header = true
 	breadcrumbs = true
-	sidebar = true
-
-#[content]
+	page_header = true
+	page_content_header = true
+	
 	date = true
 	author = true
 	series = true
+	thumbnail = true
 	toc = false
 	share_buttons = true
-	follow_buttons = true
 	categories = true
 	tags = true
 	pager = true
@@ -65,6 +73,12 @@ show_meta = false
 [[breadcrumbs.item]]
 	title = "Tags"
 	url = "/tags/"
+
+[page_header]
+	title = ""
+
+[page_header_content]
+	title = ""
 
 
 

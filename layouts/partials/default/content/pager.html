@@ -1,36 +1,43 @@
 
+<!--Display Previous and Next content articles within the current Section of Series.
+	Can be enabled/displad using `components.pager`.
+	Will display "Return to <section name>" if either prev or next isn't found.
+-->
+
 {{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ $components := or $section.components .Site.Data.null }}
 
-<!-- Doesn't support anything fancy like detecting Section, Category, or Series
-	
-	Section Data:
-		`show_in_recent_posts` = <""|"site"|"category"|"section"|>
-		`shown_in_recent_posts` = <true|false>`
-	
-	Series: Take the five most recent posts in section, if any belongs to the
-		series, include it. `show_in_recent_posts` must be "section".
--->
+{{ $pages := or (and .Params.series (where .Site.Pages.ByDate ".Params.series" .Params.series)) (index .Site.Sections .Section).Pages.ByDate }}
 
-{{ if (and .IsPage (and (not .Params.series) $components.pager)) }}
-<div class="voffset10"></div>
-<div class="row clearfix pager">
+{{ if $components.pager }}
+
+<div class="row clearfix">
+{{ range $index, $page := $pages }}{{ if (eq .Title $.Title) }}
+	{{ $minusOne := or (and (ne $index 0) (sub $index 1)) 0 }}
+	{{ $plusOne := or (and (le $index (sub (len $pages) 2)) (add $index 1)) 0 }}
+	{{ $prev := and (ne $index 0) (index $pages $minusOne) }}
+	{{ $next := and (ne $plusOne 0) (index $pages $plusOne) }}
 	<div class="col-md-6 column">
-	{{ with $.Prev }}
-		<!--
-		<a class="btn btn-primary" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> Prev</a>
-		-->
-		<a class="prev" href="{{ .Permalink }}"><i class="fa fa-caret-left"></i> {{ .Title | title }}</a>
+	{{ if $prev }}
+		<a class="pull-left" href="{{ $prev.Permalink }}">
+			<i class="fa fa-caret-left"></i> {{ $prev.Title | title }}</a>
+	{{ else if (or $prev $next) }}
+		<a class="pull-left" href="/{{ $.Section }}">
+			<i class="fa fa-caret-left"></i> Return to {{ $.Section | title }}</a>
 	{{ end }}
 	</div>
-	<div class="col-md-6 column next">
-	{{ with $.Next }}
-		<!--
-		<a class="btn btn-primary pull-right" href="{{ .Permalink }}">Next <i class="fa fa-caret-left"></i></a>
-		-->
-		<a class="pull-right" href="{{ .Permalink }}">{{ .Title | title }} <i class="fa fa-caret-right"></i></a>
+	<div class="col-md-6 column">
+	{{ if $next }}
+		<a class="pull-right" href="{{ $next.Permalink }}">
+			{{ $next.Title | title }} <i class="fa fa-caret-right"></i></a>
+	{{ else if (or $prev $next) }}
+		<a class="pull-right" href="/{{ $.Section }}">
+			Return to {{ $.Section | title }} <i class="fa fa-caret-right"></i></a>
 	{{ end }}
 	</div>
+{{ end }}{{ end }}
 </div>
+
 {{ end }}
+
 

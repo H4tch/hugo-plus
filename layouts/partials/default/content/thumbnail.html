@@ -1,0 +1,18 @@
+
+{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+{{ $ccomponents := or .Params.components $components }}
+
+<!-- Thumbnail must be set, components.thumbnail is true, or it is not set by
+		content and it is true within section.
+-->
+{{ $thumbnail := or .Params.thumbnail $section.thumbnail }}
+{{ if (and $thumbnail (or $ccomponents.thumbnail (and (not (isset $ccomponents "thumbnail")) $components.thumbnail) )) }}
+	<span class="thumbnail">
+		<a href="{{ .Permalink }}">
+		<img src="{{ $thumbnail }}" title="{{ .Params.title }}"
+		 class="img-responsive center-block"></a>
+	</span>
+{{ end }}
+
+
