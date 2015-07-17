@@ -10,11 +10,7 @@ website = ""
 job_title = ""
 avatar = ""
 
-continue_message = ""
+summary_continue_reading = ""
 flattr_category = "people"
-
-[component]
-	author_thumbnail = true
-	comments = false
 +++
 

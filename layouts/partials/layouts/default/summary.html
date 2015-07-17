@@ -1,0 +1,70 @@
+<!--This template renders the Summary of a Content Page, including its metadata
+	and surrounding Plugins(defined by the layout)..
+ -->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $defaultLayout := .Site.Data.addons.default.layout }}
+{{ $disabled := or .Params.disabled (or $section.disabled $site.disabled) }}
+
+{{ range $index, $comp := $layout.summary.before }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+
+{{ with $.Scratch.Get "insert_year" }}
+	<div class="container"><h1 class="year year-{{ . }}">{{ . }}</h1></div>
+{{ end }}
+
+<div class="panel panel-default">
+<div class="panel-body content summay">
+<div class="clearfix content-block summary-block">
+	{{ partial "components/default/content/thumbnail.html" . }}
+	<a href="{{ .Permalink }}"><h1 class="content-title summary-header">{{ .Title | title }}</h1></a>
+	{{ partial "components/default/content/metadata.html" . }}
+
+<!-- SUMMARY -->
+	{{ $view := or $section.content_view $site.content_view }}
+	{{ if (eq $view "content") }} {{ .Content }}
+	{{ else }} {{ .Summary }} {{ end }}
+</div><!--/content-header-->
+	
+	{{ range $index, $comp := $layout.summary.after }}
+		{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+			{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+		{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+		{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+			{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+			{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+			{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+	
+	</div><!--/article panel-body-->
+	
+<!-- SUMMARY PAGE_FOLD -->
+	<div class="panel-footer content-footer summary-footer">
+	{{ range $index, $comp := $layout.summary.page_fold }}
+		{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+			{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+		{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+		{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+			{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+			{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+			{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+	</div>
+	
+</div><!--/panel-->
+

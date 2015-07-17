@@ -1,6 +1,6 @@
 
 # Embedded Youtube Video
-This shortcode allows you to embed a video onto the page,
+This Shortcode allows you to embed a Video onto the page,
 
 # Usage
 ```
@@ -26,7 +26,7 @@ Magnific popup uses 'iframe_src' to set link.
 	How does it detect the src otherwise though?
 	maybe uses 'data-mfp-src'?
 
-Responsive objects is supported by iframe, video, embed, object
+Responsive objects are supported by iframe, video, embed, object
 ```
 <div class="embed-responsive embed-responsive-16by9">
 	<iframe class="embed-responsive-item" src="..."></iframe>

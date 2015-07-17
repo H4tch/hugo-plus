@@ -1,0 +1,12 @@
+name = "Projects"
+taxonomy = "project"
+disabled = ["jumbotron","pager","comments","share_links",]
+[metadata]
+	date = false
+	author = false
+	series = true
+
+[msg]
+	summary_continue_reading = "View Project »"
+	summary_goto_page = "View Project »"
+

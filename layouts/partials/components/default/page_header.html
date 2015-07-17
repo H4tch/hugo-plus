@@ -1,0 +1,14 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $pageHeader := or $section.page_header $site.page_header }}
+
+{{ if or $.IsNode $pageHeader.show_on_content_page }}
+<style>
+	.well > .page-header { border-bottom:0; }
+	.well + .breadcrumb-container { margin-top:-25px; }
+</style>
+<div class="well well-sm">
+	<h1 class="page-header">{{ (or $pageHeader.title (or $section.name "")) | title }}</h1>
+</div>
+{{ end }}
+

@@ -13,12 +13,9 @@ id_reddit = ""
 id_hackernews = ""
 related = []
 
-continue_message = ""
+summary_continue_reading = ""
 # Syntax highlighting theme. See `.Site.Data.highlightjs.toml`
 highlightjs = ""
 flattr_category = "text"
-
-[component]
-	comments = true
 +++
 

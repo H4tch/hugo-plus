@@ -1,0 +1,58 @@
+<!-- This Layout can render the Content on a Section/Node or Content Page. -->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $defaultLayout := .Site.Data.addons.default.layout }}
+{{ $disabled := or .Params.disabled (or $section.disabled $site.disabled) }}
+
+{{ range $index, $comp := $layout.content.before }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+<div class="panel panel-default">
+<div class="panel-body content">
+<div class="clearfix content-block">
+	{{ partial "components/default/content/thumbnail.html" . }}
+	<a href="{{ .Permalink }}"><h1 class="content-title">{{ .Title | title }}</h1></a>
+	{{ partial "components/default/content/metadata.html" . }}
+
+<!-- CONTENT -->
+	{{ .Content }}
+</div><!--/content-block clearfix-->
+	{{ range $index, $comp := $layout.content.after }}
+		{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+			{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+		{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+		{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+			{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+			{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+			{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+</div><!--/article panel-body-->
+
+<!-- CONTENT PAGE_FOLD -->
+<div class="panel-footer content-footer">
+	{{ range $index, $comp := $layout.content.page_fold }}
+		{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+			{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+		{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+		{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+			{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+			{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+			{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+</div>
+
+</div><!--panel panel-default-->

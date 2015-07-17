@@ -1,0 +1,112 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $bootswap := .Site.Data.addons.bootswap.plugin }}
+
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+{{ $background := or .Params.background (or $section.background (or $site.background $theme.background)) }}
+
+<div class="jumbotron bootswap">
+<style>
+.bootswap {
+	min-width:100%!important;
+	padding:10px;
+	border-bottom:5px solid rgba(0,0,0,.3);
+}
+.bootswap-container { max-width:1024px !important; }
+.themeshot-container { margin-top:5px; }
+.themeshot-name { margin-top:0px; }
+.themeshot-row {  }
+.themeshot-row > .column { padding:5px; }
+</style>
+
+
+<div class="container bootswap-container">
+<div class="row clearfix">
+<div class="col-xs-6 col-md-4 column">
+	<div class="center-block thumbnail">
+		<a class="themeshot-preview"><img src="" title="" class="img-responsive themeshot-thumbnail"></a>
+	</div>
+</div>
+<div class="col-xs-6 col-md-4 column">
+	<h1 class="themeshot-name"></h1>
+	<small class="themeshot-description"></small>
+	<br>
+	<div class="dropdown">
+		<button type="button" class="btn btn-info dropdown-toggle" id="themeshot-downloads"
+		 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Download <span class="caret"></span></button>
+		 <ul class="dropdown-menu" aria-labelledby="themeshot-downloads">
+		</ul>
+	</div>
+	<br>
+	<div class="themeshot-css-cdn" style="display:none;">
+		<textarea rows="1" type=text onclick="this.focus();this.select()" readonly="readonly"></textarea>
+		<div class="text-muted"><small>CDN Hosted CSS File</small></div>
+	</div>
+	<br>
+	<a class="themeshot-less"></a> <a class="themeshot-less-variables"></a>
+</div>
+<div class="col-xs-12 col-md-4 column no-pad">
+	<div class="btn-group bg-controls">
+		<label href="#/" onclick="changeCSS(-1)" class="btn btn-default btn-sm">Prev</label>
+		<label href="#/" onclick="changeCSS(1)" class="btn btn-primary btn-sm">Next</label>
+	</div>
+	<br>
+	<div class="themeshots-container">
+		<div class="row themeshot-row"></div>
+		<div class="row themeshot-row"></div>
+		<div class="row themeshot-row"></div>
+	</div>
+</div>
+</div><!--row-->
+
+<br>
+
+<div class="row">
+
+<div class="col-sm-4 column">
+	<div class="well well-sm">
+		Navbar
+		<div class="btn-group" data-toggle="buttons">
+			<button onclick="toggleNav(this);" class="btn btn-sm btn-default">
+				<input id="optionNavInverse" type="checkbox">Inverse</button>
+		</div>
+		<br>
+	</div><!--well-->
+</div><!--col-->
+
+<div class="col-sm-4 column">
+	<div class="well well-sm clearfix">
+		<!--
+		<input onclick="toggleBG(this);" type="checkbox" {{ if $background }}checked{{ end }}>
+		-->
+		<a href="{{ $background }}" class="bg-download" download><i class="fa fa-download"></i></a>
+		Background
+		<div class="btn-group bg-controls">
+			<label href="#/" onclick="changeBG(-1)" class="btn btn-default btn-sm">Prev</label>
+			<label href="#/" onclick="changeBG(1)" class="btn btn-primary btn-sm">Next</label>
+		</div>
+		<br>
+		<div class="btn-group" data-toggle="buttons">
+			{{/* if $background }}checked{{ end */}}
+			<button onclick="toggleBG(this);" class="btn btn-sm btn-default">
+				<input id="optionBGDisable" type="radio">Disabled</button>
+			<button onclick="bgTheme(1);" class="btn btn-sm btn-default active">
+				<input id="optionBGLight" type="radio" checked>Light</button>
+			<button onclick="bgTheme(0);console.log('clickedy');" class="btn btn-sm btn-default">
+				<input id="optionBGDark" type="radio">Dark</button>
+			<button onclick="bgTheme(2);" class="btn btn-sm btn-default">
+				<input id="optionBGColor" type="radio">Color</button>
+		</div>
+		<br>
+	</div><!--well-->
+</div><!--col-->
+
+</div><!--row-->
+
+</div><!--container-->
+</div><!--jumbotron-->
+
+
+{{ partial "plugins/bootswap.html" . }}
+

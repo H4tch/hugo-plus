@@ -1,0 +1,6 @@
+[meta]
+	css = []
+	js = []
+	body_inline = ["plugins/google_analytics.html"]
+
+

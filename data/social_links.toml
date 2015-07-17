@@ -1,0 +1,82 @@
+# Supported Social Links:
+# 	[ "bitbucket", "facebook", "flattr", "github", "google_plus", "gratipay",
+#	  "hitbox", "instagram", "linkedin", "pinterest", "rss", "stack_overflow",
+#	  "twitch", "twitter", "youtube" ]
+
+
+[bitbucket]
+	title = "Bitbucket"
+	url = "//bitbucket.org/"
+	append_id = true
+
+[facebook]
+	title = "Facebook"
+	url = "//www.facebook.com/"
+	append_id = true
+
+[flattr]
+	title = "Flattr"
+	url = "//www.flattr.com/profile/"
+	append_id = true
+
+[github]
+	title = "Github"
+	url = "//www.github.com/"
+	append_id = true
+
+[google_plus]
+	title = "Google+"
+	url = "//plus.google.com/u/0/"
+	append_id = true
+
+[gratipay]
+	title = "Gratipay"
+	url = "//gratipay.com/"
+	append_id = true
+
+[hitbox]
+	title = "Hitbox"
+	url = "//www.hitbox.tv/"
+	append_id = true
+
+[instagram]
+	title = "Instagram"
+	url = "//www.instagram.com/"
+	append_id = true
+
+[linkedin]
+	title = "LinkedIn"
+	url = "//www.linkedin.com/in/"
+	append_id = true
+
+[pinterest]
+	title = "Pinterest"
+	url = "//www.pinterest.com/"
+	append_id = true
+
+[rss]
+	title = "Rss Feed"
+	url = "$rss"
+	append_id = true
+
+[stack_overflow]
+	title = "StackOverflow"
+	url = "//http://stackoverflow.com/users/"
+	append_id = true
+
+[twitch]
+	title = "Twitch"
+	url = "//www.twitch.tv/"
+	append_id = true
+
+[twitter]
+	title = "Twitter"
+	url = "//twitter.com/"
+	append_id = true
+
+[youtube]
+	title = "Youtube"
+	url = "//www.youtube.com/"
+	append_id = true
+
+

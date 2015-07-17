@@ -1,0 +1,14 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $profiles := or (index .Site.Data.profiles $section.name) .Site.Data.profiles.site }}
+{{ $disqusId := or .Params.profiles.disqus (or $profiles.disqus .Site.DisqusShortname) }}
+
+{{ if and (not .Params.meta) (not ($.Scratch.Get "comments_disabled")) }}
+<a href="{{ .Permalink }}#comments" class="text-info comment-count">
+	{{ if $disqusId }}
+		<span class="disqus-comment-count" data-disqus-identifier="{{ (print $section.name "-" .Title) | lower | urlize }}"></span>
+	{{ end }}
+	<span class="fa fa-comment-o"></span>
+</a>
+{{ end }}
+

@@ -1,0 +1,30 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+{{ $metadata := or .Params.metadata (or $section.metadata $site.metadata) }}
+{{ $authorPage := index (where .Site.Sections.author.Pages ".Params.term" ((or .Params.author (or $section.author $site.author))|lower|urlize)) 0 }}
+
+<!--TODO Ability to construct custom Metadata components (date, author, section, series)-->
+{{ if (or (or $metadata.date $metadata.author) (and $metadata.series .Params.series)) }}
+<aside class="content-metadata">
+	{{ if $metadata.date }}
+		{{ with $site.date.format }}
+			{{ if (ne ($.Date.Format "2006") "0001") }}
+				<date>{{ $.Date.Format . }} </date>
+			{{ end }}
+		{{ else }}<date>{{ .Date.Format "2 Jan 2006" }}</date>
+		{{ end }}
+	{{ end }}
+	{{ if $metadata.author }}
+		{{ if $metadata.date }} - {{ end }}
+		{{ $author := $authorPage.Params.name }}
+		<a href="{{ $authorPage.Permalink }}" class="author">{{ $author }}</a>
+		
+		{{ with .Params.series }}
+			{{ if (or $metadata.date $metadata.author) }} - {{ end }}
+			<a href="{{ $.Site.BaseURL }}/series/{{ . | lower | urlize }}">{{ . | title }}</a>
+		{{ end }}
+	{{ end }}
+</aside>
+{{ end }}
+

@@ -1,39 +1,27 @@
-<!--
-	Embed a 'post' within the content area. This is designed for the 'stream'
+<!--Embed a 'post' within the content area. This is designed for the 'stream'
 		section. Posts can be embedded within other posts.
 	See documentation for more details:
 		'docs/shortcodes/stream.md'
 -->
-
 <div class="list-group-item stream-content">
 	{{ with .Get "date" }}
-		<small class="pull-right stream-date">
-		<div class="voffset10"></div>{{ . | safeHtml }}</small>
+		<small class="pull-right stream-date" style="margin-top:10px;">
+			{{ . | safeHTML }}</small>
 	{{ end }}
-	
 	<h4 class="stream-text {{ .Get "class" }}"
-		{{ with .Get "style" }}style="{{ . | safeCss }}"{{ end }}
-		{{ with .Get "id" }}id="{{ . }}"{{ end }}
-	>
+		{{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }}
+		{{ with .Get "id" }}id="{{ . }}"{{ end }}>
 	{{ if .Get "link" }}
 		{{ if .Get "link_text" }}
-			{{ .Get "text" | safeHtml }} -
-			<a href="{{ .Get "link" }}">{{ .Get "link_text" | safeHtml }}</a>
+			{{ .Get "text" | safeHTML }} -
+			<a href="{{ .Get "link" }}">{{ .Get "link_text" | safeHTML }}</a>
 		{{ else }}
-			<a href="{{ .Get "link" }}">{{ .Get "text" | safeHtml }}</a>
+			<a href="{{ .Get "link" }}">{{ .Get "text" | safeHTML }}</a>
 		{{ end }}
 	{{ else }}
-		{{ .Get "text" | safeHtml }}
+		{{ .Get "text" | safeHTML }}
 	{{ end }}
 	</h4>
-	
-	{{ if .Inner }}
-	<div class="stream-inner">
-		<!--<hr/>-->
-		<div class="voffset20"></div>
-		{{ .Inner }}
-	</div>
-	{{ end }}
+	{{ with .Inner }}<div class="stream-inner">{{ . }}</div>{{ end }}
 </div>
-
 

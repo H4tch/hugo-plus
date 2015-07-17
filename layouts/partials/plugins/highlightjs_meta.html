@@ -1,0 +1,19 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+
+{{ $highlightjs := or .Params.highlightjs (or $section.highlightjs $site.highlightjs) }}
+{{ $highlightjs_dark := or .Params.highlightjs_dark (or $section.highlightjs_dark $site.highlightjs_dark) }}
+
+{{ $syntaxTheme := or (and $theme.is_dark $highlightjs_dark) $highlightjs }}
+
+{{ if not (index .Site.Data.addons.highlightjs.plugin.theme $syntaxTheme) }}
+	{{ partial ("Invalid HighlighJS Theme Set: " $syntaxTheme) . }} 
+{{ end }}
+
+{{ if $syntaxTheme }}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/{{ $syntaxTheme }}.min.css">
+{{ else }}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+{{ end }}
+

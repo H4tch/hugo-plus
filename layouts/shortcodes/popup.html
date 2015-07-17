@@ -1,22 +1,18 @@
-<!--
-	This popup shortcode creates a popup containing custom inline HTML code.
+<!--This popup shortcode creates a popup containing custom inline HTML code.
 	See documentation for more details:
 		'docs/shortcodes/popup.md'
 -->
-
-
 {{ if .Get "id" }}
 <div id="{{ .Get "id" }}" class="container popup-container mfp-hide {{ .Get "popup_class" }}"
-{{ with .Get "popup_style" }}style="{{ . | safeCss }}"{{ end }}>
+{{ with .Get "popup_style" }}style="{{ . | safeCSS }}"{{ end }}>
 	{{ .Inner }}
 </div>
 
 <!-- Link that opens the popup -->
 <a href="" class="magnific-popup mfp-inline {{ .Get "link_class" }}" data-mfp-src="#{{ .Get "id" }}"
-{{ with .Get "link_style" }}style="{{ . | safeCss }}"{{ end }}>
-	{{ .Get "link_text" | safeHtml }}
-	{{ .Get "link_html" | safeHtml }}
+{{ with .Get "link_style" }}style="{{ . | safeCSS }}"{{ end }}>
+	{{ .Get "link_text" | safeHTML }}
+	{{ .Get "link_html" | safeHTML }}
 </a>
 {{ end }}
-
 

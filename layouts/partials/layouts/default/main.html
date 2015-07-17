@@ -1,0 +1,121 @@
+<!--The Layout Config File defines which components to load for each pre-defined
+		section containers that make up the page.
+	This is the main Template that provides the overall page structure and
+		contains the logic for instantiating the Components.
+	To keep consistent Layout and Theme Features, please support the same HTML
+		classes and Component Container sections (for Plugins).
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $defaultLayout := .Site.Data.addons.default.layout }}
+{{ $disabled := or .Params.disabled (or $section.disabled $site.disabled) }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+
+{{ $bg := or .Params.background (or $section.background (or $site.background $theme.background)) }}
+{{ $bg_dark := or .Params.background_dark (or $section.background_dark (or $site.background_dark $theme.background_dark)) }}
+{{ $background := or (and $theme.is_dark $bg_dark) $bg }}
+<div class="wrapper" {{ with $background }}style="background-image: url('{{ . }}');"{{ end }}>
+
+<!--HEADER-->
+{{ $.Scratch.Set "layout_container" "header" }}
+{{ range $index, $comp := $layout.header.components }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+<div class="main">
+<div class="container">
+	<div class="row clearfix">
+	
+<div class="col-xs-12 col-md-9 column">
+<!--SECTION-->
+{{ $.Scratch.Set "layout_container" "section" }}
+{{ range $index, $comp := $layout.section.components }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{/* $.Scratch.Set "list_type" $listType */}}
+{{ if .IsPage }}
+<!--CONTENT-->
+	{{ $.Scratch.Set "layout_container" "content" }}
+	{{ range $index, $comp := $layout.content.components }}
+		{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+			{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+		{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+		{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+			{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+			{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+			{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+	
+	{{ partial (print "layouts/" (or .Params.content_layout $layout.views.content)) . }}
+	{{ partial (print "layouts/" $layout.views.list) . }}
+{{ else }}
+<!--CONTENT_LIST-->
+	{{ partial (print "layouts/" $layout.views.list) . }}
+{{ end }}	
+</div><!--/col-md-9 column-->
+
+<!--ASIDE-->
+<aside class="aside col-xs-12 col-md-3 column">
+{{ $.Scratch.Set "layout_container" "aside" }}
+{{ $.Scratch.Set "aside_components" 0 }}
+{{ range $index, $comp := $layout.aside.components }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ $isEven := eq (print (mod ($.Scratch.Get "aside_components") 2)) "0" }}
+		{{ if $isEven }} <div class="row clearfix"> {{ end }}
+		<div class="col-xs-12 col-sm-6 col-md-12 column">
+			{{ if $comp }}
+				{{ $.Scratch.Add "aside_components" 1 }}
+				{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+				{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+				{{ end }}
+			{{ end }}
+		</div>
+		{{ if (not $isEven) }} </div> {{ end }}
+	{{ end }}
+{{ end }}
+</aside>
+
+</div><!--/row-->
+</div><!--/container-->
+</div><!--/main-->
+</div><!--/wrapper-->
+
+<!--FOOTER-->
+{{ $.Scratch.Set "layout_container" "footer" }}
+{{ range $index, $comp := $layout.footer.components }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+

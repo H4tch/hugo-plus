@@ -1,14 +1,15 @@
+# This file specifies the metadata of this Hugo theme
 
-author = "Daniel Hatch (h4tch)"
 name = "Hugo-plus"
+author = "Daniel Hatch (h4tch)"
 homepage = "http://h4tch.github.com/project/hugo-plus"
-description = "Modular feature-full website built with Bootstrap"
+description = "Fully functional and customizable static website platform."
 source_repo = "http://www.github.com/h4tch/hugo-plus"
 license = "MIT"
-licenselink = "LICENSE"
+licenselink = "LICENSE.md"
 
 tags = ["blog",""]
-features = ["blog","project","authors","series","pages"]
+features = ["blog","project","authors","series","streams","themes","layouts","components","plugins"]
 
 [author]
 	name = "Daniel Hatch"

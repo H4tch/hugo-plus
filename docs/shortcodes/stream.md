@@ -1,11 +1,12 @@
 
 # Stream Posts
-Embed a 'post' within the content area. This is designed for the 'stream'
-section. Posts can be embedded within other posts.
+This Shortcode embeds a 'post' within the content area. This is designed for
+the 'stream' section, but could have other uses within other Content types.
+Stream instances and other Shortcodes may be embedded a Stream.
 
 # Usage
 ```
-	{{< stream text="" date="" >}}{{< /stream >}}
+	{{< stream text="Stream" date="" >}}{{< /stream >}}
 ```
 Or to embed custom inline HTML or another shortcode:
 ```
@@ -17,7 +18,7 @@ Or to embed custom inline HTML or another shortcode:
 
 # Parameters
 * text - Message body of the post, may contain
-* date - Date of the post in the format "Jan 02 2006"
+* date.format - Date of the post in the format "Jan 02 2006"
 * link - Turns the text(unless link_text is defined) into a link to this address
 * link_text - Text added at the end of `text` and links to `link`.
 		Won't be shown if `link` isn't set
@@ -30,13 +31,4 @@ Stream posts can be embedded within another stream post.
 All Stream shortocode instances must be closed with `/stream`.
 Streams can be themed with CSS by targetting `stream-content`,
 	`stream-text`, `stream-date`, and `stream-inner` classes.
-
-# Todo
-* time - Time of day the content was posted.
-	This is used to show how many minutes/hours/days old the content is.
-* twitter - Specify that this post is from twitter
-		Need to get Twitter username, show Twitter logo
-		use a twitter avatar? it should be the same as author's avatar
-**Need access to .Page parameter**
-
 

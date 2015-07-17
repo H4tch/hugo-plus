@@ -1,0 +1,9 @@
+# Append your Name to the `contributors` table array
+# Happy hacking!
+
+[[contributor]]
+	name = "Daniel Hatch"
+	email = "danielh4tch@gmail.com"
+	website = "h4tch.github.io"
+
+

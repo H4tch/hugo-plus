@@ -1,0 +1,12 @@
+<div class="panel panel-default page-list term-list">
+	<ul class="list-group list-unstyled">
+{{ range .Data.Terms.ByCount }}
+	{{ $.Scratch.Add "rendered_posts" 1 }}
+	<a class="list-group-item" href="{{ $.URL }}{{ .Term | lower | urlize }}">
+		<span class="text-primary">{{ .Term | title }}</span>
+		<span class="badge pull-right progress-bar-info">{{ .Count }}</span>
+	</a>
+{{ end }}
+	</ul>
+</div>
+

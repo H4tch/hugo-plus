@@ -1,0 +1,28 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $template := $layout.list_layout }}
+{{ $list := or (and .IsPage (and $section.taxonomy $section.term)) $section }}
+
+<!--Groups posts by year. Doesn't display the current year. Most recent articles first.-->
+{{ $groups := $.Site.Pages.GroupByDate "2006" }}
+{{ range $index, $group := $groups }}
+	{{ $key := $group.Key }}
+	{{ if (and $key (and (ne $key ($.Date.Format "2006")) (ne $key "0001"))) }}
+		<div id="{{ $key }}" class="list-group-item active">
+				<!--centers the year: style="margin:auto; width:45px; display:block;"-->
+				<span class="list-item-year">{{ $key }}</span>
+		</div>
+	{{ end }}
+	{{ range $page := $group.Pages }}
+		{{ if (or $list.show_meta (not .Params.meta)) }}
+			<a class="list-group-item" href="{{ .Permalink }}">
+				<span class="text-primary">{{ .Title | title }}</span>
+				<span class="pull-right">
+					{{ with (or $list.date.format $site.date.short_format) }}{{ $page.Date.Format . }}
+					{{ else }}{{ $page.Date.Format "Jan 2" }}{{ end }}
+				</span>
+			</a>
+		{{ end }}
+	{{ end }}
+{{ end }}

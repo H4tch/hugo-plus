@@ -1,12 +1,8 @@
-
-<!--
-	Photo allows you to embed an image on the page with a link to popup the
+<!--Photo allows you to embed an image on the page with a link to popup the
 		image in a Magnific Popup lightbox viewer.
 	See documentation for more details:
 		'docs/shortcodes/photo.md'
 -->
-
-
 <a {{ with .Get "src" }}href="{{ . }}"{{ end }}
 	{{ with .Get "title" }}title="{{ . }}"{{ end }}
 	{{ with .Get "caption" }}data-caption="{{ . }}"{{ end }}
@@ -22,17 +18,15 @@
 			{{ with .Get "id" }}id="{{ . }}"{{ end }}
 			
 			{{ if (not (.Get "no_inline")) }}
-				style="display: inline-block; {{ .Get "style" | safeCss }}"
+				style="display: inline-block; {{ .Get "style" | safeCSS }}"
 			{{ else }}
-				{{ with .Get "style" }}style="{{ . | safeCss }}"{{ end }}
+				{{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }}
 			{{ end }}
 			{{ with .Get "alt" }}alt="{{ . }}"{{ end }}
 			{{ with .Get "width" }}width="{{ . }}"{{ end }}
 			{{ with .Get "height" }}height="{{ . }}"{{ end }}
 		></img>
 	{{ end }}
-	{{ .Get "link_text" | safeHtml }}
+	{{ .Get "link_text" | safeHTML }}
 </a>
-
-
 

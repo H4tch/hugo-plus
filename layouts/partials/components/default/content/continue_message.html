@@ -1,0 +1,7 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $continue_msg := or .Params.msg.summary_continue_reading (or $section.msg.summary_continue_reading (or $site.msg.summary_continue_reading "Continue Reading »")) }}
+{{ $goto_msg := or .Params.msg.summary_goto_page (or $section.msg.summary_goto_page (or $site.msg.summary_goto_page "Comment and Share »")) }}
+{{ $msg := or (and .Truncated $continue_msg) $goto_msg }}
+<a class="text-info continue-message" href="{{ .Permalink }}">{{ $msg }}</a>
+

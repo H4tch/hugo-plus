@@ -9,7 +9,7 @@ Breadcrumbs visualize the path from the top-level homepage to the current page.
 ### Parameters
 * components.breadcrumbs - Enable/Disable the breadcrumbs
 * Breadcrumbs Parameters
-	* append_current_page - Whether the page that the breadcrumbs is rendered
+	* append_content_page - Whether the page that the breadcrumbs is rendered
 		on should be appended at the end. Defaults to `true`
 * Breadcrumbs Item Parameters
 	* breadcrumbs.item.title - Text to display for the breadcrumb
@@ -21,7 +21,7 @@ Breadcrumbs visualize the path from the top-level homepage to the current page.
 [components]
 	breadcrumbs = true
 [breadcrumbs]
-	append_current_page = true
+	append_content_page = true
 [[breadcrumbs.item]]
 	title = "Home"
 	url = "/"

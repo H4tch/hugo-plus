@@ -10,10 +10,7 @@ graphic = ""
 thumbnail = ""
 related = []
 
-continue_message = ""
+summary_continue_reading = ""
 flattr_category = "text"
-
-[component]
-	comments = true
 +++
 

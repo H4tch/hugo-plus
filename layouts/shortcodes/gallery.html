@@ -1,16 +1,12 @@
-<!--
-	This Gallery shortcode allows you to group the following shortcode content:
+<!--This Gallery shortcode allows you to group the following shortcode content:
 		photo, video, iframe, popup
 	See documentation for more details.
 		'docs/shortcodes/audio.md'
 -->
-
-
 <div class="magnific-gallery {{ .Get "class" }}"
 	{{ with .Get "id" }}id="{{ . }}"{{ end }}
-	{{ with .Get "style" }}style="{{ . | safeCss }}"{{ end }}
+	{{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }}
 >
 	{{ .Inner }}
 </div>
-
 

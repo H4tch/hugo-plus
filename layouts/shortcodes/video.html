@@ -1,0 +1,14 @@
+<!--This shortcode allows you to embed a video onto the page,
+	See documentation for more details:
+		'docs/shortcodes/video.md'
+-->
+<div {{ with .Get "id" }}id="{{ . }}"{{ end }}
+class="magnific-video mpf-iframe embed video-player {{ .Get "class" | safeHTML }}">
+	<iframe src="https://www.youtube.com/embed/{{ .Get "src" | safeHTML }}" type="text/html"
+		{{ if (ne (.Get "allow_fullscreen") false) }}allowfullscreen{{ end }}
+		frameborder="0"
+		{{ with .Get "width" }}width="{{ . }}"{{ else }}width="100%"{{ end }}
+		{{ with .Get "height" }}height="{{ . }}"{{ else }}height="385"{{ end }}
+	></iframe>
+</div>
+

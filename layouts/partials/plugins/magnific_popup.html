@@ -1,0 +1,73 @@
+<!-- Code to download Magniific Popup and initialize all instances
+	 Goto `data/plugins/magnific/config.toml` to configure this component
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $data := $.Site.Data.addons.magnific_popup }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+
+<script>
+$('.magnific-gallery').each(function() {
+	// This initial code prevents further magnific popup functions to be called on theme
+	// In the future, all content types will contain these gallery settings
+	var elems = $(this).get(0).getElementsByClassName("magnific-photo");
+	while( elems[0] ) { elems[0].classList.remove("magnific-photo"); }
+	elems = $(this).get(0).getElementsByClassName("magnific-popup");
+	while( elems[0] ) { elems[0].classList.remove("magnific-popup"); }
+	$(this).magnificPopup({
+		delegate: 'a',
+		gallery: {
+			enabled: true,
+			preload:{{ with $data.gallery.preload }}{{ . }}{{ else }}[0,2]{{ end }},
+			navigateByImgClick: {{ with $data.gallery.navigateByImgClick }}{{ . }}{{ else }}true{{ end }},
+			arrowMarkup: {{ with $data.gallery.arrowMarkup }}{{ . }}
+				{{ else }}'<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>'{{ end }},
+			tPrev: {{ with $data.gallery.tPrev }}{{ . }}{{ else }}'Previous'{{ end }},
+			tNext: {{ with $data.gallery.tNext }}{{ . }}{{ else }}'Next'{{ end }},
+			tCounter: {{ with $data.gallery.tCounter }}{{ . }}
+				{{ else }}'<span class="mfp-counter">%curr% of %total%</span>'{{ end }}
+		}
+	});
+});
+
+$('.magnific-photo').each(function() {
+$(this).magnificPopup({
+	image: { titleSrc: function(item) {
+			var text = item.el.attr('title') + '<small class="data-caption">'
+				+ item.el.attr('caption') + '</small>';
+			return (text) ? text : "";
+		}
+	},
+});});
+
+$('.magnific-popup').each(function() {
+$(this).magnificPopup({
+	midClick: {{ with $data.inline.midClick }}{{ . }}{{ else }}true{{ end }},
+});});
+
+$('.magnific-video').magnificPopup({
+type: 'iframe', iframe: {
+	markup: '<div class="mfp-iframe-scaler">'+
+		'<div class="mfp-close"></div>'+
+		'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+		'</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+	delegate: 'iframe',
+	patterns: {
+		youtube: { index: 'youtube.com/', id: 'v=', src: '//www.youtube.com/embed/%id%?autoplay=1' },
+		vimeo: { index: 'vimeo.com/', id: '/', src: '//player.vimeo.com/video/%id%?autoplay=1' },
+		gmaps: { index: '//maps.google.', src: '%id%&output=embed' },
+		dailymotion: {
+			index: 'dailymotion.com',
+			id: function(url) {
+				var m = url.match(/^.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/);
+				if (m !== null) { if(m[4] !== undefined) { return m[4]; } return m[2]; }
+				return null;
+			},
+			src: 'http://www.dailymotion.com/embed/video/%id%'
+		}
+	}
+}, srcAction: 'iframe_src', 
+});
+</script>
+
+

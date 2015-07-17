@@ -1,0 +1,37 @@
+<!--Display Previous and Next content articles within the current Section of Series.
+	Will display "Return to <section name>" if either prev or next isn't found. -->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+
+{{ $pages := or (and .Params.series (where .Site.Pages.ByDate ".Params.series" .Params.series)) (index .Site.Sections .Section).Pages.ByDate }}
+{{ $return_msg := or $section.msg.pager_return (or $site.msg.pager_return "Return to") }}
+
+<div class="row clearfix pager">
+{{ range $index, $page := $pages }}{{ if (eq .Title $.Title) }}
+	{{ $minusOne := or (and (ne $index 0) (sub $index 1)) 0 }}
+	{{ $plusOne := or (and (le $index (sub (len $pages) 2)) (add $index 1)) 0 }}
+	{{ $prev := and (ne $index 0) (index $pages $minusOne) }}
+	{{ $next := and (ne $plusOne 0) (index $pages $plusOne) }}
+	
+	<div class="col-md-6 column pager-left">
+	{{ if $prev }}
+		<a class="pull-left" href="{{ $prev.Permalink }}">
+			<i class="fa fa-caret-left"></i> {{ $prev.Title | title }}</a>
+	{{ else if (or $prev $next) }}
+		<a class="pull-left" href="/{{ $.Section }}">
+			<span class="fa fa-caret-left">&nbsp;</span> {{ $return_msg }} '{{ $.Section | title }}'</a>
+	{{ end }}
+	</div>
+	<div class="col-md-6 column pager-right">
+	{{ if $next }}
+		<a class="pull-right" href="{{ $next.Permalink }}">
+			{{ $next.Title | title }} <i class="fa fa-caret-right"></i></a>
+	{{ else if (or $prev $next) }}
+		<a class="pull-right" href="/{{ $.Section }}">
+			{{ $return_msg }} '{{ $.Section | title }}' <span class="fa fa-caret-right"></span></a>
+	{{ end }}
+	</div>
+{{ end }}{{ end }}
+</div>
+

@@ -1,0 +1,27 @@
+<!-- Collapsable List for Categories/Tags/etc
+<div class="list-group">
+	 <a href="#tags-menu" data-toggle="collapse" class="list-group-item active collapsed">Tags</a>
+	<div id="tags-menu" class="panel-collapse collapse">
+		<a href="#" class="list-group-item">lua c++ game</a>
+</div>
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $title_msg := or $section.msg.category_links_title (or $site.msg.category_links_title "Categories") }}
+{{ $tags_msg := or $section.msg.category_links_tag (or $site.msg.category_links_tag "Tags") }}
+
+<ul class="list-group list-unstyled category-links">
+<a href="{{ $.Site.BaseURL }}/categories/" class="list-group-item active category-title">{{ $title_msg }}</a>
+{{ if $.Site.Taxonomies.categories }}
+	<!-- TODO Use 'apply' or 'sort' if possible to sort elements by page count
+			'sort .Site.Taxonomies.categories "Count" "desc"' fails to work
+	-->
+	{{ range $name, $category := .Site.Taxonomies.categories }}
+		<a href="{{ $.Site.BaseURL }}/categories/{{ $name }}" class="list-group-item category-link">
+			{{ $name | title }}<span class="badge progress-bar-info">{{ $category.Count }}</span></a>
+	{{ end }}
+{{ end }}
+	<a href="{{ $.Site.BaseURL }}/tags/" class="list-group-item category-link">
+		{{ $tags_msg }}<span class="text-info fa fa-tags pull-right" style="font-size:133%;"></span></a>
+</ul>
+

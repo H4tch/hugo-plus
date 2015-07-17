@@ -1,0 +1,24 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $tags_msg := or $section.msg.menu_tags (or $site.msg.menu_tags "tags") }}
+{{ $all_tags_msg := or $section.msg.menu_tags_all (or $site.msg.menu_tags_all "All Tags »") }}
+{{ $sr_open_tags := or $section.msg.sr_menu_tags_open (or $site.msg.sr_menu_tags_open "Open Tags Menu") }}
+{{ if .Params.tags }}
+<style>.tags-menu { margin-top:10px; float:right; position:relative; }</style>
+<div class="tags-menu">
+	<button class="btn btn-default btn-xs dropdown-toggle" type="button"
+	 data-toggle="dropdown" aria-expanded="false">
+		{{ $tags_msg }}
+		<strong class="caret"></strong>
+		<span class="sr-only">{{ $sr_open_tags }}</span>
+	</button>
+	<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="tags-menu" role="menu">
+		{{ range .Params.tags }}
+			<li role="presentation"><a href="/tags/{{ . | lower | urlize }}" role="menuitem">{{ . }}</a></li>
+		{{ end }}
+		<li class="divider" role="separator"></li>
+		<li role="presentation"><a href="/tags/" role="menuitem">{{ $all_tags_msg }}</a></li>
+	</ul>
+</div>
+{{ end }}
+

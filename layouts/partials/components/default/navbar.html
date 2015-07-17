@@ -1,0 +1,137 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout $site.layout))).layout }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+
+{{ $sectionTitle := or $section.title $site.title }}
+{{ $sectionName := or $section.name (or $section.page_header.title .Title) | lower | urlize }}
+{{ $pageName := .Title | lower | urlize }}
+
+{{ $navbar := or $section.navbar $site.navbar }}
+{{ $logo := or (or $navbar.logo $section.logo) (or $navbar.logo $site.logo) }}
+{{ $title := or (or $navbar.title $section.title) (or $navbar.title $site.title) }}
+
+{{ $menus := or $section.menu $site.menu }}
+<nav class="navbar {{ with $theme.navbar.class }}{{ . }}{{ else }}navbar-default{{ end }} navbar-{{ if $navbar.fixed }}fixed-{{ with $navbar.fixed_position }}{{ . }}{{ else }}top{{ end }}{{ else }}static-top{{ end }}"
+ style="" role="navigation">
+
+<style>
+.navbar {
+	{{ if $logo }}min-height:44px;{{ end }}
+	z-index:99; margin-bottom:0;
+}
+.navbar-fixed-top + * { margin-top:44px !important; }
+.navbar-fixed-top ~ .wrapper { z-index:1;display:none; }
+.navbar-brand { padding:0px 15px; }
+.navbar-brand > img {
+	max-height:40px;
+	display:inline-block;
+	margin:2% 15px 0 0;
+}
+.navbar-brand > span { padding:10px 0px 10px 0px; display:inline-block; }
+
+.nav > li { display:inline-block; float:left; }
+.navbar-right > li { display:inline-block; float:right; }
+.nav > .dropdown { display:inline; }
+.nav > .open > .dropdown-menu { display:inline; }
+.nav > .dropdown > .nav-link { display:inline-block; }
+</style>
+
+
+<div class="container">
+<div class="row clearfix">
+<div class="col-md-12 column">
+
+<div class="message"></div>
+
+<div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<a href="{{ $.Site.BaseURL }}" class="navbar-brand">
+		{{ with $logo }}<img src="{{ . }}" class="navbar-brand-logo">{{ end }}
+		{{ if not ($navbar.hide_title) }}
+		<span class="{{ if and (eq $section.title $site.title) true }}active{{ end }}">
+			{{ $title }}</span>
+		{{ end }}
+	</a>
+</div>
+
+<div class="collapse navbar-collapse" id="navbar-collapse">
+{{ range $menuName, $menu := $menus }}
+{{ if or (eq $menuName "navbar") (eq $menuName "navbar-right") }}
+	{{ if (eq $menuName "navbar") }}<ul class="nav navbar-nav pull-left">
+	{{ else }}<ul class="nav navbar-nav pull-right navbar-right">
+	{{ end }}
+	{{ range $menu }}
+		{{ if (eq .name "$divider") }}<li><div class="divider"></div></li>
+		{{ else }}
+		{{ $name := .name | lower | urlize }}
+		{{ if (not (index $menus .menu)) }}
+			<li class="{{ if or (eq $sectionName $name ) (eq $pageName $name) }}active{{ end }}">
+				<a href="{{ .url }}" class="nav-link">{{ .name }}</a>
+			</li>
+		{{ else }}
+		<li class="dropdown {{ if (eq $sectionName $name) }}active{{ end }}">
+			{{ if .url }}
+				<a href="{{ .url }}" class="nav-link" style="padding-right:0px;">{{ .name }}</a>
+				<a class="btn dropdown-toggle" data-toggle="dropdown" style="padding:0px 15px 0px 5px; margin-top:-5px;">
+					<span class="caret"></span>
+				</a>
+			{{ else }}
+				<a class="btn nav-link" data-toggle="dropdown">
+					{{ .name }} <span class="caret"></span>
+				</a>
+			{{ end }}
+				<ul class="dropdown-menu">
+				{{ range (index $menus .menu) }}
+					{{ if (eq .name "$divider") }}<div class="divider"></div>
+					{{ else }}
+					{{ $name := .name | lower | urlize }}
+						<li class="{{ if or (eq $sectionName $name) (eq $pageName $name) }}active{{ end }}">
+							<a href="{{ .url }}" class="nav-link">{{ .name }}</a>
+						</li>
+					{{ end }}
+				{{ end }}
+				</ul>
+		</li>
+		{{ end }}
+		{{ end }}
+	{{ end }}
+	</ul>
+{{ end }}{{ end }}
+</div>
+
+</div><!--/column-->
+</div><!--/row-->
+</div><!--/container-->
+</nav>
+
+
+{{/* SubMenus have been from Bootstrap 3
+	If you really want them, add the following code back into
+	the template and add the necessary CSS to style:
+		http://stackoverflow.com/questions/18023493/bootstrap-3-dropdown-sub-menu-missing
+		http://vsn4ik.github.io/bootstrap-submenu/
+{{ if (not (index $menus .menu)) }}
+{{ else }}
+<li class="dropdown-submenu">
+	<a href="{{ .url }}" tabindex="-1">{{ .name }}</a>
+	<ul class="dropdown-menu">
+	{{ range (index $menus $name) }}
+		{{ if (eq .name "$divider") }}<div class="divider"></div>
+		{{ else }}
+		{{ $name := .name | lower | urlize }}
+		<li class="{{ if or (eq $sectionName $name) (eq $pageName $name) }}active{{ end }}">
+			<a href="{{ .url }}" class="nav-link">{{ .name }}</a>
+		</li>
+		{{ end }}
+	{{ end }}
+	</ul>
+</li>
+{{ end }}
+*/}}
+

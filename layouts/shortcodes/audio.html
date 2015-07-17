@@ -1,16 +1,13 @@
-<!--
-	Embeds an HTML5 audio control widget into the webpage
+<!--Embeds an HTML5 audio control widget into the webpage
 	See documentation for more details.
 		'docs/shortcodes/audio.md'
 -->
-
-
 <audio controls
 	class="audio_controls {{ .Get "class" }}"
 	{{ with .Get "id" }}id="{{ . }}"{{ end }}
 	{{ with .Get "preload" }}preload="{{ . }}"{{ else }}preload="metadata"{{ end }}
 	
-	style="{{ with .Get "style" }}{{ . | safeCss }}; {{ end }}
+	style="{{ with .Get "style" }}{{ . | safeCSS }}; {{ end }}
 		{{ with .Get "width" }}width:{{ . }}; {{ end }}
 		{{ with .Get "height" }}height:{{ . }};{{ end }}"
 	{{ with .Get "title" }}data-info-title="{{ . }}"{{ end }}
@@ -33,5 +30,4 @@
 	{{ end }}
 	Your browser does not support the audio element
 </audio>
-
 

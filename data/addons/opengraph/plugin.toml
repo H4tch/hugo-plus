@@ -1,0 +1,6 @@
+[meta]
+	css = []
+	js = []
+	body_inline = []
+	head_inline = ["plugins/opengraph.html",]
+

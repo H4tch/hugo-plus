@@ -1,6 +1,4 @@
-
-<!--
-	Shortcode to embed a Google Trends chart into the content.
+<!--Shortcode to embed a Google Trends chart into the content.
 	
 {{/*
 	Usage:
@@ -21,7 +19,5 @@
 	Todo:
 		embed-responsive?
 -->
-
 <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q={{ .Get "terms" }}&{{ if .Get "start_date" }}date={{ .Get "start_date" }} {{ with .Get "months" }}{{ . }}m{{ else }}12m{{ end }}{{ end }}&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w={{ with .Get "width" }}{{ . }}{{ else }}550{{ end }}&h={{ with .Get "height" }}{{ . }}{{ else }}330{{ end }}"></script>
-
 

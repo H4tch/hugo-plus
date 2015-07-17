@@ -1,0 +1,65 @@
+# A live demo of HighlightJS can be found here: https://highlightjs.org/static/demo/
+
+[meta]
+	css = []
+	js = []
+	body_inline = ["plugins/highlightjs.html"]
+	head_inline = ["plugins/highlightjs_meta.html"]
+	requires_jquery = false
+
+[theme]
+# Dark Themes
+	solarized_dark = true
+	atelier-dune_dark = true
+	atelier-forest_dark = true
+	atelier-heath_dark = true
+	atelier-lakeside_dark = true
+	atelier-seaside_dark = true
+	dark = true
+	darkula = true
+	kimbie_dark = true
+	paraiso_dark = true
+# Light Themes
+	agate = true
+	androidstudio = true
+	arta = true
+	ascetic = true
+	atelier-dune = true
+	atelier-forest = true
+	atelier-heath = true
+	atelier-lakeside = true
+	atelier-seaside = true
+	brown_paper = true
+	codepen-embed = true
+	color-brewer = true
+	default = true
+	docco = true
+	far = true
+	foundation = true
+	github = true
+	googlecode = true
+	hybrid = true
+	idea = true
+	ir_black = true
+	kimbie = true
+	magula = true
+	mono-blue = true
+	monokai = true
+	monokai_sublime = true
+	obsidian = true
+	paraiso = true
+	pojoaque = true
+	railscasts = true
+	rainbow = true
+	school_book = true
+	solarized = true
+	sunburst = true
+	tomorrow-night-blue = true
+	tomorrow-night-bright = true
+	tomorrow-night-eighties = true
+	tomorrow-night = true
+	tomorrow = true
+	vs = true
+	xcode = true
+	zenburn = true
+

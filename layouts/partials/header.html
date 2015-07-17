@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<!--This theme was Made With Frustration 😁 >.<
-			by Daniel Hatch <h4tch.github.io>
-		enjoy!
-	-->
-	<meta charset="utf-8">
-	{{ partial "meta.html" . }}
+<head><meta charset="utf-8">
+<!--
+	This project was created by Daniel H4tch <h4tch.github.io>
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+{{ $icons := (index .Site.Data.addons (or .Params.icon_theme (or $section.icon_theme $site.icon_theme))).icons }}
+
+<!--PageName - SectionName - Section/SiteTitle-->
+<title>
+	{{ if .IsPage }}{{ .LinkTitle }} - {{ end }}
+	{{ if $section.name }} {{ $section.name }} - {{ end }}
+	{{ or $section.title $site.title  }}
+</title>
+<meta name="description" content="{{ or $section.description $site.description }}">
+<meta name="keywords" content="{{ or $section.keywords $site.keywords }}">
+<meta name="author" content="{{ or .Params.author (or $section.author $site.author) }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="application/rss+xml" href="{{ .RSSlink }}" rel="alternate" title="{{ or $section.title $site.title }}">
+
+<!-- jQuery required by Disqus, Magnific -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+{{ range $icons.meta.css }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+{{ range $icons.meta.js }}<script src="{{ . }}" type="text/javascript"></script>{{ end }}
+{{ range $icons.meta.head_inline }}{{ partial . $ }}{{ end }}
+{{ range $theme.meta.css }}<link name="css_theme" rel="stylesheet" href="{{ . }}">{{ end }}
+{{ range $theme.meta.js }}<script src="{{ . }}" type="text/javascript"></script>{{ end }}
+{{ range $theme.meta.head_inline }}{{ partial . $ }}{{ end }}
+
+{{ range $layout.meta.css }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+{{ range $layout.meta.js }}<script src="{{ . }}" type="text/javascript"></script>{{ end }}
+{{ range $layout.meta.head_inline }}{{ partial . $ }}{{ end }}
+
+{{ range $plugin := (or $section.plugins $site.plugins) }}
+	{{ $elem := (index $.Site.Data.addons $plugin).plugin }}
+	{{ range $elem.meta.css }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+	{{ range $elem.meta.js }}<script src="{{ . }}" type="text/javascript"></script>{{ end }}
+	{{ range $elem.meta.head_inline }}{{ partial . $ }}{{ end }}
+{{ end }}
+
+{{ range .Params.css }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+{{ range .Params.js }}<script src="{{ . }}" type="text/javascript"></script>{{ end }}
+{{ range .Params.head_inline }}{{ partial . $ }}{{ end }}
+
+
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-72.png">
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-57.png">
+
+{{ with or $section.favicon (or $site.favicon $icons.favicon) }}
+	<link rel="shortcut icon" href="{{ . }}">
+{{ end }}
+
 </head>
 <body>
-
 

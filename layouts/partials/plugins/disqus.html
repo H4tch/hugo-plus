@@ -1,0 +1,62 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $comments := or $section.comments $site.comments }}
+{{ $no_comments_msg := or $section.msg.summary_no_comments (or $site.msg.summary_no_comments "No Comments") }}
+{{ $profiles := or (index .Site.Data.profiles $section.name) .Site.Data.profiles.site }}
+{{ $disqusId := or .Params.profiles.disqus (or $profiles.disqus .Site.DisqusShortname) }}
+
+{{ if ($.Scratch.Get "disqus_comments") }}
+<script>
+{{ if $comments.on_demand }}
+	$(document).ready(function() {
+		loadComments = function() {
+			var disqus_shortname = '{{ $disqusId }}';
+			var disqus_identifier = '{{ (print $section.name "-" .Title) | lower | urlize }}';
+			$.ajax({ type: "GET", url: "http://" + disqus_shortname + ".disqus.com/embed.js",
+			dataType: "script", cache: true });
+			$('.show-comments').fadeOut(); }
+			$('.show-comments').on('click', loadComments);
+	});
+	// If the user clicked a link to the Content's comments, auto expand the comments.. 
+	commentLoader = window.setInterval(function() {
+		if (window.location.hash == "#comments") {
+			loadComments(); window.clearInterval(commentLoader);
+		}
+	}, 1000);
+{{ else }}
+	var disqus_shortname = '{{ $disqusId }}';
+	var disqus_identifier = '{{ .Title | lower | urlize }}';
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+{{ end }}
+</script>
+<noscript>Please enable JavaScript to view the
+	<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+{{ end }}
+
+{{ if and $disqusId (not ($.Scratch.Get "comment_count_disabled")) }}
+<script type="text/javascript">
+	var disqus_shortname = '{{ $disqusId }}';
+	(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	}());
+	// After the page loads, insert "No Comments " where Disqus fails to do so
+	commentCountChecker = function(){
+		nodes = document.getElementsByClassName("disqus-comment-count");
+		for(var i = 0; i < nodes.length; i++) {
+			if(nodes[i].innerHTML == "") { nodes[i].innerHTML = "{{ $no_comments_msg }} "; }
+		}
+	};
+	setTimeout(commentCountChecker, 200);
+</script>
+{{ end }}
+

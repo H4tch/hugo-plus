@@ -1,0 +1,3 @@
+name = "Home"
+content_sources = ["blog","project","stream","series"]
+

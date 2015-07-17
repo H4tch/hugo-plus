@@ -1,0 +1,16 @@
+<!--Renders a single List Element for a Page with an accompanying Date.-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+
+{{ with $.Scratch.Get "insert_year" }}
+	<div class="container"><h4 class="year year-{{ . }}">{{ . }}</h4></div>
+{{ end }}
+<a class="list-group-item" href="{{ .Permalink }}">
+	<span class="text-primary">{{ .Title | title }}</span>
+	<span class="pull-right">
+		{{ with (or $section.date.short_format $site.date.short_format) }}
+			{{ $.Date.Format . }}
+		{{ else }}{{ .Date.Format "Jan 2" }}{{ end }}
+	</span>
+</a>
+

@@ -1,0 +1,54 @@
+<!--See `ccomponents/arousel.md` in the docs-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+{{ $carousel := or .Params.carousel (or $section.carousel $site.carousel) }}
+
+{{ with $carousel }}
+{{ $id := (or .id ((print $section.name "-" $.Title) | lower | urlize)) }}
+
+{{ $fullWidth := or .full_width (not (isset . "full_width")) }}
+
+<style>
+.carousel-slide { float:none; margin:0 auto; }
+{{ if $fullWidth }}.carousel-slide > img { width:100%; }{{ end }}
+</style>
+
+{{ if not $fullWidth }}<div class="container">{{ end }}
+<div id="{{ $id }}" class="carousel slide"
+ style="{{ with .bg_color }}background-color:{{ . | safeCSS }};{{ end }}
+  {{ with .margin_top }}margin-top: {{ . | safeCSS}};{{ end }}">
+	<ol class="carousel-indicators">
+		{{ range $index, $slide := .slide }}
+			<li {{ if (eq $index 0) }}class="active"{{ end }}
+				data-slide-to="{{ $index }}" data-target="#{{ $id }}">
+			</li>
+		{{ end }}
+	</ol>
+	<div class="carousel-inner">
+	{{ range $index, $slide := .slide }}
+		<div class="carousel-slide item {{ if (eq $index 0) }}active{{ end }}">
+			<img src="{{ or $slide.graphic $carousel.graphic }}" alt="" class="center-block" style="{{ with .height }}height:{{ . | safeCSS }};{{ end }}">
+			<div class="carousel-caption" style="{{ with or $slide.text_bg_color $carousel.text_bg_color }}background-color:{{ . | safeCSS }};{{ end }}">
+				{{ $color := or .text_color $carousel.text_color }}
+				{{ if $slide.title }}
+					<h1 style="{{ with $color }}color:{{ . | safeCSS }};{{ end }}">
+						{{ $slide.title }}</h1>
+				{{ end }}
+				{{ if $slide.text }}
+					<p style="{{ with $color }}color:{{ . | safeCSS }};{{ end }}">
+						{{ $slide.text }}</p>
+				{{ end }}
+			</div>
+		</div>
+	{{ end }}
+	</div>
+	<style>.carousel-control > span { position:absolute; top:30%; font-size:300%; }</style>
+	<a class="left carousel-control" href="#{{ $id }}" data-slide="prev"><span>❬</span></a>
+	<a class="right carousel-control" href="#{{ $id }}" data-slide="next"><span>❭</span></a>
+</div>
+{{ if not $fullWidth }}</div>{{ end }}
+</script>
+{{ end }}
+
+

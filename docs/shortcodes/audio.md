@@ -37,6 +37,6 @@ Embeds an HTML5 audio control widget into the webpage
 
 # Todo
 Fallback to a flash-based audio player
-	<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl={{ .Get "src" }}">
+<embed type="application/x-shockwave-flash" src="audio-player.swf" quality="best" flashvars="audioUrl={{ .Get "src" }}">
 
 

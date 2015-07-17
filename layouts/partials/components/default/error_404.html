@@ -1,0 +1,12 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $error_msg := or $section.msg.error_404 (or $site.msg.error_404 "Error 404: Page Not Found") }}
+
+{{ if $.Scratch.Get "is404" }}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h1 class="text-muted no-content-found text-danger">{{ $error_msg }}</h1>
+	</div>
+</div>
+{{ end }}
+

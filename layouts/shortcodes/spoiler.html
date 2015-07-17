@@ -1,16 +1,14 @@
-<!--
-	Uses Bootstap to show a clickable panel that reveals it's content
+<!--Uses Bootstap to show a clickable panel that reveals it's content
 	See documentation for more details:
 		'docs/shortcodes/spoiler.md'
 -->
-
 <div class="spoiler panel panel-default {{ .Get "class" }}"
-{{ with .Get "style" }}style="{{ . | safeCss }}"{{ end }}>
+{{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }}>
 	<div class="panel-heading">
 		<a class="collapsed" data-toggle="collapse"
 		 style="display:block;{{ if (not (.Get "text")) }}text-decoration:none;{{ end }}"
 		 {{ with .Get "id" }}href="#{{ . }}" {{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
-			{{ with .Get "text" }}{{ . | safeHtml }}{{ else }}&nbsp;{{ end }}
+			{{ with .Get "text" }}{{ . | safeHTML }}{{ else }}&nbsp;{{ end }}
 		</a>
 	</div>
 	{{ if .Inner }}
@@ -21,11 +19,10 @@
 			<div class="panel-footer">
 				<a class="collapsed" data-toggle="collapse" style="display:block;"
 				 {{ with .Get "id" }}href="#{{ . }}"{{ else }}href="#{{ .Get "text" | lower | urlize }}"{{ end }}>
-					{{ .Get "footer" | safeHtml }}</a>
+					{{ .Get "footer" | safeHTML }}</a>
 			</div>
 		{{ end }}
 	</div>
 	{{ end }}
 </div>
-
 

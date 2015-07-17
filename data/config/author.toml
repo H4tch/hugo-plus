@@ -1,0 +1,30 @@
+name = "Authors"
+taxonomy = "author"
+
+disabled = ["jumbotron","about_author","share_links","categories","tags","pager","comments",]
+
+[content_list]
+	view = "summary"
+	group_by_year = true
+	pagination = false
+	posts = 10 # Number of pages to show on homepage if not using pagination
+	show_meta = true
+
+[aggregation_list]
+	title = "Recent Posts"
+	view = "li"
+	group_by_year = true
+	pagination = true
+	posts = 5
+	no_content_found = true
+
+[date]
+	format = " "
+	short_format = " "
+
+[metadata]
+	date = false
+	author = false
+	series = false
+	thumbnail = true
+

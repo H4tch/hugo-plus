@@ -1,0 +1,14 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ if .Params.tags }}
+<style>.tag-labels { margin:10px 5px; float:left; }</style>
+<div class="tag-labels">
+	{{ range .Params.tags }}
+		{{ $name := . | lower | urlize }}
+		<a class="btn btn-default btn-xs tag-label tag-{{ $name }}"
+		 href="/tags/{{ $name }}">
+		 	{{ . }}</a>
+	{{ end }}
+</div>
+{{ end }}
+

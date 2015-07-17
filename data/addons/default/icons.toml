@@ -1,0 +1,107 @@
+# Note, 'style' isn't implemented yet.
+[meta]
+	css = ["//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css",]
+	js = []
+
+[default]
+	#share share-alt share-alt-square share-square share-square-o retweet external-link external-link-square 
+	class = "fa fa-picture-o" #fa-square-o
+[default.follow]
+	class = "fa fa-share"
+[default.share]
+	class = "fa fa-share"
+[default.social]
+	class = "fa fa-share-square"
+
+[bitbucket]
+	class = "fa fa-bitbucket"
+[bitbucket.social]
+	class = "fa fa-bitbucket-square"
+
+[email]
+	class = "fa fa-envelope"
+
+[facebook]
+	class = "fa fa-facebook"
+[facebook.social]
+	class = "fa fa-facebook-square"
+
+[flattr]
+	img = "/default_data/flattr-white.png"
+[flattr.social]
+	class = "fa fa-flattr-square"
+
+[github]
+	class = "fa fa-github"
+[github.social]
+	class = "fa fa-github-square"
+
+[google_plus]
+	class = "fa fa-google-plus"
+[google_plus.social]
+	class = "fa fa-google-plus-square"
+
+[gratipay]
+	class = "fa fa-gratipay"
+[gratipay.social]
+	class = "fa fa-gratipay-square"
+
+[hackernews]
+	class = "fa fa-hacker-news"
+[hacker-news.social]
+	class = "fa fa-hacker-news-square"
+
+[hitbox]
+	class = "fa fa-gamepad"
+
+[instagram]
+	class = "fa fa-instagram"
+[instagram.social]
+	class = "fa fa-instagram-square"
+
+[linkedin]
+	class = "fa fa-linkedin"
+[linkedin.social]
+	class = "fa fa-linkedin-square"
+
+[pinterest]
+	class = "fa fa-pinterest"
+[pinterest.social]
+	class = "fa fa-pinterest-square"
+
+[reddit]
+	class = "fa fa-reddit"
+[reddit.social]
+	class = "fa fa-reddit-square"
+
+[rss]
+	class = "fa fa-rss"
+[rss.social]
+	class = "fa fa-rss-square"
+
+[stack_overflow]
+	class = "fa fa-stack-overflow"
+[stack_overflow.social]
+	class = "fa fa-stack_overflow-square"
+
+[tumblr]
+	class = "fa fa-tumblr"
+[tumblr.social]
+	class = "fa fa-tumblr-square"
+
+[twitch]
+	class = "fa fa-twitch"
+[twitch.social]
+	class = "fa fa-twitch-square"
+
+[twitter]
+	class = "fa fa-twitter"
+[twitter.social]
+	class = "fa fa-twitter-square"
+
+[youtube]
+	class = "fa fa-youtube"
+[youtube.social]
+	class = "fa fa-youtube-square"
+
+

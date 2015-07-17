@@ -1,0 +1,162 @@
+<!--
+	On Section/Node Pages, this Template will aggregate the Content belonging
+		to the current Section or a Section defined within the 'content_source'
+		array within SectionConfig.
+	
+	On Content Pages, the rendered list will be pages that contain a Term, that
+		matches the 'term' field set by the Content in its Front Matter. Also,
+		the Section must have the 'taxonomy' field set.
+	
+	Pages can be rendered using a 'li', 'summary', or 'content' layout. 
+		The layout view property can be set within the Layout config file,
+	
+	Content Pages have an associated Date and are affected by `group_by_year`.
+	Taxonomy Term Pages have an associated Page Count.
+	
+	If some Pages aren't shown, you may have to set 'show_meta' in the Section
+		configuration.
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+{{ $defaultLayout := .Site.Data.addons.default.layout }}
+{{ $disabled := or .Params.disabled (or $section.disabled $site.disabled) }}
+
+{{ $allPages := .Site.Pages.ByDate.Reverse }}
+{{ $taxonomyPages := or (and .Data.Singular .Data.Pages.ByDate.Reverse) (where .Site.Pages.ByDate.Reverse (print ".Params." (or $section.taxonomy ""|lower)) .Params.term) }}
+{{ $pages := or $taxonomyPages $allPages }}
+
+{{ $type := or (and .Data.Singular (or (and .Data.Terms 2) 3)) (or (and .IsPage 4) 1) }}
+{{ $listType := or (and (eq $type 1) "content_list") (or (and (eq $type 2) "term_list") (or (and (eq $type 3) "term_content_list") "aggregation_list")) }}
+{{ $list := or (index $section $listType) (index $site $listType) }}
+{{ $view := or (or $list.view (index $site $listType).view) (or (and .Data.Terms "term_list") "summary") }}
+
+{{ $groupByYear := or $list.group_by_year (not (isset $list "group_by_year")) }}
+{{ $isPaginated := or $list.pagination (not (isset $list "pagination")) }}
+{{ $recentPosts := or $list.posts (and (not (isset $list "posts")) 10) }}
+
+
+<!--For Content Pages, only show the List if 'term' is set-->
+{{ if or (ne $type 4) (and $section.taxonomy .Params "term") }}
+
+<!--CONTENT/TERM/TERM_CONTENT/AGGREGATION LIST_BEFORE-->
+{{ range $index, $comp := (index $layout $listType).before }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ $.Scratch.Set "rendered_posts" 0 }}
+
+<!-- Render List of Taxonomy Terms using `$layout.view.term_list` -->
+{{ if (and .Data.Terms $view) }}
+	{{ partial (print "layouts/" (index $layout.views $view)) . }}
+{{ end }}
+
+{{ if (eq $view "li") }}
+{{ $listCSS := replace $listType "_" "-" }}
+<div class="panel panel-default page-list {{ $listCSS }}">
+	<ul class="list-group list-unstyled">
+{{ end }}
+
+
+<!--LIST_BEFORE--->
+{{ range $index, $comp := $layout.list.before }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ $.Scratch.Set "prev_year" ($.Now.Format "2006") }}
+{{ range $index, $page := $pages }}
+<!--Iterate through content_sources, if the Page's Section is equal to one of 
+	the source entries, or it belongs to the current Section and content_sources
+	isn't set, then display it.
+-->
+	{{ $.Scratch.Set "render_content_page" false }}
+	{{ $pageSection := $page.Section |lower|urlize }}
+	{{ if and (eq $pageSection ($.Title |lower|urlize)) (not $section.content_sources) }}
+		{{ $.Scratch.Set "render_content_page" true }}
+	{{ end }}
+	{{ range $source := $section.content_sources  }}
+		{{ if or (eq $pageSection ($source|lower|urlize)) }}
+			{{ $.Scratch.Set "render_content_page" true }}
+		{{ end }}
+	{{ end }}
+	{{ if $taxonomyPages }}{{ $.Scratch.Set "render_content_page" true }}{{ end }}
+{{ if and (gt $recentPosts ($.Scratch.Get "rendered_posts")) ($.Scratch.Get "render_content_page") }}
+	{{ $year := $page.Date.Format "2006" }}
+	{{ if and $groupByYear (ne $year ($.Scratch.Get "prev_year")) }}
+		{{ $page.Scratch.Set "insert_year" $year }}
+		{{ if not $view }}
+			<div class="container"><h1 class="year year-{{ $year }}">{{ $year }}</h1></div>
+		{{ end }}
+	{{ end }}
+	{{ if (or (not $page.Params.meta) $list.show_meta) }}
+		{{ $.Scratch.Add "rendered_posts" 1 }}
+		{{ if $view }}
+			{{ partial (print "layouts/" (index $layout.views $view)) $page }}
+		{{ else }}
+			<a class="list-group-item" href="{{ .Permalink }}">
+				<span class="text-primary">{{ .Title | title }}</span>
+				<span class="pull-right">
+					{{ with (or $section.date.short_format $site.date.short_format) }}
+						{{ $.Date.Format . }}
+					{{ else }}{{ .Date.Format "Jan 2" }}{{ end }}
+				</span>
+			</a>
+		{{ end }}
+	{{ end }}
+	{{ $.Scratch.Set "insert_year" 0 }}
+	{{ $.Scratch.Set "prev_year" ($page.Date.Format "2006") }}
+{{ end }}
+{{ end }}
+
+
+<!--LIST_AFTER-->
+{{ range $index, $comp := $layout.list.after }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ if (eq $view "li") }}
+	</ul>
+</div><!--section panel-->
+{{ end }}
+
+
+<!--CONTENT/TERM/TERM_CONTENT/AGGREGATION LIST_BEFORE-->
+{{ range $index, $comp := (index $layout $listType).after }}
+	{{ range $elem := $disabled }}{{ if or (eq $elem $comp) (eq $elem "all") }}
+		{{ $.Scratch.Set (print $comp "_disabled") true }}{{ end }}{{ end }}
+	{{ if (eq (first 1 $comp) "<" ) }}{{ (replace $comp "<HTML>" "") | safeHTML }}
+	{{ else if (not ($.Scratch.Get (print $comp "_disabled"))) }}
+		{{ $path := or (index $layout.templates $comp) (index $defaultLayout.templates $comp) }}
+		{{ if (in $path "plugins") }}{{ partial (print $path "/" $comp ".html") $ }}
+		{{ else }}{{ partial (print "components/" $path "/" $comp ".html") $ }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ end }}
+
+

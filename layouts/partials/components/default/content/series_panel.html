@@ -1,0 +1,33 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $series_msg := or $section.msg.series (or $site.msg.series "Series") }}
+{{ $series_button_msg := or $section.msg.series_button (or $site.msg.series_button "All series") }}
+
+{{ if .Params.series }}
+{{ $pages := where $.Site.Pages.ByDate "Params.series" .Params.series }}
+{{ if $pages }}
+<div class="panel panel-default series-panel">
+	<div class="panel-heading">
+		<h4 class="active series-panel-title">
+			<a href="/series/{{ .Params.series | lower | urlize }}">
+			{{ $.Params.series | title }} {{ $series_msg }}</a>
+			<a href="/series" class="label label-primary pull-right series-panel-button">{{ $series_button_msg }}</a>
+		</h4>
+	</div>
+	<ul class="list-group series-panel-links">
+	<!--{ { range $series.Pages.ByDate }}<!--Most Recent on bottom-->
+	{{ range $pages }}
+		{{ if (eq .Permalink $.Permalink )}}
+			<a href="{{ .Permalink }}" class="list-group-item list-group-item-info">
+		{{ else }}
+			<a href="{{ .Permalink }}" class="list-group-item">
+		{{ end }}
+			{{ .Title }}
+			<div class="pull-right">{{ .Date.Format "Jan 02" }}</div>
+		</a>
+	{{ end }}
+	</ul>
+</div>
+{{ end }}
+{{ end }}
+

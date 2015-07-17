@@ -1,7 +1,25 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+{{ $icons := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).icons }}
 
-{{ partial "js.html" . }}
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif] d-->
+
+{{ range $icons.meta.body_inline }}{{ partial . $ }}{{ end }}
+{{ range $theme.meta.body_inline }}{{ partial . $ }}{{ end }}
+
+{{ range $plugin := (or $section.plugins $site.plugins) }}
+	{{ $elem := (index $.Site.Data.addons $plugin).plugin }}
+	{{ range $elem.meta.body_inline }}{{ partial . $ }}{{ end }}
+{{ end }}
+
+{{ range $site.body_inline }}{{ partial . $ }}{{ end }}
+{{ range $section.body_inline }}{{ partial . $ }}{{ end }}
+{{ range .Params.body_inline }}{{ partial . $ }}{{ end }}
 
 </body>
 </html>
-
 

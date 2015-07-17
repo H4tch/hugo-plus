@@ -1,0 +1,32 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $breadcrumbs := or $section.breadcrumbs $site.breadcrumbs }}
+{{ $sectionName := or $section.name (or $section.page_header.title .Title) }}
+{{ $sectionUrl := or .Section (or .Data.Plural "") | lower | urlize }}
+
+{{ $appendPage := or $breadcrumbs.append_content_page (not (isset $breadcrumbs "append_content_page")) }}
+{{ $isTermPage := or (and .Data.Singular (not .Data.Terms)) }}
+{{ $termName := (.Title | lower | urlize) }}
+{{ $divider := "<span class=\"divider\"></span>" | safeHTML }}
+
+<div class="well well-sm breadcrumb-container" style="padding:0px;">
+<ul class="list-unstyled breadcrumb" style="margin:0px;">
+{{ $items := $breadcrumbs.item }}
+{{ if (not $items) }}
+	<li><a href="/">Home</a></li>
+	{{ if (or $isTermPage (and .IsPage $section.name)) }}
+		<li>{{ $divider }}<a href="/{{ $sectionUrl }}">{{ $section.name }}</a></li>
+	{{ else if $section.name }}<li>{{ $divider }}{{ $section.name }}</li>{{ end }}
+	{{ if $isTermPage }}<li>{{ $divider }}{{ $termName | title }}</li>{{ end }}
+	{{ if (and $appendPage .IsPage) }}<li>{{ $divider }}{{ $.Title | title }}</li>
+	{{ else }}<li>{{ $divider }}</li>{{ end }}
+{{ else }}
+	{{ range $index, $item := $breadcrumbs.item }}
+		<li><a href="{{ $item.url }}">{{ $item.title | title }}</a>{{ $divider }}</li>
+	{{ end }}
+	{{ if (and $appendPage $.IsPage) }}<li>{{ $.Title | title }}</li>
+	{{ else }}<li></li>{{ end }}
+{{ end }}
+</ul>
+</div>
+

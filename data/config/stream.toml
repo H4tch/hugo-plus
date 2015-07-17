@@ -1,0 +1,7 @@
+name = "Streams"
+disabled = []
+[metadata]
+	date = false
+	author = true
+	series = true
+

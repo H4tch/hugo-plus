@@ -1,6 +1,6 @@
 
 # Gallery Lightbox Popup
-This Gallery shortcode allows you to group the following shortcode content:
+This Shortcode groups the following Shortcodes together into a Gallery:
 	* photo, video, iframe, popup
 
 # Usage
@@ -22,5 +22,4 @@ This Gallery shortcode allows you to group the following shortcode content:
 	* This could only work if magnific js code was included here,
 		'magnific-gallery' class attribute was removed, and the `id`
 		attribute is set.(maybe use src as an id instead?)
-
 

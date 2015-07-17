@@ -1,0 +1,362 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+/*
+@import url(http://fonts.googleapis.com/css?family=Karla:400,700,700italic,400italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,600italic);
+
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700);
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Ubuntu', sans-serif;
+	font-family: georgia, 'Source Sans Pro', sans-serif;
+	font-family: 'Karla', sans-serif;
+*/
+
+/* Vollkorn + OpenSans or Lato?*/
+/* Headers- Ubuntu, Raleway */
+/*
+Nice, Slab Serif
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,400italic,700);
+*/
+
+
+body {
+	color:#2c3e50;
+	background-color:#f0f0f0;
+	width:100%;
+	border-top:solid #d90006;
+	border-width:4px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+	color:#d90006;
+}
+
+h1 { font-weight:700; color:#6d7680; }
+
+h2,h3 { font-weight:700; }
+
+h1 a,h2 a,h3 a,h4 a { color:#428fe0; }
+
+h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover { color:#29598c; }
+
+p {
+	font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+	font-weight:200;
+}
+
+ul,ol { font-weight:lighter }
+
+pre { background:#f5f5f8 }
+
+
+#wrapper {
+	padding-left:250px;
+	transition:all .5s ease 0;
+}
+
+.container {
+	width:80%;
+	margin-left: 50px;
+	padding-top:15px;
+	background-color:#f9f9f9;
+	box-shadow:1px 1px 0 1px #e8e8e8;
+	padding: 10px 40px 10px;
+}
+
+.navbar  {
+	display: none;
+}
+
+.navbar a  {
+	text-decoration: none;
+	border-bottom: 1px #b1b1b1 solid;
+}
+
+.container a {
+	border-bottom:1px #8a8a8a dotted;
+	text-decoration:none;
+}
+
+.content { max-width: 600px; margin-bottom: 10px; }
+
+.posts {
+	font-size:20px;
+	list-style:none;
+	font-weight:lighter;
+	line-height:250%;
+	padding-bottom:30px;
+}
+
+
+#sidebar-wrapper {
+	margin-left:-250px;
+	left:250px;
+	width:250px;
+	background:#f8f8f8;
+	position:fixed;
+	height:100%;
+	overflow-y:auto;
+	z-index:1000;
+	margin-top:-4px;
+	border-top:solid #d90006;
+	transition:all .4s ease 0;
+	border-width:4px;
+}
+
+.sidebar-nav {
+	position:absolute;
+	top:0;
+	width:250px;
+	list-style:none;
+	margin:0;
+	padding:30px 0 0;
+}
+
+.sidebar-nav li {
+	line-height:30px;
+	text-indent:40px;
+	font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+	font-weight:200;
+	color:#9c9c9c;
+	text-shadow:1px 1px #fff
+}
+
+.sidebar-nav li a {
+	color:#999;
+	display:block;
+	text-decoration:none
+}
+
+.sidebar-nav li a:hover {
+	color:#000;
+	background:#fff;
+	text-decoration:none;
+	transition:all .2s ease 0
+}
+
+.sidebar-nav li a:active,.sidebar-nav li a:focus {
+	text-decoration:none
+}
+
+.sidebar-nav > .sidebar-brand {
+	font-size:20px
+}
+
+.sidebar-nav > .sidebar-brand > h3 {
+	font-size:15px;
+	font-weight:100;
+	color:#5d5f67
+}
+
+#social-wrapper {
+	color:#5c646f;
+	padding:10px 0
+}
+
+#social-wrapper a {
+	font-size:15px;
+	text-indent:20px
+}
+
+#social-wrapper li {
+	font-size:15px;
+	text-indent:0;
+	word-spacing:10px
+}
+
+#social-wrapper a:hover {
+	color:#2d1e18;
+	transition:all .3s ease 0
+}
+
+
+
+.nav-toggle {
+	display: none;
+	color: #d90006;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.brand {
+	font-weight:800;
+	color:#6c7077;
+	font-family:"Helvetica Neue", helvetica, "Open Sans",sans-serif;
+	font-size:1.4em;
+	text-shadow:1px 1px #fff;
+}
+
+.brand:hover {
+	color:#d90006;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.sidebar-nav > .sidebar-brand a {
+	color:#999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+	color:#fff;
+	background:none;
+}
+
+.content-header {
+	height:65px;
+	line-height:65px;
+}
+
+.content-header h1 {
+	line-height:65px;
+	display:inline-block;
+	margin:0 0 0 20px;
+}
+
+.article-title {
+	font-size:35px;
+	font-weight:700;
+	color:#d90006;
+	padding-top:15px;
+}
+.article a { color:#d90006; }
+.article h1, .article h2, .article h3 { color:#3a3a3a; }
+
+.post { padding-bottom:30px; }
+
+img { max-width:100%; }
+
+time {
+	color:#c9c9c9;
+	font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+	font-weight:100;
+	text-shadow:1px 1px #fff;
+}
+
+blockquote {
+	border-left:2px solid #d90006;
+	border-right:2px solid #d90006;
+	margin-left:-40px;
+	margin-right:-40px;
+	padding-left:40px;
+	background:#f3f3f7;
+}
+
+.pager li > a,.pager li > span { border-radius:.5em; }
+
+#disqus_thread { margin-top:50px; }
+
+.show-comments {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+.credit {
+	bottom:0;
+	width:100%;
+	font-size:.8em;
+	text-shadow:1px 1px #fff;
+	padding-left:20px;
+	margin-bottom:0;
+	padding-bottom:5px;
+	padding-top:5px;
+	margin-top:40px;
+	z-index:1;
+	color:#cdcdcd;
+}
+
+.meta {
+	text-shadow:1px 1px #fff;
+	color:#b6b6b6;
+}
+
+.recent-posts {
+	background-color:#fff;
+	color:#4d4d4d;
+	box-shadow:1px 1px 0 1px #e8e8e8;
+	margin:10px 10%;
+	padding:10px 40px;
+}
+
+.recent-posts h1 {
+	padding-bottom:10px;
+	font-size:1.6em;
+}
+
+.wide { width: 100%; }
+
+/*
+.inset {
+	box-shadow:inset 0 -10px 5px -2px rgba(119,119,119,0.35);
+	-moz-box-shadow:inset 0 -10px 5px -2px rgba(119,119,119,0.35);
+	-webkit-box-shadow:inset 0 -10px 5px -2px rgba(119,119,119,0.35);
+	background-size: cover;
+}
+
+font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+*/
+.relative { position:relative; }
+
+
+/* Large desktop */
+@media (min-width: 1200px) { }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {  }
+
+/* Landscape phone to portrait tablet */
+@media (max-width:767px) {
+
+	#wrapper {
+		padding-left: 0;
+		padding-top: 20px;
+	}
+
+	#sidebar-wrapper {
+		border-right: 4px solid #d90006;
+		border-top: none;
+		left: 0px;
+	}
+	
+	.nav-toggle { display: ; }
+
+	#wrapper.active {
+		position: relative;
+		left: 250px;
+	}
+
+	#wrapper.active #sidebar-wrapper {
+		left: 250px;
+		width: 250px;
+		transition: all 0.7s ease 0s;
+	}
+
+	.inset { padding: 15px; }
+
+	.navbar {
+		display: inherit;
+		background-color: #ededed;
+		margin-top: -20px;
+	}
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	
+	.container {
+		width: 100%;
+		margin: 0 0 0 0;
+		padding: 15px 15px 0 15px;
+	}
+
+	.article { padding: 0 10px 0 10px; }
+}
+ 
+
+
+

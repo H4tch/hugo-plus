@@ -1,21 +1,31 @@
-
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+<!--Based on Hugo's RSS example, seems to be inconsistent with RSS/Atom specification
+	https://en.wikipedia.org/wiki/RSS
+-->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-	<title>{{ .Title }} on {{ .Site.Data.section.title }} </title>
-	<generator uri="{{ .Site.BaseUrl }}">{{ .Site.Data.section.title }}</generator>
+	<title>{{ or $section.title $site.title }} </title>
+	<description>{{ or $section.description $site.description }}</description>
+	<generator uri="{{ .Site.BaseURL }}">{{ or $section.title $site.title }}</generator>
 	<link>{{ .Permalink }}</link>
 	{{ with .Site.LanguageCode }}<language>{{ . }}</language>{{ end }}
-	{{ with .Site.Author.name }}<author>{{ . }}</author>{{ end }}
-	{{ with .Site.Copyright }}<copyright>{{ . }}</copyright>{{ end }}
+	{{ with or $section.author $site.author }}<author>{{ . }}</author>{{ end }}
+	{{ with or $section.msg.copyright $site.msg.copyright }}<copyright>{{ . }}</copyright>{{ end }}
 	<updated>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" }}</updated>
-	{{ range first 15 .Data.Pages }}{{ if (not .Params.meta) }}
+	{{ range first 15 .Data.Pages }}{{ if not .Params.meta }}
+	{{ $section := or (index $.Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+	{{ $msg := or .Params.msg.summary_continue_reading (or $section.msg.summary_continue_reading (or $site.msg.summary_continue_reading "Continue Reading")) }}
 		<item>
 		<title>{{ .Title }}</title>
 		<link>{{ .Permalink }}</link>
 		<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 CST" }}</pubDate>
-		{{ with .Site.Author.name }}<author>{{.}}</author>{{ end }}
+		{{ with or $section.author $site.author }}<author>{{.}}</author>{{ end }}
 		<guid>{{ .Permalink }}</guid>
-		<description>{{ .Content | html }}</description>
+		<description>
+			{{ .Content | html }}
+			{{ print "<a href='" .Permalink "'>" $msg "</a>" | html }}
+		</description>
 		</item>
 	{{ end }}{{ end }}
 </channel>

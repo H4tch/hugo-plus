@@ -1,0 +1,65 @@
+
+/*.navbar-brand > .active { color:#FFF; } */
+
+.social { overflow:hidden !important; width:60px; float:left; }
+.social-icon { font-size:150% !important; margin-top:-1px; }
+
+.share-btn {
+	min-width:50px;
+	height:30px;
+	color:white;
+	font-size:20px !important;
+	vertical-align:middle;
+	padding-top:0px; padding-bottom:0px;
+	border:none;-webkit-border-radius:0; border-radius:0;
+}
+.share-btn:hover { background-color:black; }
+.share-btn > span { font-size:20px !important; }
+.share-btn > img { width:20px; margin:auto; display:block; }
+
+.follow-btn {
+	min-width:50px;
+	height:30px;
+	color:white;
+	font-size:20px !important;
+	vertical-align:middle;
+	padding-top:0px; padding-bottom:0px;
+	border:none;-webkit-border-radius:0; border-radius:0;
+}
+.follow-btn:hover { background-color:black; }
+.follow-btn > span { font:white; font-size:20px !important; }
+.follow-btn > img { width:20px; margin:auto; display:block; }
+
+.dropdown-menu > .divider {
+	height:2px; background-color:rgba(229,229,229,.2);
+	border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+/* Theme.colors.css, todo: put with TOML file? 'colors.toml' */
+.color-bitbucket { background-color:#1F5182; }
+.color-email { background-color:#7D3697; }
+.color-facebook { background-color:#3D5B96; }
+.color-flattr { background-color:#F67C1A; }
+.color-github { background-color:#333; }
+.color-google_plus { background-color:#DD3F34; }
+.color-gratipay { background-color:#396; }
+.color-hackernews { background-color:#F60; }
+.color-hitbox { background-color:#ACE600; }
+.color-instagram { background-color:#375989; }
+.color-linkedin { background-color:#0E76A8; }
+.color-pinterest { background-color:#CC1E2D; }
+.color-reddit { background-color:#326795; }
+.color-slack { background-color:#77D4B7; }
+.color-stackoverflow { background-color:#F37A21; }
+.color-tumblr { background-color:#34465D; }
+.color-twitch { background-color:#6441A5; }
+.color-twitter { background-color:#00ADE8; }
+.color-vimeo { background-color:#1AB7EA; }
+
+
+.border-left { border-left:1px solid #ccc; }
+.border-right { border-right:1px solid #ccc; }
+.border-top { border-top:1px solid #ccc; }
+.border-bottom { border-bottom:1px solid #ccc; }
+
+

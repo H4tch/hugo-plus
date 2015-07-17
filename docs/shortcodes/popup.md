@@ -1,6 +1,6 @@
 
 # Popup Custom Inline HTML Content 
-This popup shortcode allows you to create a popup containing custom HTML code.
+This Shortcode allows you to create a Popup containing custom HTML code.
 If you want to create a popup around an iframe, use the iframe shortcode instead.
 
 # Usage
@@ -33,6 +33,7 @@ The popup's inline HTML is contained within a div tag that is themed
 
 # Todo
 Custom link 'tag'
-Popup width/height.... This is defined within the magnific_popup js code
+Popup width/height
+	Currently defined within the magnific_popup js code
 
 

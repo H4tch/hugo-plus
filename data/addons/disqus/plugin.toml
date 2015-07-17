@@ -1,0 +1,6 @@
+[meta]
+	css = []
+	js = []
+	body_inline = ["plugins/disqus.html"]
+	requires_jquery = true
+

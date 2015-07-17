@@ -1,8 +1,8 @@
 
 # Embedded Photo with Popup Lightbox 
-Photo allows you to embed an image on the page with a link to popup the
-image in a Magnific Popup lightbox viewer.
-Photos can be embedded within a `gallery` shortcode.
+This Shortcode embeds an image on the page with a link to popup the image in a
+Magnific Popup lightbox viewer. Photos can be embedded within a [gallery](gallery.md)
+shortcode.
 
 # Usage
 ```

@@ -1,17 +1,16 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or $site $site }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
 
-{{ $section := or .Site.Data.section.site .Site.Params }}
-{{ $theme := index .Site.Data.themes (or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default"))) }}
-{{ $layout := or $section.layout $theme.layout }}
+{{ $.Scratch.Set "is404" true }}
 
 {{ partial "header.html" . }}
 
-{{ if $layout }}
-	{{ partial $layout . }}
+{{ if $layout.error_404_layout }}
+	{{ partial (print "layouts/" $layout.error_404_layout) . }}
 {{ else }}
-	<h4>Failed to find layout '{{ $layout }}'<h4>
-	<p>The 404 page's layout is defined within 'data/section/site.toml' or '.Site.Params'.</p>
+	{{ partial (print "layouts/" $layout.template) . }}
 {{ end }}
 
 {{ partial "footer.html" . }}
-
 

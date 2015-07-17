@@ -12,7 +12,7 @@ categories = []
 series = ""
 graphic = ""
 thumbnail = ""
-continue_message = ""
+summary_continue_reading = ""
 subreddit = ""
 
 version = "1.0"
@@ -20,8 +20,5 @@ screenshots = []
 # Syntax highlighting theme. See `.Site.Data.highlightjs.toml`
 highlightjs = ""
 flattr_category = "software"
-
-[component]
-	comments = false
 +++
 

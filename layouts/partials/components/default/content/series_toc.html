@@ -1,0 +1,29 @@
+<!--Displays the Content Pages belonging to the Series DEFINED by the current
+		Content Page. The `series_panel.html` Component displays other Content
+		Pages WITHIN the same Series that the Current Page BELONGS to.
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config .Section) .Params }}
+{{ $series_articles_within_msg := or $section.msg.series_articles_within (or $site.msg.series_articles_within "Articles within this series:") }}
+{{ $term := .Title | lower | urlize }}
+
+{{ if eq .Section "series" }}
+<div class="panel panel-default series-toc">
+	<div class="panel-heading text-primary series-toc-title">{{ $series_articles_within_msg }}</div>
+	<ul class="list-group list-unstyled series-toc-links">
+	{{/* This causes Index's Content-List to Render Duplicate entries...
+		{{ range (where .Site.Pages.ByDate ".Params.series" $term) }}
+	*/}}
+	{{ range .Site.Pages.ByDate.Reverse }}{{ if (eq .Params.series $term) }}
+	<a class="list-group-item" href="{{ .Permalink }}">
+		<span class="text-primary">{{ .Title | title }}</span>
+		<span class="pull-right">
+			{{ $format := or $section.date.format (or $site.date.short_format "Jan 2") }}
+			{{ .Date.Format $format }}
+		</span>
+	</a>
+	{{ end }}{{ end }}
+	</ul>
+</div>
+{{ end }}
+

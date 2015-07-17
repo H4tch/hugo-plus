@@ -1,0 +1,66 @@
+<!--
+	Enables links for sharing the content on social media.
+	Links can be defined within the Content Front Matter, Section Config, or
+		Site Config using the.share_links' array property
+	Profile Ids must be defined within 'data/profiles.toml' for each link.
+	Theming can be applied using CSS by targetting the rule '.share-SITENAME'.
+	
+	Supported Variables for `url_part.field`:
+		$site - The Site's.BaseURL
+		$url - Permalink of the Page
+		$title
+		$date
+		$description
+		Otherwise the variable will be indexed within '.Params'
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $params := or .Params $site }}
+
+{{ $theme := index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme)) }}
+{{ $iconTheme := index .Site.Data.addons (or .Params.icon_theme (or $section.icon_theme (or $site.icon_theme $theme.icon_theme))) }}
+{{ $iconTheme_dark := index .Site.Data.addons (or .Params.icon_theme_dark (or $section.icon_theme_dark (or $site.icon_theme_dark $theme.icon_theme_dark))) }}
+{{ $icons := or (and $theme.theme.is_dark (or $iconTheme_dark.icons_dark $iconTheme.icons_dark)) $iconTheme.icons }}
+
+{{ $shareLinks := or .Params.share_links (or $section.share_links (or $site.share_links "")) }}
+{{ $profiles := or (or .Params.profiles.share .Params.profiles) (or (index .Site.Data.profiles $section.name) .Site.Data.profiles.site) }}
+
+{{ if $shareLinks }}
+<!--<style></style>-->
+<div class="row no-pad">
+{{ range $index, $sid := $shareLinks }}
+	{{ $half := print (div (len $shareLinks) 2) }}
+	{{ $pid := index $profiles $sid }}
+	{{ $elem := index $.Site.Data.share_links $sid }}
+	{{ $style := or (or (index $icons $sid).share (index $icons $sid)) (or $icons.default.share $icons.default)  }}
+	
+	{{ if (and (ne $index 0) (eq (print $index) $half)) }}</div></div>{{ end }}
+	{{ if (or (eq $index 0) (eq (print $index) $half)) }}
+		{{ if (eq (len $shareLinks) 1) }}<div class="col-xs-12 column">
+		{{ else }}<div class="col-xs-12 col-sm-6 column">
+		{{ end }}
+		<div class="btn-group btn-group-justified share-links">
+	{{ end }}
+	
+	{{ with $elem }}
+	{{ if (ne .url "$rss") }}
+		<a href="{{ .url }}{{ if .append_id }}{{ $pid }}{{ end }}{{ range .url_part }}{{ if (and (not (isset . "field")) (not (isset . "array"))) }}{{ .text }}{{ end }}{{ $field := or (or (and (eq .field "$title") $.Title) (or (and (eq .field "$description") $.Description) (or (and (eq .field "$date") $.Date) (and (eq .field "$site") $.Site.BaseURL) ))) (index $params (replace (or .field .array) "$" "")) }}{{ if (and $field .field) }}{{ .text }}{{ $field }}{{ else if (and $field .array) }}{{ .text }}{{ delimit $field "," }}{{ end }}{{ end }}" title="{{ .title }}" class="btn btn-sm color-{{ $sid }} share-btn share-{{ $sid }}" target="_blank">
+		 	<span class="share-btn-icon share-btn-icon-{{ $sid }} {{ $style.class }}"
+			 style="{{ or $style.style "" | safeCSS }}" target="_blank"></span>
+			{{ with $style.img }}<img {{ with $style.img_class }}{{ . }}{{ end }}src="{{ . }}">{{ end }}
+		</a>
+	{{ else if $.IsNode }}
+		<a href="{{ $.RSSLink }}" class="btn btn-sm color-{{ $sid }} share-btn share-{{ $sid }}" target="_blank">
+			<span class="share-btn-icon share-btn-icon-{{ $sid }} {{ $style.class }}"
+			 style="{{ or $style.style "" | safeCSS }}" target="_blank"></span>
+			{{ with $style.img }}<img {{ with $style.img_class }}{{ . }}{{ end }}src="{{ . }}">{{ end }}
+		</a>
+	{{ end }}
+	{{ end }}
+	
+{{ end }}
+</div>
+</div>
+</div>
+{{ end }}
+

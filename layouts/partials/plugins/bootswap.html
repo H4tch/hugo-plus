@@ -1,0 +1,146 @@
+<!--Functions to dynamically theme the current web page-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $bootswap := .Site.Data.addons.bootswap.plugin }}
+
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
+{{ $background := or .Params.background (or $section.background (or $site.background $theme.background)) }}
+
+<!--
+	TODO
+	Ability to generate Config files from current settings
+	Ability to compile LESS to tweak coloring
+-->
+
+<script>
+var bootswap_index = 0;
+var bootswap_themes = [
+	{{ range $theme := $bootswap.themes }}
+		{ name:"{{ $theme.name }}", description:"{{ $theme.description }}",
+			thumbnail:"{{ $theme.thumbnail }}", preview:"{{ $theme.preview }}",
+			css:"{{ $theme.css }}", cssMin:"{{ $theme.cssMin }}", cssCdn:"{{ $theme.cssCdn }}",
+			less:"{{ $theme.less }}", lessVariables:"{{ $theme.lessVariables }}",
+			sourceName:"{{ $theme.sourceName }}", sourceUrl:"{{ $theme.sourceUrl }}"
+		},
+	{{ end }}
+];
+
+{{ if $bootswap.enable_bootswatch }}
+	$.get("http://api.bootswatch.com/3/",
+		function (data) {
+			for (var i=0; i < data.themes.length; i+=1){
+				elem = data.themes[i];
+				elem.sourceName = "Bootswatch";
+				elem.sourceUrl = "http://bootswatch.com/";
+				bootswap_themes.push(elem);
+			}
+		});
+{{ end }}
+function wrapIndex(index, length) {
+	index = index % length;
+	if (index < 0) { index = length-1; }
+	return index;
+}
+function changeCSS(incIndex) {
+	bootswap_index = wrapIndex(bootswap_index + incIndex, bootswap_themes.length);
+	var theme = bootswap_themes[bootswap_index];
+	var css = "";
+	if ( theme.css ) { css = theme.css; }
+	else if ( theme.cssMin ) { css = theme.cssMin; }
+	else if ( theme.cssCdn ) { css = theme.cssCdn; }
+	
+	$(".themeshot-name").get(0).innerHTML = theme.name;
+	var description = $(".themeshot-description").get(0).innerHTML = theme.description;
+	var thumbnail = $(".themeshot-thumbnail").get(0).setAttribute("src", theme.thumbnail);
+	
+	if ( theme.preview ) { $(".themeshot-preview").get(0).setAttribute('href',theme.preview); }
+	
+	var downloads = $("#themeshot-downloads + .dropdown-menu").get(0);
+	downloads.innerHTML = "";
+	if ( theme.css ) {
+		downloads.innerHTML += "<li><a href='" + theme.css + "'>bootstrap.css</a></li>"		
+	} if ( theme.cssMin ) {
+		downloads.innerHTML += "<li><a href='" + theme.cssMin + "'>bootstrap.min.css</a></li>"
+	} if ( theme.less ) {
+		downloads.innerHTML += "<li><a href='" + theme.less + "'>bootstrap.less</a></li>"
+	} if ( theme.lessVariables ) {
+		downloads.innerHTML += "<li><a href='" + theme.lessVariables + "'>variables.less</a></li>"
+	}
+	
+	var cssCdn = $(".themeshot-css-cdn").get(0);
+	if ( theme.cssCdn ) {
+		cssCdn.setAttribute('style','');
+		$(".themeshot-css-cdn > textarea").get(0).innerHTML += theme.cssCdn;
+	} else { cssCdn.setAttribute('style','display:none;'); }
+	
+	var oldlink = document.getElementsByName("css_theme")[0];
+	var newlink = document.createElement("link");
+	newlink.setAttribute("name", "css_theme");
+	newlink.setAttribute("rel", "stylesheet");
+	newlink.setAttribute("type", "text/css");
+	newlink.setAttribute("href", css);
+	document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+	
+	var node = $(".themeshot-row")[0];
+	node.innerHTML = "";
+	for(var i=1; i < Math.min(10, bootswap_themes.length+1); i+=1) {
+		if (i == 4) { node = $(".themeshot-row")[1]; node.innerHTML = ""; }
+		if (i == 7) { node = $(".themeshot-row")[2]; node.innerHTML = ""; }
+		var index = wrapIndex(i + bootswap_index, bootswap_themes.length);
+		var theme = bootswap_themes[index];
+		node.innerHTML += '<div class="col-xs-4 column"> \
+			<div class="themeshot-thumbnail-next" style="opacity:.8;"> \
+				<a href="#/" onclick="changeCSS(' + i + ');"> \
+					<img src="' + theme.thumbnail + '" class="img-responsive themeshot-img"> \
+			</a></div></div>';
+	}
+}
+
+
+var bg_enabled = true;
+var bg_theme = 1; // dark=0,light=1,color=2
+var bg_index = [0,0,0];
+var bg_imgs = [
+	[ {{ range $img := $bootswap.backgrounds.dark }}"/bootswap_data/backgrounds/dark/{{ $img }}",{{ end }} ],
+	[ {{ $background }},{{ range $img := $bootswap.backgrounds.light }}"/bootswap_data/backgrounds/light/{{ $img }}",{{ end }} ],
+	[ {{ range $img := $bootswap.backgrounds.color }}"/bootswap_data/backgrounds/color/{{ $img }}",{{ end }} ]
+	];
+function toggleBG(elem) { bg_enabled = elem.checked; updateBG(); }
+function changeBG(incIndex) {
+	bg_index[bg_theme] += incIndex;
+	bg_index[bg_theme] = bg_index[bg_theme] % bg_imgs[bg_theme].length;
+	if (bg_index[bg_theme] < 0) { bg_index[bg_theme] = bg_imgs[bg_theme].length-1; }
+	updateBG();	
+}
+function bgTheme(index) {
+	if (index<0){index=0;} if (index>2){index=2;}
+	bg_theme=index;
+	bg_enabled=true;
+	updateBG();
+}
+function updateBG() {
+	var elem = document.getElementsByClassName("wrapper")[0];
+	if (!bg_enabled) { elem.setAttribute("style",""); return;}
+	elem.setAttribute("style","background-image: url('" + bg_imgs[bg_theme][bg_index[bg_theme]] + "');");
+	$(".bg-download").get(0).setAttribute('href', bg_imgs[bg_theme][bg_index[bg_theme]]);
+}
+
+
+var nav_theme = 0;
+function toggleNav(elem) { nav_theme = !nav_theme; updateNav(); }
+function updateNav() {
+	if (nav_theme) {
+		var nav = document.getElementsByClassName("navbar-default")[0];
+		nav.className = nav.className.replace( /(?:^|\s)navbar-default(?!\S)/g , '' );
+		nav.className += ' navbar-inverse';
+	} else {
+		var nav = document.getElementsByClassName("navbar-inverse")[0];
+		nav.className = nav.className.replace( /(?:^|\s)navbar-inverse(?!\S)/g , '' );
+		nav.className += ' navbar-default';
+	}
+}
+
+setTimeout(function(){changeCSS(0);}, 200);
+</script>
+
+

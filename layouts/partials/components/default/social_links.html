@@ -1,0 +1,59 @@
+<!--
+	Links for social media.
+	Links can be defined within the Section Config, or Site Config using the
+	.social_links' array property
+	Profile Ids must be defined within 'data/profiles.toml' for each link.
+	Theming can be applied using CSS by targetting the rule '.social-SITENAME'.
+	
+	Supported Variables for `url_part.field`:
+		$site - The Site's.BaseURL
+		$url - Permalink of the Page
+-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+{{ $params := or .Params $site }}
+
+{{ $theme := index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme)) }}
+{{ $iconTheme := index .Site.Data.addons (or .Params.icon_theme (or $section.icon_theme (or $site.icon_theme $theme.icon_theme))) }}
+{{ $iconTheme_dark := index .Site.Data.addons (or .Params.icon_theme_dark (or $section.icon_theme_dark (or $site.icon_theme_dark $theme.icon_theme_dark))) }}
+{{ $icons := or (and $theme.theme.is_dark (or $iconTheme_dark.icons_dark $iconTheme.icons_dark)) $iconTheme.icons }}
+
+{{ $title_msg := or $section.msg.social_links_title (or $site.msg.social_links_title "Social") }}
+{{ $socialLinks := or $section.social_links $site.social_links }}
+{{ $profiles := or (index .Site.Data.profiles $section.name) (.Site.Data.profiles.site) }}
+
+<ul class="list-group list-unstyled social-links">
+<a {{ with (or $section.social.url $site.social.url) }}href="{{ $.Site.BaseURL }}/{{ . }}"{{ end }}
+ class="list-group-item active">{{ $title_msg }}</a>
+
+<!--<div class="row no-pad">-->
+{{ range $index, $sid := $socialLinks }}
+	{{ $half := print (div (len $socialLinks) 2) }}
+	{{ $pid := index $profiles $sid }}
+	{{ $elem := index $.Site.Data.social_links $sid }}
+	{{ $style := or (or (index $icons $sid).social (index $icons $sid)) (or $icons.default.social $icons.default)  }}
+	
+	{{ with $elem }}
+	{{ if (ne .url "$rss") }}
+		<a href="{{ .url }}{{ if .append_id }}{{ $pid }}{{ end }}{{ range .url_part }}{{ if (and (not (isset . "field")) (not (isset . "array"))) }}{{ .text }}{{ end }}{{ $field := or (and (eq .field "$url") $.Permalink) (or (and (eq .field "$site") $.Site.BaseURL) (index $params (replace (or .field .array) "$" ""))) }}{{ if (and $field .field) }}{{ .text }}{{ $field }}{{ else if (and $field .array) }}{{ .text }}{{ delimit $field "," }}{{ end }}{{ end }}" class="list-group-item social-link social-{{ $sid }}"><li>
+			<span class="pull-right text-info social-icon social-{{ $sid }} {{ $style.class }}"
+			 style="{{ or $style.style "" | safeCSS }}" target="_blank"></span>
+			{{ with $style.img }}<img class="{{ $style.img_class }}" src="{{ . }}">{{ end }}
+			{{ .title }}
+		</li></a>
+	{{ else if $.IsNode }}
+		<a href="{{ $.RSSLink }}" class="list-group-item social-{{ $sid }}"><li>
+		<span class="pull-right text-info social-icon social-{{ $sid }} {{ $style.class }}"
+		 style="{{ or $style.style "" | safeCSS }}" target="_blank">
+			<!--{{ with .img }}<img src="{{ . }}" width="18" height="18">{{ end }}-->
+			{{ with $style.img }}<img {{ with $style.img_class }}{{ . }}{{ end }}src="{{ . }}">{{ end }}
+		</span>
+			{{ .title }}
+		</li></a>
+	{{ end }}
+	{{ end }}
+	
+{{ end }}
+</ul>
+

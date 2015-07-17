@@ -1,0 +1,57 @@
+
+.message { color:white; text-align:center; }
+.message:after {
+	/*
+	content:"This is just a message";
+	*/
+	display:block;
+	font-size:11px; font-weight:bold; text-align:center;
+	position:absolute; top:0; left:0; right:0;
+	z-index:99;
+}
+
+
+.text-cursor::before {
+	width:3px;
+	height:20px;
+/*
+	margin-top:-25px;
+	left:10px;
+	position:absolute;
+	top:50%;
+	content:"";
+	background-color:#FFF;
+	animation-name:fade-in-out;
+	animation-duration:1s;
+	animation-timing-function:ease-in-out;
+	animation-iteration-count:infinite;
+*/
+}
+
+@-webkit-keyframes text-cursor {
+    0%   {opacity: 1;}
+    50%  {opacity:.5;}
+    100% {opacity: 0;}
+}
+
+/* Large desktop */
+@media (min-width:1200px) {
+	.message:before { content:"" }
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width:768px) and (max-width:1083px) {
+	.message:before { content:"" }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width:767px) {
+	.message:before { content:"" }
+}
+
+/* Landscape phones and down */
+@media (max-width:480px) {
+	.message:before { content:""; }
+}
+
+

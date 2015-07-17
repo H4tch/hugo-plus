@@ -1,0 +1,49 @@
+<!--See `components/jumbotron.md` in the docs.-->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $jumbotron := or .Params.jumbotron (or $section.jumbotron $site.jumbotron) }}
+
+{{ with $jumbotron }}
+{{ if (and (not .full_width) (isset . "full_width")) }}<div class="container">{{ end }}
+<div class="jumbotron"
+{{ if .graphic }}
+	style="background:url('{{ .graphic }}') no-repeat center center;
+		background-size:cover; height:{{ with .height }}{{ . | safeCSS }}{{ else }}300px{{ end }}
+		{{ with .margin_top }}margin-top:{{ . | safeCSS}};{{ end }}"
+{{ end }}
+>
+	<div class="jumbotron-content container" style="{{ with .text_bg_color }}background-color: {{ . | safeCSS }};{{ end }}">
+		{{ if .title }}
+			<h1 class="jumbotron-title" {{ with .text_color }}style="color: {{ . | safeCSS }}"{{ end }}>
+				{{ .title }}</h1>
+		{{ end }}
+		
+		{{ if .text }}
+			<p class="jumbotron-text" {{ with .text_color }}style="color: {{ . | safeCSS }}"{{ end }}>
+				{{ .text }}</p>
+		{{ end }}
+	
+		{{ if .button }}<p class="jumbotron-buttons btn-toolbar">{{ end }}
+		{{ range .button }}
+			<a href="{{ .url }}" class="btn btn-large {{ .class }}" type="button">
+				{{ .text }}
+			</a>
+		{{ end }}
+		{{ if .button }}</p>{{ end }}
+	</div>
+</div>
+{{ if (and (not .full_width) (isset . "full_width")) }}</div>{{ end }}
+
+{{ if .parallax }}
+<script>
+	var jumboHeight = $('.jumbotron').outerHeight();
+	function parallax(){
+		var scrolled = $(window).scrollTop();
+		$('.jumbotron').get(0).style.height = (jumboHeight-scrolled) + 'px';
+	}
+	$(window).scroll(function(e){ parallax(); });
+</script>
+{{ end }}
+
+{{ end }}
+

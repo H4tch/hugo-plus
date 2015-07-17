@@ -17,8 +17,9 @@ Carousel data is defined within the `carousel` table. Each carousel item is
 			entire width of the page. If false, it is put within a container.
 	* margin_top - Set the padding above the carousel.
 			You may want this in the case that `full_width` is false
-	* bg_color - Color of the Carousel's background. Shown if image is
-			non-existent or doesn't fit the entire width
+	* bg_color - Color of the Carousel's background.
+			The background is visible if the image is non-existent or doesn't
+			fit the entire width
 	* graphic - Default graphic if it is not set on the slide
 	* text_color - Default text color if not set by slide
 	* text_bg_color - Default color of the background of the text if not

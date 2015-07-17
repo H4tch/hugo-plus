@@ -1,0 +1,19 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $comments := or $section.comments $site.comments }}
+{{ $load_comments_msg := or $section.msg.load_comments (or $site.msg.load_comments "Load Comments") }}
+{{ $profiles := or (index .Site.Data.profiles $section.name) .Site.Data.profiles.site }}
+{{ $disqusId := or .Params.profiles.disqus (or $profiles.disqus .Site.DisqusShortname) }}
+
+{{ if $disqusId }}
+{{ $.Scratch.Set "disqus_comments" true }}
+<div id="comments" class="comments-area">
+	{{ if $comments.on_demand }}
+		<button class="show-comments btn btn-default btn-md btn-block" type="button">
+			<span style="font-size:120%;" class="fa fa-comments"></span>
+				&nbsp;&nbsp;{{ $load_comments_msg }}</button>
+	{{ end }}
+	<div id="disqus_thread"></div>
+</div>
+{{ end }}
+

@@ -1,0 +1,12 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $title := or $section.aggregation_list.title (or $section.aggregation_list.title (or $site.aggregation_list.title "Posts")) }}
+{{ if (and .IsPage (and $section.taxonomy .Params.term)) }}
+<div class="well" style="margin-bottom:-5px;">
+	<a style="text-decoration:none;">
+		<h1 class="content-title aggregation-title" style="margin:0px">
+		{{ or $title "" | title }}
+	</h1></a>
+</div>
+{{ end }}
+

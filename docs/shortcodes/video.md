@@ -1,6 +1,6 @@
 
 # Embedded Video
-This shortcode allows you to embed a video onto the page,
+This Shortcode allows you to embed a Video onto the page,
 
 # Usage
 ```
@@ -22,5 +22,4 @@ This shortcode allows you to embed a video onto the page,
 * allow_fullscreen - Enabled by default, set to false to turn off
 
 # Notes
-
 

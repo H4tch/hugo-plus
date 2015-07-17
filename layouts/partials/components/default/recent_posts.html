@@ -1,0 +1,18 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $title_msg := or $section.msg.recent_posts_links_title (or $site.msg.recent_posts_links_title "Recent Posts") }}
+{{ $url := or $section.recent_posts.url $site.recent_posts.url }}
+<!--Todo utilize `$section.content_sources`-->
+<ul class="list-group list-unstyled recent-posts-links">
+{{ if $.Site.Pages }} <!-- (not $.Section)) -->
+	<a href="{{ with $url }}{{ if (eq $url "$section") }}/{{ $.Section }}{{ else }}{{ . }}{{ end }}{{ end }}"
+	 class="list-group-item active recent-posts-title">
+		{{ $title_msg }}</a>
+	{{ range first 4 $.Site.Pages.ByDate.Reverse }}
+		{{ if (not .Params.meta) }}
+			<a href="{{ .Permalink }}" class="list-group-item recent-posts-link">{{ .Title | title }}</a>
+		{{ end }}
+	{{ end }}
+{{ end }}
+</ul>
+

@@ -1,0 +1,82 @@
+
+template = "default/main.html"
+
+[meta]
+	css = ["/default_data/layout.css","/default_data/util.css"]
+	js = []
+
+[views]
+	content = "default/content.html"
+	summary = "default/summary.html"
+	list = "default/list.html"
+	li = "default/li.html"
+	term_list = "default/term_list.html"
+	error_404 = ""
+
+[templates]
+	bootswap = "bootswap"
+	google_search = "plugins"
+	twitter_timeline = "plugins"
+	navbar = "default"
+	jumbotron = "default"
+	carousel = "default"
+	page_header = "default"
+	breadcrumbs = "default"
+	about_author = "default"
+	recent_posts = "default"
+	social_links = "default"
+	categories_panel = "default"
+	footer = "default"
+	no_content_found = "default"
+	error_404 = "default"
+	aggregation_header = "default"
+	toc = "default/content"
+	series_toc = "default/content"
+	series_panel = "default/content"
+	share_links = "default/content"
+	follow_links = "default/content"
+	category_labels = "default/content"
+	tag_labels = "default/content"
+	tags_menu = "default/content"
+	pager = "default/content"
+	comments = "default/content"
+	comment_count = "default/content"
+	continue_message = "default/content"
+
+[header]
+	components = ["navbar","jumbotron","carousel","bootswap",]
+
+[section]
+	components = ["error_404","page_header","breadcrumbs",]
+
+[aside]
+	components = ["about_author","google_search","recent_posts", "social_links",
+		"categories_panel",
+		]
+
+[footer]
+	components = ["footer",]
+
+[content]
+	before = []
+	after = ["series_toc","share_links","follow_links","category_labels","tags_menu",]
+	page_fold = ["pager","series_panel","comments",]
+
+[summary]
+	before = []
+	after = ["series_toc",]
+	page_fold = ["continue_message","comment_count",]
+
+[list]
+	before = []
+	after = ["no_content_found",]
+
+[content_list]
+[term_list]
+[term_content_list]
+
+[aggregation_list]
+	before = ["aggregation_header",]
+	after = ["twitter_timeline",]
+
+

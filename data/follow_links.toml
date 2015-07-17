@@ -1,0 +1,72 @@
+# Currently Supported Links:
+# 	[ "bitbucket", "facebook", "flattr", "github", "google_plus", "gratipay",
+#	  "hitbox", "instagram", "linkedin", "pinterest", "rss", "stack_overflow",
+#	  "tumblr", "twitch", "twitter", "youtube" ]
+#
+
+[bitbucket]
+	title = "Follow on Bitbucket"
+	url = "//bitbucket.org/"
+	append_id = true
+
+#[facebook]
+
+[flattr]
+	title = "Flattr me"
+	url = "//flattr.com/profile/"
+	append_id = true
+
+[github]
+	title = "Follow on Github"
+	url = "//github.com/"
+	append_id = true
+
+#[google_plus]
+
+[gratipay]
+	title = "Support me on Gratipay"
+	url = "//gratipay.com/"
+	append_id = true	
+
+#[hitbox]
+
+[instagram]
+	title = "Follow on Instagram"
+	url = "//instagram.com/"
+	append_id = true
+
+[linkedin]
+	title = "Connect on LinkedIn"
+	url = "//linkedin.com/in/"
+	append_id = true
+
+[pinterest]
+	title = "Follow on Pinterest"
+	url = "http://www.pinterest.com/"
+	append_id = true
+
+[rss]
+	title = "Subscribe to the RSS Feed"
+	url = "$rss"
+
+#[slack]
+
+#[stackoverflow]
+
+[tumblr]
+	title = "Follow on Tumblr"
+	url = "//www.tumblr.com/register/follow/"
+	append_id = true
+
+#[twitch]
+
+[twitter]
+	title = "Follow on Twitter"
+	url = "//twitter.com/intent/follow?screen_name="
+	append_id = true
+	[[twitter.url_part]]
+		#"original_referer=h4tch.github.io&region=follow_link&tw_p=followbutton"
+
+#[youtube]
+
+

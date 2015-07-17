@@ -1,0 +1,14 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ if .Params.categories }}
+<style>.category-labels { margin:10px 5px; float:left; }</style>
+<div class="category-labels">
+	{{ range .Params.categories }}
+		{{ $name := . | lower | urlize }}
+		<a class="btn btn-primary btn-xs category-label category-{{ $name }}"
+		 href="/categories/{{ $name }}">
+		 	{{ . | title }}</a>
+	{{ end }}
+</div>
+{{ end }}
+

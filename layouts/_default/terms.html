@@ -1,29 +1,19 @@
-{{ if .Params.Page }}
-	{{ partial .Params.Page . }}
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $layout := (index .Site.Data.addons (or .Params.layout (or $section.layout (or $site.layout "default")))).layout }}
+
+{{ partial "header.html" . }}
+
+{{ if $layout.template }}
+	{{ partial (print "layouts/" $layout.template) . }}
 {{ else }}
-	{{ $section := or (index .Site.Data.section (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
-	{{ $theme := index .Site.Data.themes (or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default"))) }}
-	{{ $layout := or (or (and (ne .Title .Site.Title) .Params.layout) $section.layout ) $theme.layout }}
-
-	{{ partial "header.html" . }}
-
-	{{ if $layout }}
-		{{ partial $layout . }}
-	{{ else }}
-		<h4>Failed to find layout '{{ $layout }}'<h4>
-		<p>
-			Layout is stored relative to the 'partials' directory.
-			The layout parameter was defined by
-			{{ if (and (ne .Title .Site.Title) .Params.layout) }}
-				this content's 
-			{{ else if $section.layout }}
-				the Section's configuration at 'data/section/{{ or .Section (or .Data.Singular .Title) | lower }}.toml'
-			{{ else }}
-				the Theme's configuration at
-				'data/themes/{{ or (and (ne .Title .Site.Title) .Params.theme) (or $section.theme (or .Site.Params.theme "default")) }}.toml'
-			{{ end }}
-		</p>
-	{{ end }}
-
-	{{ partial "footer.html" . }}
+{{ $layoutName := or (and (ne .Title .Site.Title) .Params.layout) (or $section.layout (or $site.layout "default")) }}
+	<h3>In Layout "{{ $layoutName }}", failed to find template "{{ $layout.template }}"</h3>
+	<p>
+		The template is defined within '/data/layouts/{{ $layoutName }}.toml'
+		Layouts are stored relative to the 'layouts/partials/' directory.
+	</p>
 {{ end }}
+
+{{ partial "footer.html" . }}
+

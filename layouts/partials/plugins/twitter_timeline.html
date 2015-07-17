@@ -1,7 +1,15 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $profiles := or (index .Site.Data.profiles $section.name) .Site.Data.profiles.site }}
+{{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
 
-{{ if (and .Params.twitter .Params.twitter_timeline) }}
-<a class="twitter-timeline"  href="https://twitter.com/{{ .Params.twitter }}" data-widget-id="{{ .Params.twitter_timeline }}">Tweets by @{{ .Params.twitter }}</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{{ $id := or (and $theme.is_dark (or $.Params.profiles.twitter_timeline_dark $profiles.twitter_timeline_dark)) (or .Params.profiles.twitter_timeline $profiles.twitter_timeline) }}
+
+<!--
+<style>#twitter-widget-0 { display:block !important; max-width:520px !important; }</style>
+-->
+{{ if .Params.plugin.twitter_timeline }}
+	<a class="twitter-timeline" style="width:100% !important;"  href="https://twitter.com/{{ $profiles.twitter }}" data-widget-id="{{ $id }}">Tweets by @{{ $profiles.twitter }}</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {{ end }}
-
 

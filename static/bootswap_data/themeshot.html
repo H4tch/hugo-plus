@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link href="default/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--Disable Navbar Collapse to get a better Screenshot of the Theme-->
+<style>
+	.navbar-collapse.collapse { display:block !important; }
+	.navbar-nav > li, .navbar-nav { float:left !important; }
+	.navbar-nav.navbar-right:last-child { margin-right:-15px !important; }
+	.navbar-right {float:right !important;}
+</style>
+
+<!--
+	TODO
+	preview and download links for the theme
+-->
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+<div class="container">
+<div class="row clearfix">
+<div class="col-md-12 column">
+
+<ul class="nav navbar-nav pull-left">
+	<li><a href="#" class="nav-link">Bootswap</a></li>
+	<li class="active"><a href="#" class="nav-link" style="display:inline-block;margin-right:-5px;">Themes</a></li>
+	<li class="dropdown">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" style="display:inline-block; margin-left:0;">
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<li><a href="//bootswatch.com/" class="nav-link">Bootswatch Themes</a></li>
+			<div class="divider"></div>
+			<li><a href="#" class="nav-link">Default</a></li>
+		</ul>
+	</li>
+	<li><a href="#" class="nav-link">About</a></li>
+	<li><a href="#" class="nav-link">Download</a></li>
+</ul>
+<ul class="nav navbar-nav pull-right navbar-right">
+	<li class=""><a href="" class="nav-link">Blog</a></li>
+</ul>
+
+</div><!--/column-->
+</div><!--/row-->
+</div><!--/container-->
+</nav>
+
+
+<h1 class="theme_name text-center" style="margin-top:35px;font-size:400%;">Default</h1>
+<h3 class="theme_desc text-center">Official Bootstrap Theme</h3>
+<div class="navbar navbar-fixed-bottom">
+<div class="text-center">
+    <a href="#" class="btn btn-default">Default</a>
+    <a href="#" class="btn btn-primary">Primary</a>
+    <a href="#" class="btn btn-success">Success</a>
+    <a href="#" class="btn btn-info">Info</a>
+    <a href="#" class="btn btn-warning">Warning</a>
+    <a href="#" class="btn btn-danger">Danger</a>
+</div>
+</div>
+
+
+<script>
+function getURLParameter(name) {
+	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+function loadTheme() {
+	var theme = getURLParameter('theme');
+	var desc = getURLParameter('desc');
+	var css = getURLParameter('css');
+	if (!theme && !desc && !css) { return;}
+	
+	var title_elem = document.getElementsByClassName('theme_name')[0];
+	var desc_elem = document.getElementsByClassName('theme_desc')[0];
+	
+	if (!theme) { theme = "Untitled"; }
+	title_elem.innerHTML = theme;
+	desc_elem.innerHTML = desc;
+	
+	if (!css) { return; }
+	var oldlink = document.getElementsByTagName('link')[0];
+	var newlink = document.createElement("link");
+	newlink.setAttribute("name", "css_theme");
+	newlink.setAttribute("rel", "stylesheet");
+	newlink.setAttribute("type", "text/css");
+	newlink.setAttribute("href", css);
+	console.log(css);
+	document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+setTimeout(function(){loadTheme(0);}, 200);
+</script>
+
+</body>
+</html>
+
+

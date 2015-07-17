@@ -1,0 +1,4 @@
+name = "Blog"
+disabled = ["page_header","breadcrumbs","toc","follow_links","pager"]
+content_sources = ["blog","project","stream","series"]
+

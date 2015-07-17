@@ -1,0 +1,36 @@
+
+# Specifies Social, Profile/User, and Widget Ids
+# The List is within a Table with the same name as the Section it applies to.
+# The 'site' Table will be used as the default/fallback.
+# A Table Section will completely override the 'site' variables, so a blank
+# 	Table will disable all Profile Ids.
+#
+# Note: When overriding Profiles within the Content's Param section you must
+# 	specify which Link Type the ProfileIds belong to (follow, share, social).
+
+[site]
+	bitbucket = 	""
+	facebook = 		""
+	flattr = 		""
+	github = 		""
+	#google_plus = 	""
+	gratipay =		""
+	hitbox = 		""
+	instagram = 	""
+	linkedin = 		""
+	pinterest = 	""
+	stackoverflow =	""
+	slack = 		""
+	twitch = 		""
+	twitter = 		""
+	vimeo =  		""
+	youtube = 		""
+
+# Ids and Widget Ids and Plugins
+	disqus = ""
+	google_analytics = ""
+	google_search = ""
+	google_search_dark = ""
+	twitter_timeline = ""
+	twitter_timeline_dark = ""
+

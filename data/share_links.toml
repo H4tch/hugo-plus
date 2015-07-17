@@ -1,0 +1,134 @@
+# Supported Share Links:
+# 	[ "email", "facebook", "flattr", "google_plus", "gratipay", "hackernews",
+#	  "linkedin", "pinterest", "reddit", "tumblr", "twitter" ]
+#
+# Todo
+# [ "instagram" ]
+# Support for conditional Reddit and HackerNews Links
+# 	<a href="http://news.ycombinator.com/submitlink?u={{ .Permalink }}&t={{ .Title | title }}"
+#	title = "Submit to HackerNews"
+
+[email]
+	title = "Email"
+	url = "mailto:?"
+	[[email.url_part]]
+		text = "subject="
+		field = "$title"
+	[[email.url_part]]
+		text = "&body=Check out this site I came across "
+	[[email.url_part]]
+		field = "$url"
+
+[facebook]
+	title = "Share on Facebook"
+	url = "//www.facebook.com/sharer.php?"
+	[[facebook.url_part]]
+		text = "u="
+		field = "$url"
+	[[facebook.url_part]]
+		text = "&t="
+		field = "$title"
+
+[flattr]
+	title = "Flattr this" 
+	url = "//flattr.com/submit/auto?user_id="
+	append_id = true
+	[[flattr.url_part]]
+		text = "&url="
+		field = "$url"
+	[[flattr.url_part]]
+		text = "&title="
+		field = "$title"
+	[[flattr.url_part]]
+		text = "&description="
+		field = "$description"
+	[[flattr.url_part]]
+		text = "&tags="
+		array = "$categories"
+	[[flattr.url_part]]
+		text = ","
+		array = "$tags"
+	[[flattr.url_part]]
+		text = "&category="
+		field = "$flattr_category"
+
+[google_plus]
+	title = "Share on Google+"
+	url = "//plus.google.com/share?"
+	[[google_plus.url_part]]
+		text = "url="
+		field = "$url"
+
+[gratipay]
+	title = "Support me on Gratipay"
+	url = "//gratipay.com/"
+	append_id = true
+
+[hackernews]
+	title = "Vote and Comment at HackerNews"
+	url = "//news.ycombinator.com/item?{{ . }}"
+	[[hackernews.url_part]]
+		text = "&id="
+		field = "$hackernews_id"
+
+[linkedin]
+	title = "Share on LinkedIn"
+	url = "//www.linkedin.com/cws/share?"
+	[[linkedin.url_part]]
+		text = "url="
+		field = "$url"
+	[[linkedin.url_part]]
+		text = "&title="
+		field = "$title"
+	[[linkedin.url_part]]
+		text = "&source="
+		field = "$site"
+
+[pinterest]
+	title = "Pin it on Pinterest"
+	url = "//pinterest.com/pin/create/button/?"
+	[[pinterest.url_part]]
+		text = "url="
+		field = "$url"
+	[[pinterest.url_part]]
+		text = "&media="
+		field = "$graphic"
+	[[pinterest.url_part]]
+		text = "&description="
+		field = "$title"
+	[[pinterest.url_part]]
+		text = "&is_video="
+		field = "$is_video"
+
+[reddit]
+	title = "Submit to Reddit"
+	url = "//www.reddit.com/submit?"
+	[[reddit.url_part]]
+		text = "url="
+		field = "$url"
+	[[reddit.url_part]]
+		text = "&title="
+		field = "$title"
+
+[tumblr]
+	title = "Share on Tumblr"
+	url = "//www.tumblr.com/share?v=3"
+	[[tumblr.url_part]]
+		text = "&u="
+		field = "$url"
+	[[tumblr.url_part]]
+		text = "&t="
+		field = "$title"
+
+[twitter]
+	title = "Share on Twitter"
+	url = "//twitter.com/share?via="
+	append_id = true
+	[[twitter.url_part]]
+		text = "&url="
+		field = "$url"
+	[[twitter.url_part]]
+		text = "&text="
+		field = "$title"
+
+

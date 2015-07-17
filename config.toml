@@ -1,0 +1,34 @@
+languageCode = "en-us"
+title = "home"
+layoutdir = "layouts"
+contentdir = "content"
+dataDir = "data"
+publishdir = "public"
+#defaultLayout = "blog"
+defaultExtension = "html"
+section = ""
+theme = ""
+paginatepath = "page"
+################################################################################
+baseurl = ""
+
+paginate = 10
+buildDrafts = false
+disableRSS = false
+disableSitemap = false
+buildFuture = false
+canonifyUrls = false
+pluralizeListTitles = false
+plainIdAnchors = true
+
+[permalinks]
+	blog = "/:year/:month/:filename"
+	page = "/:filename"
+	project = "/:filename"
+	author = "/author/:filename"
+
+[taxonomies]
+	tag = "tags"
+	category = "categories"
+
+

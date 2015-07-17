@@ -1,0 +1,25 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $authorPage := index (where .Site.Sections.author.Pages ".Params.term" ((or .Params.author (or $section.author $site.author))|lower|urlize)) 0 }}
+<div class="list-group">
+<div class="list-group-item about-author">
+	<div class="row clearfix">
+	{{ with $authorPage }}
+		{{ $author := .Params }}
+		{{ if $author.thumbnail }}
+			<div class="col-xs-4 col-md-12 column">
+				<div class="thumbnail about-author-thumbnail">
+					<a href="{{ $authorPage.Permalink }}">
+					 <img src="{{ $author.thumbnail }}" title="{{ $author.name }}"
+					 class="img-responsive center-block"></a>
+				</div>
+			</div>
+		{{ end }}
+		<div class="col-xs-8 col-md-12 column">
+			<p class="text-justify">{{ .Summary }}</p>
+		</div>
+	{{ end }}
+	</div>
+</div>
+</div>
+

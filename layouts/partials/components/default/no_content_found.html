@@ -1,0 +1,22 @@
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+
+{{ $terms := .Data.Terms.ByCount }}
+{{ $pages := or .Data.Pages.ByDate.Reverse (where .Site.Pages.ByDate.Reverse (print ".Params." (or $section.taxonomy ""|lower)) .Params.term) }}
+{{ $no_content_msg := or $section.msg.no_content_found (or $site.msg.no_content_found "No content found matching this criteria") }}
+
+{{ $type := or (and .Data.Singular (or (and .Data.Terms 2) 3)) (or (and .IsPage 4) 1) }}
+{{ $listType := or (and (eq $type 1) "content_list") (or (and (eq $type 2) "term_list") (or (and (eq $type 3) "term_content_list") "aggregation_list")) }}
+{{ $list := or (index $section $listType) (index $site $listType) }}
+{{ $view := or (or $list.view (index $site $listType).view) (or (and .Data.Terms "term_list") "summary") }}
+
+{{ $doShow := or $list.no_content_found (not (isset $list "no_content_found")) }}
+
+{{ if and $doShow (eq ($.Scratch.Get "rendered_posts") 0) }}
+{{ if (ne $view "li") }}<div class="panel panel-default">{{ end }}
+	<div class="panel-body">
+		<h4 class="text-muted no-content-found">{{ $no_content_msg }}</h4>
+	</div>
+{{ if (ne $view "li") }}</div>{{ end }}
+{{ end }}
+

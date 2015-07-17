@@ -1,10 +1,11 @@
 
 # Spoiler for Hidden Content
-Uses Bootstap to show a clickable panel that reveals it's content
+Embeds a Panel that, when clicked, reveals it's inner Content.
+A Spoiler instance can be set to be revealed by default.
 
 # Usage
 ```
-	{{< spoiler text="Click to reveal text" >}}You found me!{{ /spoiler }}
+	{{< spoiler text="Click to reveal text" >}} You found me! {{< /spoiler >}}
 ```
  
 # Parameters
@@ -24,5 +25,4 @@ Outer div tag contains a 'spoiler' class attribute.
 The id of the collapsible element will either by the `id` parameter, or
 	the `text` parameter in 'lowercase-urlized-form'.
 An empty `text` field will still result in a usable spoiler panel.
-
 

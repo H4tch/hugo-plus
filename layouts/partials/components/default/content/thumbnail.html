@@ -1,0 +1,17 @@
+<!-- Thumbnail can be enabled/disabled from Content or Section config  -->
+{{ $site := .Site.Data.config.site }}
+{{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
+{{ $components := or $section.components .Site.Data.null }}
+{{ $content := or .Params.components $components }}
+{{ $thumbnail := or .Params.thumbnail $section.thumbnail }}
+{{ $metadata := or .Params.metadata (or $section.metadata $site.metadata) }}
+{{ $enabled := or $metadata.thumbnail (not (isset $metadata "thumbnail")) }}
+
+{{ if and $thumbnail $enabled }}
+	<span class="thumbnail content-thumbnail pull-right">
+		<a href="{{ .Permalink }}">
+		<img src="{{ $thumbnail }}" title="{{ .Params.title }}"
+		 class="img-responsive center-block"></a>
+	</span>
+{{ end }}
+

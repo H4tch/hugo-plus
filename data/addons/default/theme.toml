@@ -1,0 +1,15 @@
+is_dark = false
+icons = "default"
+icons_dark = "default"
+background = "/default_data/background.png"
+#background_dark = ""
+
+[meta]
+	css = ["/default_data/hugo-plus.css","/default_data/theme.css"]
+
+[navbar]
+	class = "navbar-inverse"
+
+[footer]
+	class = "bg-primary"
+

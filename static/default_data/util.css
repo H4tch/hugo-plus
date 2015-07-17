@@ -1,0 +1,33 @@
+
+/* Util */
+.no-pad { margin-right:0; margin-left:0; }
+.no-pad > [class*='col-'] { padding-right:0; padding-left:0; }
+.vcenter { display:inline-block; vertical-align:middle; float:none; }
+/* Vertical Offsets */
+.voffset1 { margin-top:1px; }
+.voffset2 { margin-top:2px; }
+.voffset5 { margin-top:5px; }
+.voffset10 { margin-top:10px; }
+.voffset15 { margin-top:15px; }
+.voffset20 { margin-top:20px; }
+.voffset30 { margin-top:30px; }
+.voffset50 { margin-top:40px; }
+.voffset60 { margin-top:50px; }
+.voffset80 { margin-top:80px; }
+.voffset100 { margin-top:100px; }
+.voffset150 { margin-top:150px; }
+/* Negative Vertical Offsets */
+.voffset-1 { margin-top:-1px; }
+.voffset-2 { margin-top:-2px; }
+.voffset-5 { margin-top:-5px; }
+.voffset-10 { margin-top:-10px; }
+.voffset-15 { margin-top:-15px; }
+.voffset-20 { margin-top:-20px; }
+.voffset-30 { margin-top:-30px; }
+.voffset-50 { margin-top:-50px; }
+.voffset-60 { margin-top:-60px; }
+.voffset-80 { margin-top:-80px; }
+.voffset-100 { margin-top:-100px; }
+.voffset-150 { margin-top:-150px; }
+
+

@@ -1,0 +1,170 @@
+title = ""
+name = "Home"
+logo = ""
+favicon = "/favicon.png"
+description = ""
+keywords = "blog, web"
+
+author = ""
+
+layout = "default"
+theme = "default"
+icon_theme = "default"
+background = ""
+background_dark = ""
+highlightjs = "monokai_sublime"
+highlightjs_dark = "monokai_sublime"
+
+plugins = [ "bootswap","disqus","highlightjs","magnific_popup","opengraph",
+		"google_analytics",]
+
+disabled = ["page_header","breadcrumbs","toc","follow_links",]
+
+social_links = ["twitter", "github", "bitbucket", "rss"]
+
+share_links = ["gratipay", "flattr", "twitter", "facebook", "google_plus",
+		"linkedin", "pinterest", "hackernews", "reddit", "tumblr", "email"]
+
+content_sources = ["blog","project","stream","series"]
+
+menus = ["navbar", "navbar-right", "projects", "footer",]
+[[menu.navbar]]
+	name = "Blog"
+	url = "/blog"
+[[menu.navbar]]
+	name = "About"
+	url = "/about"
+[[menu.navbar]]
+	name = "Streams"
+	url = "/stream"
+[[menu.navbar]]
+	name = "Projects"
+	menu = "projects"
+
+[[menu.navbar-right]]
+	name = "Archive"
+	url = "/archive"
+
+#[[menu.projects]]
+#	name = "Hugo plus"
+#	url = "/hugo-plus"
+#[[menu.projects]]
+#	name = "$divider"
+[[menu.projects]]
+	name = "All Projects »"
+	url = "/project"
+
+
+[navbar]
+	logo = ""
+	hide_title = true
+	fixed = true
+	fixed_position = "top"
+
+#[jumbotron]
+#	title = "Hello, Hugo!"
+#	text = "This is and example of a jumbotron. It is defined within the content's front matter"
+#	text_color = "#EEE"
+#	graphic = "http://lorempixel.com/1200/300/city/5"
+#	text_bg_color = "rgba( 0,0,0,0.5 )"
+#	parallax = false
+#	[[jumbotron.button]]
+#		text = "Use the force, Luke!"
+#		url = "#"
+#		class = "btn-primary"
+#	[[jumbotron.button]]
+#		text = "Give in to the Dark Side!"
+#		url = "#"
+#		class = "btn-info"
+
+[about_author]
+	sections = ["home","blog","series","streams",]
+
+[recent_posts]
+	url = "$section"
+
+[social]
+	url = "about/"
+
+#[carousel]
+#	text_bg_color = "rgba(0,0,0,.2)"
+#[[carousel.slide]]
+#	graphic = "http://lorempixel.com/1200/300/city/1"
+#	title = "This is the Title"
+#	text = "This is just some supporting text"
+
+
+[comments]
+	on_demand = true
+
+[content_list]
+	view = "summary"
+	group_by_year = true
+	pagination = false
+	posts = 10
+	show_meta = false
+
+[aggregation_list]
+	view = "li"
+	group_by_year = true
+	pagination = false
+	posts = 5
+	show_meta = false
+	no_content_found = false
+
+[term_list]
+	view = "term_list"
+	group_by_year = true
+	pagination = false
+	posts = 10
+	show_meta = false
+
+[term_content_list]
+	view = "li"
+	group_by_year = true
+	pagination = false
+	posts = 10
+	show_meta = false
+
+[breadcrumbs]
+	append_content_page = true
+#[[breadcrumbs.item]]
+#	title = "Home"
+#	url = "/"
+
+[page_header]
+	title = ""
+
+[metadata]
+	title = true
+	date = true
+	author = true
+	series = true
+	thumbnail = false
+
+[date]
+	format = "2 Jan 2006"
+	short_format = "2 Jan"
+
+[msg]
+	error_404 = "Error 404: Page Not Found"
+	copyright = "All rights reserved."
+	recent_posts_links_title = "Recent Posts"
+	category_links_title = "Categories"
+	category_links_tags = "Tags"
+	social_links_title = "Social"
+	summary_continue_reading = "Continue Reading »"
+	summary_goto_page = "Comment and Share »"
+	summary_no_comments = "No Comments"
+	summary_comments = "Comments"
+	load_comments = "Load Comments"
+	no_content_found = "No content found matching this criteria"
+	menu_tags = "tags"
+	menu_tags_all = "All Tags »"
+	sr_menu_tags_open = "Open Tags Menu"
+	pager_return = "Return to "
+	series = "Series"
+	series_button = "All series"
+	series_articles_within = "Articles within this series:"
+
+
