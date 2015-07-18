@@ -35,21 +35,18 @@ You can also create a second widget with a dark theme, and set the id to
 <style>
 	#___gcse_0 { margin:0px 0px 15px; }
 	.gsc-control-cse {
-		background-color:white !important;
-		border-color:rgba(0,0,0,.2) !important;
 		padding:5px 15px 5px 15px !important;
 		border-radius:3px !important;
 	}
-	.gsc-search-box { margin:0px !important; }
-	input[class="gsc-input"] { line-height:1; background-image:none !important; }
-	td[class="gsc-search-button"] {
-		padding:0px 15px !important;
-		background-color:#3779b9 !important;
-		border-color:#406f9d !important;
-	}
+	.gsc-search-box-tools { margin:0px !important; }
 	.gsc-search-button-v2 {
-		height:13px !important; width:13px !important; padding:0px !important;
-		background-color:transparent !important; border-color:transparent !important;
+		padding:5px 20px !important;
+		min-width:55px !important;
+		min-height:25px !important;
 	}
-	#gsc-i-id1 { background:transparent; color:white; }
+	input[class="gsc-input"] { line-height:1; background:none !important; }
+	#gsc-i-id1 { color:{{ if $theme.is_dark }}white{{ else }}black{{ end }}; }
 </style>
+
+
+
