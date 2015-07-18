@@ -1,24 +1,25 @@
 +++
-# Note, these parameters are not finalized
-# Projects will probably just use completely custom pages
-
-page = ""
-date = ""
 draft = true
 last_modified = ""
+term = ""
 author = ""
 tags = []
 categories = []
 series = ""
 graphic = ""
 thumbnail = ""
-summary_continue_reading = ""
-subreddit = ""
 
 version = "1.0"
 screenshots = []
-# Syntax highlighting theme. See `.Site.Data.highlightjs.toml`
+
+layout = ""
+content_layout = ""
+disabled = []
+
+summary_continue_reading = ""
 highlightjs = ""
+highlightjs_dark = ""
+subreddit = ""
 flattr_category = "software"
 +++
 

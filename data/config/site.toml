@@ -57,7 +57,7 @@ menus = ["navbar", "navbar-right", "projects", "footer",]
 
 [navbar]
 	logo = ""
-	hide_title = true
+	hide_title = false
 	fixed = true
 	fixed_position = "top"
 

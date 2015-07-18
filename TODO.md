@@ -6,6 +6,7 @@
 
 
 ### Components
+* Support Author's Metadata (website, job_title)
 * Multiple Component Instances
 * List should directly include 'no_content_found'
 * Component Styling Indirection
@@ -19,6 +20,7 @@
 	* etc
 * 'Featured' Taxonomy
 	* Integrate with a Banner to display recent Featured Content
+* 'Related' Posts
 * Content post 'Updates' Shortcode
 
 

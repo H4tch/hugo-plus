@@ -78,11 +78,11 @@
 		<li class="dropdown {{ if (eq $sectionName $name) }}active{{ end }}">
 			{{ if .url }}
 				<a href="{{ .url }}" class="nav-link" style="padding-right:0px;">{{ .name }}</a>
-				<a class="btn dropdown-toggle" data-toggle="dropdown" style="padding:0px 15px 0px 5px; margin-top:-5px;">
+				<a class="dropdown-toggle" data-toggle="dropdown" style="padding:0px 15px 0px 5px; margin-top:-5px;">
 					<span class="caret"></span>
 				</a>
 			{{ else }}
-				<a class="btn nav-link" data-toggle="dropdown">
+				<a class="nav-link" data-toggle="dropdown">
 					{{ .name }} <span class="caret"></span>
 				</a>
 			{{ end }}
