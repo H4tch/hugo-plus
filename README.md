@@ -5,7 +5,7 @@ components.
 
 Hugo-plus provides a base set of customizable features that are able to remain
 consistent across theme and layout changes.
-
+	
 ![Screenshot](/images/screenshot.png)
 ![Screenshot of a Dark Theme](/images/screenshot2.png)
 

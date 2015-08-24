@@ -1,7 +1,7 @@
 {{ $site := .Site.Data.config.site }}
 {{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ if .Params.tags }}
-<style>.tag-labels { margin:10px 5px; float:left; }</style>
+<style>.tag-labels { margin:10px 0px; float:left; }</style>
 <div class="tag-labels">
 	{{ range .Params.tags }}
 		{{ $name := . | lower | urlize }}

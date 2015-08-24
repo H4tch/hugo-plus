@@ -4,13 +4,14 @@
 {{ $series_button_msg := or $section.msg.series_button (or $site.msg.series_button "All series") }}
 
 {{ if .Params.series }}
+{{ $seriesPage := index (where .Site.Sections.series.Pages ".Params.term" (.Params.series |lower|urlize)) 0 }}
 {{ $pages := where $.Site.Pages.ByDate "Params.series" .Params.series }}
 {{ if $pages }}
 <div class="panel panel-default series-panel">
 	<div class="panel-heading">
 		<h4 class="active series-panel-title">
 			<a href="/series/{{ .Params.series | lower | urlize }}">
-			{{ $.Params.series | title }} {{ $series_msg }}</a>
+			{{ $seriesPage.Title | title }} {{ $series_msg }}</a>
 			<a href="/series" class="label label-primary pull-right series-panel-button">{{ $series_button_msg }}</a>
 		</h4>
 	</div>

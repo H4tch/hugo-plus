@@ -4,9 +4,9 @@
 {{ if (and .IsPage (and $section.taxonomy .Params.term)) }}
 <div class="well" style="margin-bottom:-5px;">
 	<a style="text-decoration:none;">
-		<h1 class="content-title aggregation-title" style="margin:0px">
+		<h2 class="content-title aggregation-title" style="margin:0px">
 		{{ or $title "" | title }}
-	</h1></a>
+	</h2></a>
 </div>
 {{ end }}
 

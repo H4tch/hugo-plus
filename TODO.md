@@ -1,4 +1,12 @@
 
+* Move "partials/components/*", "partials/plugins/*", and "partials/themes/*" into "partials/*"
+* If Component is a Plugin, check if it should be included by searching 'plugins' field.
+* BountySource Share/Follow Link
+
+* Font: SourceSansPro
+* Section Icons
+
+
 ### Theming and Layouts
 * More Content Views
 * HighlightJS Theme Selector (Use cookies to save the info)

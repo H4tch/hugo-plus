@@ -70,7 +70,7 @@ function changeCSS(incIndex) {
 	var cssCdn = $(".themeshot-css-cdn").get(0);
 	if ( theme.cssCdn ) {
 		cssCdn.setAttribute('style','');
-		$(".themeshot-css-cdn > textarea").get(0).innerHTML += theme.cssCdn;
+		$(".themeshot-css-cdn > textarea").get(0).innerHTML = theme.cssCdn;
 	} else { cssCdn.setAttribute('style','display:none;'); }
 	
 	var oldlink = document.getElementsByName("css_theme")[0];
@@ -101,9 +101,9 @@ var bg_enabled = true;
 var bg_theme = 1; // dark=0,light=1,color=2
 var bg_index = [0,0,0];
 var bg_imgs = [
-	[ {{ range $img := $bootswap.backgrounds.dark }}"/bootswap_data/backgrounds/dark/{{ $img }}",{{ end }} ],
-	[ {{ $background }},{{ range $img := $bootswap.backgrounds.light }}"/bootswap_data/backgrounds/light/{{ $img }}",{{ end }} ],
-	[ {{ range $img := $bootswap.backgrounds.color }}"/bootswap_data/backgrounds/color/{{ $img }}",{{ end }} ]
+	[ {{ range $img := $bootswap.backgrounds.dark }}"/backgrounds/dark/{{ $img }}",{{ end }} ],
+	[ {{ $background }},{{ range $img := $bootswap.backgrounds.light }}"/backgrounds/light/{{ $img }}",{{ end }} ],
+	[ {{ range $img := $bootswap.backgrounds.color }}"/backgrounds/color/{{ $img }}",{{ end }} ]
 	];
 function toggleBG(elem) { bg_enabled = elem.checked; updateBG(); }
 function changeBG(incIndex) {

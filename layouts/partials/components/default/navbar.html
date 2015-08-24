@@ -12,23 +12,23 @@
 {{ $title := or (or $navbar.title $section.title) (or $navbar.title $site.title) }}
 
 {{ $menus := or $section.menu $site.menu }}
-<nav class="navbar {{ with $theme.navbar.class }}{{ . }}{{ else }}navbar-default{{ end }} navbar-{{ if $navbar.fixed }}fixed-{{ with $navbar.fixed_position }}{{ . }}{{ else }}top{{ end }}{{ else }}static-top{{ end }}"
- style="" role="navigation">
+<nav class="navbar {{ with $theme.navbar.class }}{{ . }}{{ else }}navbar-default{{ end }} navbar-{{ if $navbar.fixed }}fixed-{{ with $navbar.fixed_position }}{{ . }}{{ else }}top{{ end }}{{ else }}static-top{{ end }}" role="navigation">
 
 <style>
 .navbar {
 	{{ if $logo }}min-height:44px;{{ end }}
 	z-index:99; margin-bottom:0;
+	{{ with $theme.navbar.style }}{{ . | safeCSS }}{{ end }}
 }
 .navbar-fixed-top + * { margin-top:44px !important; }
 .navbar-fixed-top ~ .wrapper { z-index:1;display:none; }
-.navbar-brand { padding:0px 15px; }
+.navbar-brand { {{ if $logo }}padding:0px 15px;{{ end }} }
 .navbar-brand > img {
 	max-height:40px;
 	display:inline-block;
 	margin:2% 15px 0 0;
 }
-.navbar-brand > span { padding:10px 0px 10px 0px; display:inline-block; }
+.navbar-brand > span { {{ if $logo }}padding:10px 0px;{{ end }} display:inline-block; }
 
 .nav > li { display:inline-block; float:left; }
 .navbar-right > li { display:inline-block; float:right; }

@@ -15,12 +15,14 @@ THEME=$1
 DEST=$2
 if test $# -lt 2; then DEST="."; fi
 
-lessc --compress $THEME.less > $DEST/$THEME.min.css
-lessc $THEME.less > $DEST/$THEME.css
-	
+echo "Generating Theme"
+lessc --compress $THEME/bootstrap.less > $DEST/$THEME.min.css
+lessc $THEME/bootstrap.less > $DEST/$THEME.css
+
 while inotifywait -e close_write $THEME/; do
-	lessc --compress $THEME.less > $DEST/$THEME.min.css
-	lessc $THEME.less > $DEST/$THEME.css
+	echo "Generating Theme"
+	lessc --compress $THEME/bootstrap.less > $DEST/$THEME.min.css
+	lessc $THEME/bootstrap.less > $DEST/$THEME.css
 done
 
 

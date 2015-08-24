@@ -35,7 +35,8 @@ html,body { height:100% !important; }
 /*.content-block > p { margin-bottom:0px; }*/
 .content-title > a > h1 { margin-top:0px; }
 .content-title { margin-bottom:5px; }
-.content-thumbnail { max-width:96px; margin-left:15px; }
+.content-thumbnail { max-width:256px; margin-left:15px; }
+.content-thumbnail img { max-height:96px; }
 .content-metadata { margin-bottom:10px; }
 .content-footer {}
 

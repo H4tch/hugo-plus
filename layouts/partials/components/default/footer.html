@@ -1,15 +1,15 @@
 {{ $site := .Site.Data.config.site }}
 {{ $section := or (index .Site.Data.config (or .Section (or .Data.Singular (.Title|lower)))) .Params }}
 {{ $theme := (index .Site.Data.addons (or .Params.theme (or $section.theme $site.theme))).theme }}
-
+{{ $authorPage := index (where .Site.Sections.author.Pages ".Params.term" ((or .Params.author (or $section.author $site.author))|lower|urlize)) 0 }}
 <footer class="footer {{ with $theme.footer.class }}{{ . }}{{ end }}">
 <div class="container">
 <div class="row clearfix">
 	<div class="col-xs-12 column">
 		<p class="footer-text credit"><small>
 			&copy; {{ .Now.Format "2006" }}
-			{{ with (or .Params.author (or $section.author $site.author)) }}
-				<a class="text-info" href="{{ $.Site.BaseURL }}">{{ . }}</a>.
+			{{ with $authorPage }}{{ $author := .Params }}
+				<a class="text-info" href="{{ $authorPage.Permalink }}">{{ $author.name }}</a>.
 			{{end}}
 			{{ with (or $section.msg.copyright (or $site.msg.copyright .Site.Copyright)) }}
 				<copyright>{{.}}</copyright>
