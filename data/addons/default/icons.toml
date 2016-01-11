@@ -57,7 +57,7 @@
 [instagram]
 	class = "fa fa-instagram"
 [instagram.social]
-	class = "fa fa-instagram-square"
+	class = "fa fa-instagram"
 
 [linkedin]
 	class = "fa fa-linkedin"
