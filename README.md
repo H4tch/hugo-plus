@@ -81,17 +81,17 @@ customization and expansion of the finished product.
 
 # Getting Started
 If you already have a Hugo website, or you want to continue testing traditional
-Hugo themes, you can use Hugo-plus as any other Hugo theme.
-
-However, since Hugo-plus introduces its own Addon system, it can be installed
-in the top level directories of the site which makes management eaiser.
+Hugo themes, you can use Hugo-plus as any other Hugo theme. However, for Hugo-Plus
+to work with a plain Hugo website, you must copy over Hugo-Plus' 'data/' directory
+to your site. Also change the 'title' in 'config.toml' to 'home' so the configuration
+of the homepage can be read from 'data/config/home.toml'.
 
 First, [dowload hugo-plus directly](https://github.com/H4tch/hugo-plus/archive/master.zip),
 or clone it by typing:
 > git clone https://github.com/H4tch/hugo-plus/
 
 If you don't have Hugo installed, [download it here.](https://github.com/spf13/hugo/releases)
-and install it within your environment `$PATH` or in your site's folder.
+and install it within your environment's `$PATH` or in your site's root directory.
 
 Content is created using Hugo's `new` command from the top level directory.
 > hugo new blog/first-post.md
