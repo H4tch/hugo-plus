@@ -1,3 +1,5 @@
+################################################################################
+# Don't modify values within this section, instead see files in `data/sections/`.
 languageCode = "en-us"
 title = "home"
 layoutdir = "layouts"
