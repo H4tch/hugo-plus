@@ -3,21 +3,17 @@
 name = "Hugo-plus"
 author = "Daniel Hatch (h4tch)"
 homepage = "http://h4tch.github.com/project/hugo-plus"
-description = "Fully functional and customizable static website platform."
+description = "Functional and customizable static website platform built on Bootstrap with support for addons."
 source_repo = "http://www.github.com/h4tch/hugo-plus"
 license = "MIT"
-licenselink = "LICENSE.md"
+licenselink = "https://github.com/H4tch/hugo-plus/blob/master/LICENSE.md"
 
-tags = ["blog",""]
+tags = ["blog","project","authors","series"]
 features = ["blog","project","authors","series","streams","themes","layouts","components","plugins"]
+min_version = 0.13
 
 [author]
 	name = "Daniel Hatch"
 	homepage = "http://h4tch.github.com"
-
-[original]
-	author =  "Daniel Hatch"
-	homepage = "http://h4tch.github.com"
-	repo = "http://github.com/h4tch/hugo-plus"
 
 
