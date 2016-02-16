@@ -1,7 +1,6 @@
 # This file specifies the metadata of this Hugo theme
 
 name = "Hugo-plus"
-author = "Daniel Hatch (h4tch)"
 homepage = "http://h4tch.github.com/project/hugo-plus"
 description = "Functional and customizable static website platform built on Bootstrap with support for addons."
 source_repo = "http://www.github.com/h4tch/hugo-plus"
@@ -14,6 +13,4 @@ min_version = 0.13
 
 [author]
 	name = "Daniel Hatch"
-	homepage = "http://h4tch.github.com"
-
-
+	homepage = "http://h4tch.github.io"
