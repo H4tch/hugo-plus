@@ -20,7 +20,7 @@
 <meta name="keywords" content="{{ or $section.keywords $site.keywords }}">
 <meta name="author" content="{{ or .Params.author (or $section.author $site.author) }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link type="application/rss+xml" href="{{ .RSSlink }}" rel="alternate" title="{{ or $section.title $site.title }}">
+<link type="application/rss+xml" href="{{ .RSSLink }}" rel="alternate" title="{{ or $section.title $site.title }}">
 
 <!-- jQuery required by Disqus, Magnific -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
